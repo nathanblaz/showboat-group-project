@@ -33,6 +33,10 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <li>
+        <img src={user.avatar}>
+        </img>
+      </li>
     </ul>
   );
 }
