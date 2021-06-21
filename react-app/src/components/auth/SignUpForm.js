@@ -13,25 +13,26 @@ const SignUpForm = () => {
   const [avatar, setAvatar] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
+  // useEffect(async () => {
+  //   console.log(avatar, "before Effect")
+  //   updateAvatar(event);
+  //   console.log(avatar, "after Effect")
+  // }, [dispatch, updateAvatar]);
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
     setImageLoading(true);
 
     if (password === repeatPassword) {
+      console.log("AVATAR value inside submit handler", avatar)
       const data = await dispatch(signUp(username, email, password, avatar));
       setImageLoading(false)
     } else {
+      console.log("Error")
       // error handling
     }
-
   };
-
-  useEffect(async () => {
-    console.log(avatar, "before Effect")
-    setAvatar();
-    console.log(avatar, "after Effect")
-  }, [dispatch, setAvatar])
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -50,11 +51,12 @@ const SignUpForm = () => {
   };
 
   const updateAvatar = (e) => {
-    setAvatar(e.target.files[0]);
-    console.log(avatar, "++++++++++++++++++++++++++")
+    const imgFile = e.target.files[0]
+    setAvatar(imgFile);
+    console.log(avatar, "AVATAR++++++++++++++++++++++++++")
     console.log(e.target.files, "list ==========")
     console.log(e.target.files[0], "what goes in avatar")
-    console.log(e.target.value, "what literally in in avatar")
+    console.log(e.target.value, "target value")
   };
 
   if (user) {
@@ -104,7 +106,7 @@ const SignUpForm = () => {
         <label>Upload Avatar</label>
         <input type="file" id="avatar" name="avatar"
           accept="image/*"
-          onClick={updateAvatar}
+          onChange={updateAvatar}
           // value={avatar}
           ></input>
       </div>

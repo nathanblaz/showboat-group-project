@@ -71,11 +71,16 @@ def sign_up():
             password=form.data['password'],
             avatar=url
         )
+        print(user, "AUTH ROUTE USER")
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:
+        print("============================")
+        print(form.data)
+        print("============================")
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/unauthorized')

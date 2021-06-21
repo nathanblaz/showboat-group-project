@@ -58,6 +58,7 @@ export const logout = () => async (dispatch) => {
 
 
 export const signUp = (username, email, password, avatar) => async (dispatch) => {
+    console.log(avatar, "SESSION.JS AVATAR VALUE")
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({
