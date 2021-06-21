@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -10,13 +10,28 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
+    setImageLoading(true);
+
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, avatar));
+      setImageLoading(false)
+    } else {
+      // error handling
     }
+
   };
+
+  useEffect(async () => {
+    console.log(avatar, "before Effect")
+    setAvatar();
+    console.log(avatar, "after Effect")
+  }, [dispatch, setAvatar])
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -32,6 +47,14 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateAvatar = (e) => {
+    setAvatar(e.target.files[0]);
+    console.log(avatar, "++++++++++++++++++++++++++")
+    console.log(e.target.files, "list ==========")
+    console.log(e.target.files[0], "what goes in avatar")
+    console.log(e.target.value, "what literally in in avatar")
   };
 
   if (user) {
@@ -77,7 +100,16 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
+      <div>
+        <label>Upload Avatar</label>
+        <input type="file" id="avatar" name="avatar"
+          accept="image/*"
+          onClick={updateAvatar}
+          // value={avatar}
+          ></input>
+      </div>
       <button type="submit">Sign Up</button>
+      {(imageLoading) && <p>Loading...</p>}
     </form>
   );
 };
