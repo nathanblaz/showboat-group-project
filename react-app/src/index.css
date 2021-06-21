@@ -1,1 +1,47 @@
-/* TODO Add site wide styles */
+/* TODO Add site wide styles
+reference color palette for grays + red https://colorhunt.co/palette/171717444444da0037ededed */
+
+/* header and footer
+background-color: #444444 deep warm gray*/
+
+/* body
+background-color: #f1f0f0 pale gray
+color: #171717 near-black */
+
+/* button
+background-color: #FFC93C gold
+text should be  #444444 deep warm gray */
+
+/* link
+color: #DA0037 cool red
+ */
+
+ /* small photo component (as rendered in an album view or feed */
+
+.feed--photo-div {
+    background-color: white;
+    padding: 10px;
+    margin: 20px;
+}
+
+body {
+    background-color: #f1f0f0;
+    color: #171717
+}
+
+nav {
+    background-color: #444444;
+    height: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #fdc12a;
+    color: #444444
+}
+
+a {
+    color: #c70032
+}
