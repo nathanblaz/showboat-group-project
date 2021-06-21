@@ -13,20 +13,24 @@ background-color: #FFC93C gold
 text should be  #444444 deep warm gray */
 
 /* link
-color: #DA0037 cool red
+color: #c70032 cool red
  */
-
- /* small photo component (as rendered in an album view or feed */
-
-.feed--photo-div {
-    background-color: white;
-    padding: 10px;
-    margin: 20px;
-}
 
 body {
     background-color: #f1f0f0;
-    color: #171717
+    color: #171717;
+    font-family: sans-serif;
+}
+
+button {
+    background-color: #fdc12a;
+    color: #444444;
+    border-radius: 5px;
+    border: none;
+}
+
+a {
+    color: #c70032
 }
 
 nav {
@@ -37,11 +41,113 @@ nav {
     align-items: center;
 }
 
-button {
-    background-color: #fdc12a;
-    color: #444444
+.navmenu { /* the UL that contains NavLinks */
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style-type: none;
+    font-family: sans-serif;
+    width: 70vw;
+    justify-content: end;
+    margin-right: 2rem;
 }
 
-a {
-    color: #c70032
+.navitem { /* each LI which is a NavLink */
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    background-color: #f1f0f0;
+    padding: 10px;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.navitem:hover {
+    box-sizing: border-box;
+    border: 3px solid #fdc12a;
+}
+
+li > a {
+    text-decoration: none;
+}
+
+nav > a {
+    color: #f1f0f0;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ /* small photo component (as rendered in an album view or feed */
+
+ .feed--photo-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    max-width: 700px;
+    max-height: 700px;
+}
+
+.feed--photo {
+    background-color: gray;
+    width: 500px;
+    height: 500px;
+}
+
+/* username and avi layout for photo components, comments, etc
+BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
+.user-object {
+    width: 80%;
+    display: grid;
+    grid-template-columns: fit-content(200px) 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "image user"
+        "image timestamp"
+        "content content";
+    grid-gap: 2px;
+    margin-bottom: 10px;
+    font-size: .9em;
+    border: 1px solid gray;
+}
+
+.user-object--user {
+    grid-area: user;
+    display: flex;
+    justify-content: start;
+    padding-left: 10px;
+    /* border: 1px solid gray; */
+}
+
+.user-object--timestamp {
+    /* border: 1px solid gray; */
+    display: flex;
+    justify-content: start;
+    padding-left: 10px;
+    color: #b8b8b8;
+    font-size: .75em;
+    grid-area: timestamp;
+}
+
+.user-object--avi {
+    /* border: 1px solid gray; */
+    background-color: gray;
+    padding: 3px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    grid-area: image;
+}
+
+.user-object--content {
+    /* border: 1px solid gray; */
+    grid-area: content;
+    display: flex;
+    justify-content: start;
+    padding-left: 10px;
 }
