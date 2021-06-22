@@ -60,7 +60,7 @@ a {
 /* sidebar of tags, for home page and photo page*/
 .tag-sidebar {
     background-color: white;
-    width: 200px;
+    width: 200px; /* maybe should be longer for real tags */
     padding: 20px;
     margin: 20px;
     display: flex;

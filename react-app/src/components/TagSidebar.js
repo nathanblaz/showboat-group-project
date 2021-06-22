@@ -11,10 +11,10 @@ const TagSidebar = () => {
             {/* <div className="tag-sidebar-tag"><NavLink>Tag1</NavLink></div> */}
             <div className="tag-sidebar-tag">Tag</div>
             <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
+            <div>Example Tag</div>
+            <div>Another Long Tag</div>
+            <div>Activities</div>
+            <div>Hobbies</div>
         </div>
     )
 }
