@@ -1,14 +1,18 @@
 import React from 'react';
 import PhotoFeedChunk from "./PhotoFeedChunk";
+import TagSidebar from "./TagSidebar";
 
 
 const HomePage = () => {
 
     return (
         <>
-            <h1> Welcome to ShowBoat</h1>
-            <PhotoFeedChunk />
-
+            <div>
+                <PhotoFeedChunk />
+            </div>
+            <div>
+                <TagSidebar />
+            </div>
         </>
     )
 }

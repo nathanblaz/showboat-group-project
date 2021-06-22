@@ -112,6 +112,7 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
         "content content";
     grid-gap: 2px;
     margin-bottom: 10px;
+    padding: 5px;
     font-size: .9em;
     border: 1px solid gray;
 }
