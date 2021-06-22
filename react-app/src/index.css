@@ -114,7 +114,7 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
     margin-bottom: 10px;
     padding: 5px;
     font-size: .9em;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
 }
 
 .user-object--user {
@@ -151,4 +151,17 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
     display: flex;
     justify-content: start;
     padding-left: 10px;
+}
+
+.profile-dropdown {
+    position: relative;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #171717;
+    border-radius: 2px;
 }

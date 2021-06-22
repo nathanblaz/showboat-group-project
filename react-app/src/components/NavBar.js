@@ -1,10 +1,31 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+
+  const dropdown = () => {
+    if (showDropdown) return;
+    setShowDropdown(true);
+    setShowButton(false);
+  };
+
+  useEffect(() => {
+    if (!showDropdown) return;
+
+    const closeDropdown = () => {
+      setShowDropdown(false);
+      setShowButton(true);
+    };
+
+    document.addEventListener('click', closeDropdown);
+    return () => document.removeEventListener('click', closeDropdown)
+  }, [showDropdown])
 
   return (
     <nav>
@@ -20,7 +41,20 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        {user? null : (
+        {user? (<>
+            {showButton && (
+              <button className="profile-button" onClick={dropdown}>
+                <i className="fas fa-user-circle" />
+              </button>
+            )}
+            {showDropdown && (
+              <div className="profile-dropdown">
+                <div className="profile-dropdown-buttons">Hello, Username!{/*<NavLink to={`/api/users/${user.id}`}>view collection</NavLink>*/}</div>
+                <div className="profile-dropdown-buttons">{/* <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>*/}Profile</div>
+                <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
+              </div>
+            )}
+          </>) : (
           <>
             <li className="navitem">
               <NavLink to="/login" exact={true} activeClassName="active">
@@ -34,7 +68,6 @@ const NavBar = () => {
             </li>
           </>
         )}
-        {user? (<li> <LogoutButton /> </li>) : null}
       </ul>
     </nav>
   );
