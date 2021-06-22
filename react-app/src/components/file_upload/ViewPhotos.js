@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { renderAllPhotos } from "../../store/photo.js";
 
 const ViewPhotos = () => {
-  const [photos, setPhotos] = useState([]);
+  // const [photos, setPhotos] = useState([]);
+  const dispatch = useDispatch();
+  const photos = useSelector(state => Object.values(state.photoReducer));
+
   useEffect(() => {
-    (async () => {
-      const res = await fetch("api/photos");
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-        setPhotos(data.photos);
-      } else {
-        console.log("error");
-      }
-    })();
-  }, []);
+    dispatch(renderAllPhotos());
+  }, [dispatch]);
+
   return (
     <div
       style={{
@@ -24,11 +21,11 @@ const ViewPhotos = () => {
       }}
     >
       <h1>Photos</h1>
-      {photos.map((photo) => (
+      {photos?.map((photo) => (
         <div
-          key={photo.id}
+          key={photo?.id}
           style={{
-            backgroundImage: `url(${photo.url})`,
+            backgroundImage: `url(${photo?.image_url})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",

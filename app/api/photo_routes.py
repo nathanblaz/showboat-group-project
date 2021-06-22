@@ -30,7 +30,8 @@ def upload_photo():
 
     url = upload["url"]
     # we can use the
-    new_photo = Photo(user=current_user, url=url)  # ! change to image_url?
+    print("***current user = ", current_user)
+    new_photo = Photo(user_id=2, title="test-title", image_url=url)
     db.session.add(new_photo)
     db.session.commit()
     return {"url": url}
