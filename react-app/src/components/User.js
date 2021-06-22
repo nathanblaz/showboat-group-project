@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 
 function User() {
   const [user, setUser] = useState({});
@@ -32,6 +32,9 @@ function User() {
       </li>
       <li>
         <strong>Email</strong> {user.email}
+      </li>
+      <li>
+        <NavLink to={`/users/${userId}/photos/`}>Your Photos</NavLink>
       </li>
     </ul>
   );
