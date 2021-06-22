@@ -10,24 +10,13 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [avatar, setAvatar] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
-
-  // useEffect(async () => {
-  //   console.log(avatar, "before Effect")
-  //   updateAvatar(event);
-  //   console.log(avatar, "after Effect")
-  // }, [dispatch, updateAvatar]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    setImageLoading(true);
-
     if (password === repeatPassword) {
-      console.log("AVATAR value inside submit handler", avatar)
-      const data = await dispatch(signUp(username, email, password, avatar));
-      setImageLoading(false)
+      const data = await dispatch(signUp(username, email, password));
+
     } else {
       console.log("Error")
       // error handling
@@ -48,15 +37,6 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
-  };
-
-  const updateAvatar = (e) => {
-    const imgFile = e.target.files[0]
-    setAvatar(imgFile);
-    console.log(avatar, "AVATAR++++++++++++++++++++++++++")
-    console.log(e.target.files, "list ==========")
-    console.log(e.target.files[0], "what goes in avatar")
-    console.log(e.target.value, "target value")
   };
 
   if (user) {
@@ -102,16 +82,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <div>
-        <label>Upload Avatar</label>
-        <input type="file" id="avatar" name="avatar"
-          accept="image/*"
-          onChange={updateAvatar}
-          // value={avatar}
-          ></input>
-      </div>
       <button type="submit">Sign Up</button>
-      {(imageLoading) && <p>Loading...</p>}
     </form>
   );
 };

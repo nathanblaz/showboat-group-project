@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
-from .user_routes import upload_avatar
 from flask_login import current_user, login_user, logout_user, login_required
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -67,21 +66,16 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        url = upload_avatar()
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
         )
-        # print(user, "AUTH ROUTE USER")
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
     else:
-        # print("============================")
-        # print(form.data)
-        # print("============================")
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
