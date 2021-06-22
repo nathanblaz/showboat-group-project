@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadPhoto } from "../../store/photo";
 
 const UploadPhoto = () => {
   const history = useHistory(); // so that we can redirect after the photo upload is successful
-  const [photo, setPhoto] = useState(null);
   const [photoLoading, setPhotoLoading] = useState(false);
+  const [photo, setPhoto] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -14,18 +19,9 @@ const UploadPhoto = () => {
     // some sort of loading message is a good idea
 
     setPhotoLoading(true);
-    const res = await fetch("/api/photos", {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      await res.json();
-      setPhotoLoading(false);
-      history.push("/photos");
-    } else {
-      setPhotoLoading(false);
-      console.log("error");
-    }
+    dispatch(uploadPhoto(formData));
+    setPhotoLoading(false); // implicitly conditional
+    history.push(`/users/${user.id}/photos`); // implicitly conditional
   };
 
   const updatePhoto = (e) => {

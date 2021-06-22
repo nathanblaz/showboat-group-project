@@ -1,9 +1,15 @@
 // constants
 const SET_PHOTOS = "photo/SET_PHOTOS";
+const ADD_PHOTO = "photo/ADD_PHOTO";
 
 // action creators
 const setPhotos = (photo) => ({
   type: SET_PHOTOS,
+  payload: photo,
+});
+
+const addPhoto = (photo) => ({
+  type: ADD_PHOTO,
   payload: photo,
 });
 
@@ -18,9 +24,22 @@ export const renderAllPhotos = () => async (dispatch) => {
   }
 };
 
+export const uploadPhoto = (formData) => async (dispatch) => {
+  const res = await fetch("/api/photos", {
+    method: "POST",
+    body: formData,
+  });
+  if (res.ok) {
+    await res.json();
+    
+  } else {
+    console.log("error");
+  }
+};
+
 // reducer
 
-const initialState = { photo: null };
+const initialState = { };
 
 export default function photoReducer(state = initialState, action) {
   switch (action.type) {
@@ -30,6 +49,11 @@ export default function photoReducer(state = initialState, action) {
         newState[photo.id] = photo;
       });
       return newState;
+    case ADD_PHOTO:
+      const singleState = {...state};
+      console.log("****action.payload is:", action.payload);
+      singleState[action.payload.photo.id] = action.payload.photo;
+      return singleState;
     default:
       return state;
   }
