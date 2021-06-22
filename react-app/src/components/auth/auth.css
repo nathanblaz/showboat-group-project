@@ -34,6 +34,8 @@
     width: 100%;
     border-radius: 10px;
     border: none;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 #loginBtn:hover {
