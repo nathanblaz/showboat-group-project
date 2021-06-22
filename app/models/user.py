@@ -9,8 +9,13 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
     avatar = db.Column(db.String(1000))
+    hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+    photos = db.relationship("Photo", back_populates="users")
+    albums = db.relationship("Album", back_populates="users")
+    comments = db.relationship("Comment", back_populates="users")
 
     @property
     def password(self):
