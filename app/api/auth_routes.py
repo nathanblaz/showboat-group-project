@@ -65,31 +65,11 @@ def sign_up():
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if "avatar" not in request.files:
-        return {"errors": "avatar required"}, 400
-
-    avatar = request.files["avatar"]
-
-    if not allowed_file(avatar.filename):
-        return {"errors": "file type not permitted"}, 400
-
-    avatar.filename = get_unique_filename(avatar.filename)
-    upload = upload_file_to_s3(avatar)
-
-    if "url" not in upload:
-        # if the dictionary doesn't have a filename key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return upload, 400
-
-    url = upload["url"]
-
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
-            avatar=url
         )
         db.session.add(user)
         db.session.commit()
