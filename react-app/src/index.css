@@ -33,54 +33,12 @@ a {
     color: #c70032
 }
 
-nav {
-    background-color: #444444;
-    height: 68px;
+.home-page-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navmenu { /* the UL that contains NavLinks */
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(5, auto);
-    grid-gap: 10px;
-    list-style-type: none;
-    font-family: sans-serif;
-    width: 70vw;
-    justify-content: end;
-    margin-right: 2rem;
-}
-
-.navitem { /* each LI which is a NavLink */
-    display: flex;
-    align-items: center;
-    height: 2rem;
-    background-color: #f1f0f0;
-    padding: 10px;
-    border-radius: 2px;
-    box-sizing: border-box;
-}
-
-.navitem:hover {
-    box-sizing: border-box;
-    border: 3px solid #fdc12a;
-}
-
-li > a {
-    text-decoration: none;
-}
-
-nav > a {
-    color: #f1f0f0;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: none;
+    flex-flow: wrap;
 }
 
  /* small photo component (as rendered in an album view or feed */
-
  .feed--photo-div {
     display: flex;
     flex-direction: column;
@@ -99,8 +57,22 @@ nav > a {
     height: 500px;
 }
 
-/* username and avi layout for photo components, comments, etc
-BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
+/* sidebar of tags, for home page and photo page*/
+.tag-sidebar {
+    background-color: white;
+    width: 200px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tag-sidebar-tag {
+    padding: 3px;
+}
+
+/* username and avi layout for photo components, comments, etc*/
 .user-object {
     width: 80%;
     display: grid;
@@ -114,7 +86,6 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
     margin-bottom: 10px;
     padding: 5px;
     font-size: .9em;
-    /* border: 1px solid gray; */
 }
 
 .user-object--user {
@@ -122,11 +93,9 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
     display: flex;
     justify-content: start;
     padding-left: 10px;
-    /* border: 1px solid gray; */
 }
 
 .user-object--timestamp {
-    /* border: 1px solid gray; */
     display: flex;
     justify-content: start;
     padding-left: 10px;
@@ -136,7 +105,6 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
 }
 
 .user-object--avi {
-    /* border: 1px solid gray; */
     background-color: gray;
     padding: 3px;
     width: 25px;
@@ -146,22 +114,8 @@ BORDERS ARE JUST FOR LAYOUT PURPOSES, GET RID OF THEM*/
 }
 
 .user-object--content {
-    /* border: 1px solid gray; */
     grid-area: content;
     display: flex;
     justify-content: start;
     padding-left: 10px;
-}
-
-.profile-dropdown {
-    position: relative;
-    top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    background-color: white;
-    border: 1px solid #171717;
-    border-radius: 2px;
 }

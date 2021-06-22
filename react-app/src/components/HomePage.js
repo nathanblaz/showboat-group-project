@@ -6,14 +6,14 @@ import TagSidebar from "./TagSidebar";
 const HomePage = () => {
 
     return (
-        <>
+        <div className="home-page-container">
             <div>
                 <PhotoFeedChunk />
             </div>
-            <div>
+            <div className="sidebar">
                 <TagSidebar />
             </div>
-        </>
+        </div>
     )
 }
 

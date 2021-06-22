@@ -8,8 +8,8 @@ const TagSidebar = () => {
     return (
         <div className="tag-sidebar">
             {/* for each tag in Tag.query.all() */}
-            {/* <NavLink>Tag1</NavLink> */}
-            <div>Tag</div>
+            {/* <div className="tag-sidebar-tag"><NavLink>Tag1</NavLink></div> */}
+            <div className="tag-sidebar-tag">Tag</div>
             <div>Tag</div>
             <div>Tag</div>
             <div>Tag</div>
