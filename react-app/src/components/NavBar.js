@@ -42,6 +42,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
+        <li className="navitem">
+          <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
+            Upload Photo
+          </NavLink>
+        </li>
         {user? (<>
             {showButton && (
               <button className="profile-button" onClick={dropdown}>
