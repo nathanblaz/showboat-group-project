@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
+import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import UploadPhoto from "./components/file_upload/UploadPhoto";
+import ViewPhotos from "./components/file_upload/ViewPhotos";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -15,7 +18,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -36,13 +39,19 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path="/users/:id/upload/" exact={true}>
+          <UploadPhoto />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:id/photos/" exact={true}>
+          <ViewPhotos />
+        </ProtectedRoute>
+        <ProtectedRoute path="/" exact={true}>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

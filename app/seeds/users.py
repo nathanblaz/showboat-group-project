@@ -8,7 +8,6 @@ def seed_users():
         username='Demo',
         email='demo@aa.io',
         password='password',
-        avatar='https://cdn.fakercloud.com/avatars/quailandquasar_128.jpg'
         )
 
     db.session.add(demo)

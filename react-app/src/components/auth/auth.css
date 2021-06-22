@@ -1,0 +1,43 @@
+.card {
+    position: relative;
+    top: 40;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border: 2px solid #444444;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1.8rem;
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.form-input {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#loginBtn {
+    padding: 18px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+#loginBtn:hover {
+    box-shadow: 3px 3px 5px #444444;
+}
