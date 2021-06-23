@@ -39,7 +39,7 @@ a {
 }
 
  /* small photo component (as rendered in an album view or feed */
- .feed--photo-div {
+ .feed--photo-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,10 +51,16 @@ a {
     max-height: 700px;
 }
 
-.feed--photo {
-    background-color: gray;
+.feed--photo-div {
+    display: flex;
+    justify-content: center;
     width: 500px;
     height: 500px;
+}
+
+.feed--photo {
+    width: auto;
+    height: 100%
 }
 
 /* sidebar of tags, for home page and photo page*/
