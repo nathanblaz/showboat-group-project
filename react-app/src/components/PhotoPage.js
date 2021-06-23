@@ -25,8 +25,10 @@ function PhotoPage() {
                 {photo[0]?.caption} 
             </div>
             <img src={photo[0]?.image_url} /> 
-            <input type='textarea' placeholder='Comment'>
-            </input>
+            <textarea placeholder='Comment' />
+            <button type='submit'>
+                        Post
+            </button>
         </div>
     )
        
