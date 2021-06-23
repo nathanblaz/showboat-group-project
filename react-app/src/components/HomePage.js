@@ -14,17 +14,17 @@ const HomePage = () => {
       }, [dispatch]);
 
     return (
-        <>
+        <div className="home-page-container">
+            <div className="feed">
             {photos.map((photo) =>
-            <div className="home-page-container">
                 <div>
                     <PhotoFeedChunk photo={photo} />
-                </div>
-                </div> )}
+                </div>)}
+            </div>
             <div className="sidebar">
                 <TagSidebar />
             </div>
-        </>
+        </div>
     )
 }
 

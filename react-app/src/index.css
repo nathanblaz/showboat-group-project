@@ -52,13 +52,15 @@ a {
 }
 
 .feed--photo-div {
-    background-color: gray;
+    display: flex;
+    justify-content: center;
     width: 500px;
     height: 500px;
 }
 
 .feed--photo {
-    width: 100%
+    width: auto;
+    height: 100%
 }
 
 /* sidebar of tags, for home page and photo page*/
