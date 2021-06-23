@@ -57,3 +57,8 @@ nav > a {
     border: 1px solid #171717;
     border-radius: 2px;
 }
+
+#demo-button {
+    padding: 9px;
+    border-radius: 2px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhotoFeedChunk = () => {
+const PhotoFeedChunk = ({photo}) => {
     //in actual implementation, this will return a single div
     return (
         <div>   {/* // for each photo in Photo.query.all(where: recent) */}
