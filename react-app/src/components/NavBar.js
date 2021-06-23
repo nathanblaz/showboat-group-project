@@ -67,8 +67,8 @@ const NavBar = () => {
             )}
             {showDropdown && (
               <div className="profile-dropdown">
-                <div className="profile-dropdown-buttons">Hello, Username!{/*<NavLink to={`/api/users/${user.id}`}>view collection</NavLink>*/}</div>
-                <div className="profile-dropdown-buttons">{/* <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>*/}Profile</div>
+                <div className="profile-dropdown-buttons">Hello, <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>!</div>
+                <div className="profile-dropdown-buttons"> <NavLink to={`/api/users/${user.id}/photos`}>Your Photos</NavLink></div>
                 <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
               </div>
             )}

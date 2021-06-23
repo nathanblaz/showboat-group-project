@@ -58,6 +58,10 @@ nav > a {
     border-radius: 2px;
 }
 
+.profile-dropdown-buttons {
+    padding: 5px
+}
+
 #demo-button {
     padding: 9px;
     border-radius: 2px;
