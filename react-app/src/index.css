@@ -59,8 +59,9 @@ a {
 }
 
 .feed--photo {
-    width: auto;
-    height: 100%
+    width: 500px;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* sidebar of tags, for home page and photo page*/
