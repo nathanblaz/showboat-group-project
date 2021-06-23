@@ -84,7 +84,7 @@ def demo():
     """
     Logs a user in as demo user
     """
-    user = User.query.filter_by(username="Demo").first()
+    user = User.query.filter_by(username="Demo1").first()
     login_user(user)
     return user.to_dict()
 
