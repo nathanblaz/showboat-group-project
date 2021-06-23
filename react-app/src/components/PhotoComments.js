@@ -14,7 +14,7 @@ function PhotoComments() {
     }, [dispatch])
 
     return(
-        <div>
+        <div> Stuff 
             {comments.map((comment) =>
                 <li key={comment.id}>
                     Comments: {comment.comment} 
