@@ -41,3 +41,9 @@ def upload_photo():
 def get_all_photos():
     photos = Photo.query.order_by(Photo.id.desc()).all()
     return {"photos": [photo.to_dict() for photo in photos]}
+
+
+@photo_routes.route("/<int:id>")
+def get_one_photo(id):
+    photo = Photo.query.get(id)
+    return photo.to_dict()
