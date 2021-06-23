@@ -15,17 +15,17 @@ function PhotoPage() {
 
 
     return (
-        <div> 
+        <div>
             <div>
-                {photo?.title} 
+                {photo?.title}
             </div>
             <div>
-                Date Taken: {photo?.date_taken} 
+                Date Taken: {photo?.date_taken}
             </div>
             <div>
-                {photo?.caption} 
+                {photo?.caption}
             </div>
-            <img src={photo?.image_url} /> 
+            <img src={photo?.image_url} />
             <textarea placeholder='Comment' />
             <button type='submit'>
                         Post
@@ -34,6 +34,6 @@ function PhotoPage() {
 
         </div>
     )
-       
+
 }
 export default PhotoPage;
