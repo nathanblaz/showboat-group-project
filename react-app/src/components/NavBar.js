@@ -28,26 +28,38 @@ const NavBar = () => {
     return () => document.removeEventListener('click', closeDropdown)
   }, [showDropdown])
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("/api/auth/demo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const demoUser = await response.json();
+  };
+
   return (
     <nav>
       <NavLink to="/"> showboat </NavLink>
       <ul className="navmenu">
-        <li className="navitem">
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li className="navitem">
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li className="navitem">
-          <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
-            Upload Photo
-          </NavLink>
-        </li>
         {user? (<>
+          <li className="navitem">
+            <NavLink to="/" exact={true} activeClassName="active">
+              Home
+            </NavLink>
+          </li>
+          <li className="navitem">
+            <NavLink to="/users" exact={true} activeClassName="active">
+              Users
+            </NavLink>
+          </li>
+          <li className="navitem">
+            <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
+              Upload Photo
+            </NavLink>
+          </li>
             {showButton && (
               <button className="profile-button" onClick={dropdown}>
                 <i className="fas fa-user-circle" />
@@ -55,21 +67,24 @@ const NavBar = () => {
             )}
             {showDropdown && (
               <div className="profile-dropdown">
-                <div className="profile-dropdown-buttons">Hello, Username!{/*<NavLink to={`/api/users/${user.id}`}>view collection</NavLink>*/}</div>
-                <div className="profile-dropdown-buttons">{/* <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>*/}Profile</div>
+                <div className="profile-dropdown-buttons">Hello, <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>!</div>
+                <div className="profile-dropdown-buttons"> <NavLink to={`/api/users/${user.id}/photos`}>Your Photos</NavLink></div>
                 <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
               </div>
             )}
           </>) : (
           <>
-            <li className="navitem">
-              <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-              </NavLink>
-            </li>
+              <button type="button" id="demo-button" onClick={demoLogin}>
+                Demo User
+              </button>
             <li className="navitem">
               <NavLink to="/sign-up" exact={true} activeClassName="active">
                 Sign Up
+              </NavLink>
+            </li>
+            <li className="navitem">
+              <NavLink to="/login" exact={true} activeClassName="active">
+                Log In
               </NavLink>
             </li>
           </>
