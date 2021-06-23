@@ -3,7 +3,8 @@ from app.models import db, Comment
 
 def seed_comments():
     comment1 = Comment(
-        comment='Best concert ever!'
+        comment='Best concert ever!',
+        
         )
 
     db.session.add(comment1)
