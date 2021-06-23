@@ -7,10 +7,10 @@ const PhotoFeedChunk = ({photo}) => {
             <div className="feed--photo-container">
                 <div className="user-object">
                     {/* <div className="user-object--avi"> Avi </div> */}
-                    <a className="user-object--user" href="#">{photo.user_id}</a>
-                    <p className="user-object--timestamp">{photo.created_at}</p>
+                    <a className="user-object--user" href="#">{photo?.user_id}</a>
+                    <p className="user-object--timestamp">{photo?.created_at}</p>
                     <div className="user-object--content">
-                        <p>{photo.title}</p>
+                        <p>{photo?.title}</p>
                     </div>
                 </div>
                 <div className="feed--photo-div">
