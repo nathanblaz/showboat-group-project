@@ -9,8 +9,8 @@ const setComments = (comment) => ({
 });
 
 //thunks
-export const renderPhotoComments = () => async (dispatch) => {
-    const res = await fetch("/api/comments");
+export const renderPhotoComments = (photo_id) => async (dispatch) => {
+    const res = await fetch(`/api/comments/${photo_id}`);
     if (res.ok) {
       const data = await res.json();
       console.log(data);
