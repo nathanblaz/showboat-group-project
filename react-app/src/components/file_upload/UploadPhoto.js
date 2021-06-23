@@ -19,6 +19,9 @@ const UploadPhoto = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("photo", photo);
+    formData.append("title", title);
+    formData.append("caption", caption);
+    formData.append("date_taken", dateTaken);
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
