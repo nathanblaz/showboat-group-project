@@ -61,22 +61,28 @@ const initialState = {};
 
 export default function photoReducer(state = initialState, action) {
   switch (action.type) {
+
     case SET_PHOTOS:
       const newState = {};
       action.payload.forEach((photo) => {
         newState[photo.id] = photo;
       });
       return newState;
+
     case ADD_PHOTO:
       const singleState = {...state};
       // console.log("****action.payload is:", action.payload);
       singleState[action.payload.photo.id] = action.payload.photo;
       return singleState;
+
     case SET_ONE_PHOTO:
-      console.log('logging action.payload', action.payload)
-      const newPhotoState = {};
-      newPhotoState[action.payload.id] = action.payload
+      // console.log('logging action.payload', action.payload)
+      {const newPhotoState = {...action.payload}
       return newPhotoState;
+    }
+      // const newPhotoState = {};
+      // newPhotoState[action.payload.id] = action.payload
+
     default:
       return state;
   }
