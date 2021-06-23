@@ -67,7 +67,7 @@ const UploadPhoto = () => {
               onChange={(e) => setDateTaken(e.target.value)}
               value={dateTaken} />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" id="loginBtn">Submit</button>
           {photoLoading && <p>Loading...</p>}
         </form>
     </div>
