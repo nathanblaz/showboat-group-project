@@ -14,5 +14,4 @@ class Tag(db.Model):
         return{
             'id': self.id,
             'name': self.name,
-            'photo': self.photos.to_dict()
         }

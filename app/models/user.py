@@ -35,7 +35,4 @@ class User(db.Model, UserMixin):
           "username": self.username,
           "email": self.email,
           "avatar": self.avatar,
-          "photo": self.photos.to_dict(),
-          "comment": self.comments.to_dict(),
-          "album": self.albums.to_dict()
           }
