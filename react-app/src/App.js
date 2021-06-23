@@ -11,6 +11,7 @@ import User from "./components/User";
 import UploadPhoto from "./components/file_upload/UploadPhoto";
 import ViewPhotos from "./components/file_upload/ViewPhotos";
 import PhotoPage from './components/PhotoPage';
+import TagSidebar from "./components/TagSidebar";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/photos/:id' exact={true}>
           <PhotoPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/tags' exact={true}>
+          <TagSidebar />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

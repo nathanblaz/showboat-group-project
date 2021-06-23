@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector} from 'react-redux'
-import {renderOnePhoto} from '../../src/store/photo'
+import { useDispatch, useSelector} from 'react-redux';
+import {renderOnePhoto} from '../../src/store/photo';
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -14,23 +14,23 @@ function PhotoPage() {
 
 
     return (
-        <div> 
+        <div>
             <div>
-                {photo[0]?.title} 
+                {photo[0]?.title}
             </div>
             <div>
-                Date Taken: {photo[0]?.date_taken} 
+                Date Taken: {photo[0]?.date_taken}
             </div>
             <div>
-                {photo[0]?.caption} 
+                {photo[0]?.caption}
             </div>
-            <img src={photo[0]?.image_url} /> 
+            <img src={photo[0]?.image_url} />
             <textarea placeholder='Comment' />
             <button type='submit'>
                         Post
             </button>
         </div>
     )
-       
+
 }
 export default PhotoPage;

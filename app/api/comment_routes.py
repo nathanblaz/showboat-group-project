@@ -1,9 +1,8 @@
 from flask import Blueprint, request
-from app.models import db, Comment
+from app.models import db, Comment, Photo
 from flask_login import current_user, login_required
-from app.models import db, Photo
 
-comment_routes = Blueprint('comments', __name__) 
+comment_routes = Blueprint('comments', __name__)
 
 
 @comment_routes.route("")
