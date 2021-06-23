@@ -7,8 +7,8 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     comment = db.Column(db.Text)
-    created_at = (db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updated_at = (db.DateTime(timezone=True), nullable=False, server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     photos = db.relationship("Photo", back_populates="comments")
