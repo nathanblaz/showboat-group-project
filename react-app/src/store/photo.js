@@ -26,7 +26,7 @@ export const renderAllPhotos = () => async (dispatch) => {
   const res = await fetch("/api/photos");
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     dispatch(setPhotos(data.photos));
   }
 };
@@ -38,9 +38,10 @@ export const uploadPhoto = (formData) => async (dispatch) => {
   });
   if (res.ok) {
     await res.json();
-    
+
   } else {
-    console.log("error");
+    console.log("error--upload photo thunk");
+    console.log(res)
   }
 };
 
@@ -68,7 +69,7 @@ export default function photoReducer(state = initialState, action) {
       return newState;
     case ADD_PHOTO:
       const singleState = {...state};
-      console.log("****action.payload is:", action.payload);
+      // console.log("****action.payload is:", action.payload);
       singleState[action.payload.photo.id] = action.payload.photo;
       return singleState;
     case SET_ONE_PHOTO:

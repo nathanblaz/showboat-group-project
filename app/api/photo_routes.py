@@ -29,9 +29,14 @@ def upload_photo():
         return upload, 400
 
     url = upload["url"]
-    # we can use the
-    print("***current user = ", current_user)
-    new_photo = Photo(user_id=2, title="test-title", image_url=url)
+    # WHERE DOES THE FORM DATA GO??????
+    new_photo = Photo(
+                    title=request.form["title"],
+                    caption=request.form["caption"],
+                    image_url=url,
+                    user_id=current_user.id,
+                    date_taken=request.form["date_taken"]
+                    )
     db.session.add(new_photo)
     db.session.commit()
     return {"url": url}
