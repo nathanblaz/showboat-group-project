@@ -8,19 +8,19 @@ def seed_users():
         username='Demo1',
         email='demo@aa.io',
         password='password',
-        avatar='https://unsplash.com/photos/B24s5s2Ai_o'
+        avatar='https://images.unsplash.com/photo-1624060686526-fea161786065?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
         )
     demo2 = User(
         username='Demo2',
         email='demo1@aa.io',
         password='password',
-        avatar='https://unsplash.com/photos/9ludL46nwps'
+        avatar='https://images.unsplash.com/photo-1570114181742-4bab3af44518?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80'
         )
     demo3 = User(
         username='Demo3',
         email='demo2@aa.io',
         password='password',
-        avatar='https://unsplash.com/photos/Cl9JkM7SW6M'
+        avatar='https://images.unsplash.com/photo-1456408786436-37ace5840ee5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=925&q=80'
         )
 
     db.session.add(demo1)
