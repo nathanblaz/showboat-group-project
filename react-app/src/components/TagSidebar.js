@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import {renderPhotoTags} from '../../src/store/tag';
 
 const TagSidebar = () => {
-    //const tags = useSelector(state for tags?)
     const dispatch = useDispatch();
     const tags = useSelector(state => Object.values(state.tagReducer));
 
@@ -18,7 +17,6 @@ const TagSidebar = () => {
             {/* <div className="tag-sidebar-tag"><NavLink>Tag1</NavLink></div> */}
             {tags.map(tag =>
             <div className="tag-sidebar-tag" key={tag.id}><a href="#">{`${tag?.name}`}</a>
-                {`${tag.name}`} this works
             </div>
                 )}
             {/* <div className="tag-sidebar-tag"><a href="#">Tag</a></div>
@@ -32,5 +30,3 @@ const TagSidebar = () => {
 }
 
 export default TagSidebar;
-
-
