@@ -52,3 +52,4 @@ def get_all_photos():
 def get_one_photo(id):
     photo = Photo.query.get(id)
     return photo.to_dict()
+    

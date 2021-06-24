@@ -10,6 +10,11 @@ const setTags = (tag) => ({
     payload: tag
 })
 
+const addTag = (tag) => ({
+    type: ADD_TAG,
+    payload: tag
+})
+
 // thunks
 
 export const renderPhotoTags = () => async(dispatch) => {
@@ -19,6 +24,18 @@ export const renderPhotoTags = () => async(dispatch) => {
         dispatch(setTags(data.tags));
     }
 }
+
+export const addOneTag = (tag) => async(dispatch) => {
+    const res = await fetch("/api/tags/new", {
+        method: 'POST',
+        body: formData
+    });
+    if (res.ok){
+        const tagAdded = await res.json();
+        dispatch(addTag(tagAdded.tag))
+        return tagAdded.tag;
+    }
+};
 
 // initial state
 const initialState = {};
@@ -33,6 +50,14 @@ export default function tagReducer(state = initialState, action) {
                 allTagsState[tag.id] = tag;
             })
             return allTagsState;
+        case ADD_TAG:{
+            const addNewTag = {
+                ...state,
+                [action.payload.tag.id]: action.payload.tag
+            };
+            return addNewTag;
+
+        }
         default:
             return state;
     }
