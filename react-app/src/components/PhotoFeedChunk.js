@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const PhotoFeedChunk = ({photo}) => {
     const hoursAgo = () => {
@@ -25,7 +26,9 @@ const PhotoFeedChunk = ({photo}) => {
                     </div>
                 </div>
                 <div className="feed--photo-div">
-                    <img className="feed--photo" src={`${photo?.image_url}`} />
+                    <Link to={`/photos/${photo?.id}`}>
+                        <img className="feed--photo" src={`${photo?.image_url}`} />
+                    </Link>
                 </div>
             </div>
         </div>
