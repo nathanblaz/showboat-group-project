@@ -15,9 +15,9 @@ def get_photo_tags():
 @login_required
 def add_photo_tag():
     new_tag = Tag(
-        name=request.form['tag']
+        name=request.form["name"]
     )
-    print('*************************', new_tag)
+    print('*************************', new_tag.name)
     db.session.add(new_tag)
     db.session.commit()
     return new_tag.to_dict()
