@@ -45,6 +45,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
+          <ViewPhotos />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:id/upload/" exact={true}>
           <UploadPhoto />
