@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { useParams, useHistory, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-// import { deletePhoto } from "../../store/photo";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePhoto } from "../../store/photo";
 import './DeleteConfirm.css';
 
     
-const DeleteConfirm = (photo) => {
+const DeleteConfirm = () => {
     const dispatch = useDispatch();
+    const photo = useSelector(state => state.photoReducer);
+
     const history = useHistory();
-    const { id } = useParams();
-    console.log ('id is', id);
-    console.log ('id type is', typeof id);
 
     const handleSubmit = async (e) => {
         console.log('here I am in the handleSubmit');
         e.preventDefault();
-        // await dispatch(deletePhoto(id));
+        await dispatch(deletePhoto(photo.id));
         console.log('Deleted event!');
         history.push('/');
     }
