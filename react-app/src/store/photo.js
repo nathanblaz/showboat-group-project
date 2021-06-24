@@ -50,7 +50,7 @@ export const uploadPhoto = (formData) => async (dispatch) => {
     const res = await fetch(`/api/photos/${id}`)
     if (res.ok) {
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       dispatch(setOnePhoto(data)); //check data or data.photo
     }
   }
