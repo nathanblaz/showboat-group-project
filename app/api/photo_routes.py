@@ -44,7 +44,8 @@ def upload_photo():
 
 @photo_routes.route("")
 def get_all_photos():
-    photos = Photo.query.order_by(Photo.id.desc()).all()
+    photos = Photo.query.order_by(Photo.created_at.desc()).all()
+    print(Photo.query.filter())
     return {"photos": [photo.to_dict() for photo in photos]}
 
 

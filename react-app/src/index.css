@@ -59,14 +59,15 @@ a {
 }
 
 .feed--photo {
-    width: auto;
-    height: 100%
+    width: 500px;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* sidebar of tags, for home page and photo page*/
 .tag-sidebar {
     background-color: white;
-    width: 200px; /* maybe should be longer for real tags */
+    width: 200px;
     padding: 20px;
     margin: 20px;
     display: flex;
@@ -111,11 +112,10 @@ a {
 }
 
 .user-object--avi {
-    background-color: gray;
-    padding: 3px;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    object-fit: cover;
     grid-area: image;
 }
 
@@ -124,4 +124,29 @@ a {
     display: flex;
     justify-content: start;
     padding-left: 10px;
+}
+
+#about-sidebar {
+    background-color: white;
+    width: 200px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-flow: column;
+    align-items: space-around;
+}
+
+#about-list {
+    list-style-type: none;
+}
+
+/* .about-li {
+    padding: 4px;
+    margin: auto;
+} */
+
+.about-logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
