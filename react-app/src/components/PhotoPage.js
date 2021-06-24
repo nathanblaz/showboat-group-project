@@ -30,12 +30,12 @@ function PhotoPage() {
                 <img src={photo?.image_url} />
             </div>
             <div className="button--buttons-container">
-                <DeleteConfirmModal />
+                <DeleteConfirmModal photo={photo}/>
             </div>
             <div className="photo--comment-container"> 
                 <textarea placeholder='Comment' />
                 <button type='submit'>
-                            Post
+                    Post
                 </button>
             </div>
             <PhotoComments/>

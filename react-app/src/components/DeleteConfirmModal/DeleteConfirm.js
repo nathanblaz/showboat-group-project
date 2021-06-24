@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { deletePhoto } from "../../store/photo";
+import './DeleteConfirm.css';
+
     
-const DeleteConfirm = () => {
+const DeleteConfirm = (photo) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -19,10 +21,9 @@ const DeleteConfirm = () => {
     }
 
     return (
-        <div>
-            Are you sure you want to delete?
-
-            <button onClick={handleSubmit}>Confirm</button>
+        <div className="modal--delete-confirm">
+            Are you sure you want to delete this photo?
+            <button className="modal--button-div" onClick={handleSubmit}>Delete</button>
         </div>
     )
 }
