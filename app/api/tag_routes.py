@@ -9,3 +9,15 @@ tag_routes = Blueprint('tags', __name__)
 def get_photo_tags():
     tags = Tag.query.all()
     return {'tags': [tag.to_dict() for tag in tags]}
+
+
+@tag_routes.route("/new", methods=['POST'])
+@login_required
+def add_photo_tag():
+    new_tag = Tag(
+        name=request.form['tag']
+    )
+    print('*************************', new_tag)
+    db.session.add(new_tag)
+    db.session.commit()
+    return new_tag.to_dict()

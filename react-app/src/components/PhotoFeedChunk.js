@@ -17,8 +17,8 @@ const PhotoFeedChunk = ({photo}) => {
         <div>   {/* // for each photo in Photo.query.all(where: recent) */}
             <div className="feed--photo-container">
                 <div className="user-object">
-                    <img src={photo.user.avatar} className="user-object--avi" alt="avatar"/>
-                    <a className="user-object--user" href={`/users/${photo?.user_id}`}>{photo?.user.username}</a>
+                    <img src={photo?.user?.avatar} className="user-object--avi" alt="avatar"/>
+                    <a className="user-object--user" href={`/users/${photo?.user_id}`}>{photo?.user?.username}</a>
                     <p className="user-object--timestamp">{hoursAgo()}</p>
                     <div className="user-object--content">
                         <p>{photo?.title}</p>

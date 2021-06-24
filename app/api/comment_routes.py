@@ -12,7 +12,7 @@ def get_photo_comments(photo_id):
     return {'comments': [comment.to_dict() for comment in comments]}
 
 
-@comment_routes.route("", methods={"POST"})
+@comment_routes.route("", methods=["POST"])
 @login_required
 def post_comment():
     new_comment = Comment(
