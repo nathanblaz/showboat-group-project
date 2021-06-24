@@ -7,17 +7,17 @@ comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route('/<int:photo_id>')
 def get_photo_comments(photo_id):
-    print('comments from commentroutes ======================================')
+    # print('comments from commentroutes ======================================')
     comments = Comment.query.filter(Comment.photo_id == photo_id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 
-@comment_routes.route("", methods=["POST"])
+@comment_routes.route("/new", methods=["POST"])
 @login_required
 def post_comment():
     new_comment = Comment(
         comment=request.form['comment'],
-        photo_id=photo.id,
+        photo_id=request.form['photo_id'],
         user_id=current_user.id
     )
     db.session.add(new_comment)

@@ -15,10 +15,13 @@ function PhotoComments() {
 
     return(
         <div> Stuff 
-            {comments.map((comment) =>
-                <li key={comment.id}>
-                    Comments: {comment.comment} 
-                </li>
+            {comments?.map((comment) => (
+            
+            <div key={comment.id}>
+                    Comments: {comment?.comment} 
+                    User: {comment?.username}
+            </div>)
+            
             )}
         </div>
     )

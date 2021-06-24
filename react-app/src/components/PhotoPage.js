@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
+import PostComment from './PostComment'
 
 function PhotoPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const photo = useSelector(state => state.photoReducer);
-    // console.log('photo from PhotoPage', photo)
+    const user = useSelector(state => state.session.user);
+
+    console.log('photo from PhotoPage', photo)
     useEffect(()=>{
         dispatch(renderOnePhoto(Number(id)))
     }, [dispatch])
@@ -26,11 +29,9 @@ function PhotoPage() {
                 {photo?.caption}
             </div>
             <img src={photo?.image_url} />
-            <textarea placeholder='Comment' />
-            <button type='submit'>
-                        Post
-            </button>
-            <PhotoComments/>
+            <PostComment photo={photo}/>
+            
+            <PhotoComments photo={photo}/>
 
         </div>
     )
