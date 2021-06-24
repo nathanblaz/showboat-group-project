@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { renderAllPhotos } from "../../store/photo.js";
+import "./ViewPhoto.css";
 
 const ViewPhotos = () => {
-  // const [photos, setPhotos] = useState([]);
   const dispatch = useDispatch();
   const photos = useSelector(state => Object.values(state.photoReducer));
 
@@ -12,30 +13,13 @@ const ViewPhotos = () => {
   }, [dispatch]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100vw",
-        alignItems: "center",
-      }}
-    >
+    <div className="uploaded--photo-container">
       <h1>Photos</h1>
-      {photos?.map((photo) => (
-        <div
-          key={photo?.id}
-          style={{
-            backgroundImage: `url(${photo?.image_url})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            width: "50%",
-            height: 250,
-            margin: 10,
-            // width: "auto",
-          }}
-        />
-      ))}
+        {photos?.map((photo) => (
+          <Link to={`/photos/${photo?.id}`}>
+            <img className="uploaded--photo" src={`${photo?.image_url}`}></img>
+          </Link>
+        ))}
     </div>
   );
 };

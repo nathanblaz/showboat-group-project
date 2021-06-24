@@ -1,0 +1,12 @@
+.uploaded--photo-container {
+    max-width: 800px;
+    display: "flex";
+    flex-direction: "column";
+    align-items: "center";
+}
+
+.uploaded--photo {
+    width: 250px;
+    height: auto;
+    margin: 10px;
+}

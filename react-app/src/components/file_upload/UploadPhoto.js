@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPhoto } from "../../store/photo";
-import "./uploads.css"
+import "./UploadPhoto.css"
 
 const UploadPhoto = () => {
   const history = useHistory(); // so that we can redirect after the photo upload is successful
