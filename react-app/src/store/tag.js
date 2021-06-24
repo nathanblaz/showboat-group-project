@@ -28,7 +28,7 @@ export const renderPhotoTags = () => async(dispatch) => {
 export const addOneTag = (tag) => async(dispatch) => {
     const res = await fetch("/api/tags/new", {
         method: 'POST',
-        body: formData
+        // body: formData
     });
     if (res.ok){
         const tagAdded = await res.json();
