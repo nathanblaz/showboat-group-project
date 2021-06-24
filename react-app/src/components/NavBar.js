@@ -50,11 +50,11 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          <li className="navitem">
+          {/* <li className="navitem">
             <NavLink to="/users" exact={true} activeClassName="active">
               Users
             </NavLink>
-          </li>
+          </li> */}
           <li className="navitem">
             <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
               Upload Photo
