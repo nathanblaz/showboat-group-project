@@ -25,11 +25,15 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
-            <img src={photo?.image_url} />
-            <textarea placeholder='Comment' />
-            <button type='submit'>
-                        Post
-            </button>
+            <div className="photo--photo-container">
+                <img src={photo?.image_url} />
+            </div>
+            <div className="photo--comment-container"> 
+                <textarea placeholder='Comment' />
+                <button type='submit'>
+                            Post
+                </button>
+            </div>
             <PhotoComments/>
 
         </div>
