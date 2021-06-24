@@ -25,15 +25,16 @@ export const renderPhotoTags = () => async(dispatch) => {
     }
 }
 
-export const addOneTag = (tag) => async(dispatch) => {
+export const addOneTag = (formData) => async(dispatch) => {
     const res = await fetch("/api/tags/new", {
         method: 'POST',
-        // body: formData
+        body: formData
     });
     if (res.ok){
         const tagAdded = await res.json();
-        dispatch(addTag(tagAdded.tag))
-        return tagAdded.tag;
+        // console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", tagAdded)
+        dispatch(addTag(tagAdded))
+        return tagAdded;
     }
 };
 
@@ -53,8 +54,9 @@ export default function tagReducer(state = initialState, action) {
         case ADD_TAG:{
             const addNewTag = {
                 ...state,
-                [action.payload.tag.id]: action.payload.tag
+                [action.payload.id]: action.payload.tag
             };
+            console.log("##############from store#########", action.payload)
             return addNewTag;
 
         }
