@@ -5,9 +5,10 @@ from flask_login import current_user, login_required
 comment_routes = Blueprint('comments', __name__)
 
 
-@comment_routes.route("")
-def get_photo_comments():
-    comments = Comment.query.filter_by(Comment.photo_id).all()
+@comment_routes.route('/<int:photo_id>')
+def get_photo_comments(photo_id):
+    print('comments from commentroutes ======================================')
+    comments = Comment.query.filter(Comment.photo_id == photo_id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 
