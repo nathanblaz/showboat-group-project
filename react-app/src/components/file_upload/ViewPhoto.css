@@ -1,0 +1,9 @@
+.uploaded--photo-container {
+    max-width: 800px;
+}
+
+.uploaded--photo {
+    width: 250px;
+    height: auto;
+    margin: 10px;
+}

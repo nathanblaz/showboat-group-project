@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { renderAllPhotos } from "../../store/photo.js";
+import "./ViewPhoto.css";
 
 const ViewPhotos = () => {
   // const [photos, setPhotos] = useState([]);
@@ -21,21 +22,11 @@ const ViewPhotos = () => {
       }}
     >
       <h1>Photos</h1>
-      {photos?.map((photo) => (
-        <div
-          key={photo?.id}
-          style={{
-            backgroundImage: `url(${photo?.image_url})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            width: "50%",
-            height: 250,
-            margin: 10,
-            // width: "auto",
-          }}
-        />
-      ))}
+      <div className="uploaded--photo-container">
+        {photos?.map((photo) => (
+            <img className="uploaded--photo" src={`${photo?.image_url}`}></img>
+        ))}
+      </div>
     </div>
   );
 };
