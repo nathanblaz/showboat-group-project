@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PhotoFeedChunk from "./PhotoFeedChunk";
 import TagSidebar from "./TagSidebar";
+import AboutUs from "./AboutUs";
 import { renderAllPhotos } from "../store/photo.js";
 
 
@@ -23,6 +24,7 @@ const HomePage = () => {
             </div>
             <div className="sidebar">
                 <TagSidebar />
+                <div> <AboutUs /> </div>
             </div>
         </div>
     )

@@ -50,11 +50,11 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          <li className="navitem">
+          {/* <li className="navitem">
             <NavLink to="/users" exact={true} activeClassName="active">
               Users
             </NavLink>
-          </li>
+          </li> */}
           <li className="navitem">
             <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
               Upload Photo
@@ -67,8 +67,8 @@ const NavBar = () => {
             )}
             {showDropdown && (
               <div className="profile-dropdown">
-                <div className="profile-dropdown-buttons">Hello, <NavLink to={`/api/users/${user.id}`}>{user.username}</NavLink>!</div>
-                <div className="profile-dropdown-buttons"> <NavLink to={`/api/users/${user.id}/photos`}>Your Photos</NavLink></div>
+                <div className="profile-dropdown-buttons">Hello, <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>!</div>
+                <div className="profile-dropdown-buttons"> <NavLink to={`/users/${user.id}/photos`}>Your Photos</NavLink></div>
                 <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
               </div>
             )}
