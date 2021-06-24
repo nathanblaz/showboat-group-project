@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
-import DeleteFormModal from './DeleteFormModal';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function PhotoPage() {
                 <img src={photo?.image_url} />
             </div>
             <div className="button--buttons-container">
-                <DeleteFormModal />
+                <DeleteConfirmModal />
             </div>
             <div className="photo--comment-container"> 
                 <textarea placeholder='Comment' />

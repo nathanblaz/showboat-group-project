@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import DeleteForm from './DeleteForm';
+import DeleteConfirm from './DeleteConfirm';
 
-function DeleteFormModal() {
+function DeleteConfirmModal() {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -10,11 +10,11 @@ function DeleteFormModal() {
             <button onClick={() => setShowModal(true)}>Delete</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <DeleteForm />
+                    <DeleteConfirm />
                 </Modal>
             )}
         </>
     )
 }
 
-export default DeleteFormModal;
+export default DeleteConfirmModal;

@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { deletePhoto } from "../../store/photo";
     
-const DeleteForm = () => {
+const DeleteConfirm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -27,4 +27,4 @@ const DeleteForm = () => {
     )
 }
 
-export default DeleteForm;
+export default DeleteConfirm;
