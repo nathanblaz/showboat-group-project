@@ -18,5 +18,6 @@ class Album(db.Model):
             "title": self.title,
             "description": self.description,
             "user_id": self.user_id,
-            "user": self.users.to_dict()
+            # "user": self.users.to_dict(),
+            # "photos": self.photos.to_dict()
         }

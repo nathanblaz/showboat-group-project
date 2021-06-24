@@ -11,7 +11,10 @@ import User from "./components/User";
 import UploadPhoto from "./components/file_upload/UploadPhoto";
 import ViewPhotos from "./components/file_upload/ViewPhotos";
 import PhotoPage from './components/PhotoPage';
+import AlbumsPage from './components/Album';
+import SingleAlbumPage from './components/Album/SingleAlbumPage';
 import TagSidebar from "./components/TagSidebar";
+import CreateAlbum from "./components/Album/CreateAlbum";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -61,6 +64,15 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/tags' exact={true}>
           <TagSidebar />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:id/albums/" exact={true}>
+          <AlbumsPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:id/albums/<int:id>" exact={true}>
+          <SingleAlbumPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:id/albums/new" exact={true}>
+          <CreateAlbum />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

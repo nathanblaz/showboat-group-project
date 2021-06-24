@@ -4,12 +4,14 @@ import session from "./session";
 import photoReducer from "./photo";
 import commentReducer from './comment';
 import tagReducer from './tag';
+import albumReducer from "./album";
 
 const rootReducer = combineReducers({
   session,
   photoReducer: photoReducer,
   commentReducer: commentReducer,
-  tagReducer: tagReducer
+  tagReducer: tagReducer,
+  albumReducer: albumReducer
 });
 
 let enhancer;
