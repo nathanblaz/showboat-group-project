@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { deletePhoto } from "../../store/photo";
@@ -12,7 +13,7 @@ const DeleteForm = () => {
     const handleSubmit = async (e) => {
         console.log('here I am in the handleSubmit');
         e.preventDefault();
-        await dispatch(deletePhoto(id));
+        // await dispatch(deletePhoto(id));
         console.log('Deleted event!');
         history.push('/');
     }
