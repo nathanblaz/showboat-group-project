@@ -55,7 +55,7 @@ def get_one_photo(id):
     return photo.to_dict()
 
 
-@photo_routes.route("/<int:id>", methods=[DELETE])
+@photo_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_photo(id):
     photo = Photo.query.get(id)
