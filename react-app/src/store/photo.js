@@ -33,6 +33,8 @@ export const renderAllPhotos = () => async (dispatch) => {
     const data = await res.json();
     // console.log(data);
     dispatch(setPhotos(data.photos));
+  } else {
+    console.log("This user has no photos");
   }
 };
 
@@ -57,6 +59,8 @@ export const renderOnePhoto = (id) => async (dispatch) => {
     const data = await res.json();
     // console.log(data);
     dispatch(setOnePhoto(data)); //check data or data.photo
+  } else {
+    console.log("error-renderOnePhoto thunk");
   }
 }
 

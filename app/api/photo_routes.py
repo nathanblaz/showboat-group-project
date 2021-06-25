@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from app.models import db, Photo
 from flask_login import current_user, login_required
 from app.s3_helpers import (
@@ -55,12 +55,14 @@ def get_one_photo(id):
     return photo.to_dict()
 
 
-@photo_routes.route("/<int:id>", methods=["DELETE"])
-@login_required
+@photo_routes.route("/<int:id>", methods=["DELETE"])  # @login_required
 def delete_photo(id):
     photo = Photo.query.get(id)
     url = photo.image_url
     filename = url.removeprefix('http://showboat-app.s3.amazonaws.com/')
     delete_file_from_s3(filename)
+    if not photo:
+        return jsonify("comment not found")
     db.session.delete(photo)
     db.session.commit()
+    return jsonify("success")

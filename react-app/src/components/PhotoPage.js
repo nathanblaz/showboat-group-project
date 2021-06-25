@@ -9,9 +9,9 @@ function PhotoPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const photo = useSelector(state => state.photoReducer);
-    // console.log('photo from PhotoPage', photo)
+    console.log('photo from PhotoPage', photo)
     useEffect(()=>{
-        dispatch(renderOnePhoto(Number(id)))
+        dispatch(renderOnePhoto(id)) //! Somehow this is throwing a 404
     }, [dispatch])
 
 
