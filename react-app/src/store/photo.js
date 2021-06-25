@@ -2,6 +2,7 @@
 const SET_PHOTOS = "photo/SET_PHOTOS";
 const ADD_PHOTO = "photo/ADD_PHOTO";
 const SET_ONE_PHOTO = "photo/SET_ONE_PHOTO";
+const DELETE_PHOTO = "photo/DELETE_PHOTO";
 
 // action creators
 const setPhotos = (photo) => ({
@@ -19,6 +20,10 @@ const setOnePhoto = (photo) => ({
   payload: photo,
 })
 
+const deleteOnePhoto = (photo) => ({
+  type: DELETE_PHOTO,
+  payload: photo,
+})
 
 // thunks
 
@@ -28,6 +33,8 @@ export const renderAllPhotos = () => async (dispatch) => {
     const data = await res.json();
     // console.log(data);
     dispatch(setPhotos(data.photos));
+  } else {
+    console.log("This user has no photos");
   }
 };
 
@@ -45,15 +52,27 @@ export const uploadPhoto = (formData) => async (dispatch) => {
   }
 };
 
-  export const renderOnePhoto = (id) => async (dispatch) => {
-    console.log('id from photo js', id)
-    const res = await fetch(`/api/photos/${id}`)
-    if (res.ok) {
-      const data = await res.json();
-      // console.log(data);
-      dispatch(setOnePhoto(data)); //check data or data.photo
-    }
+export const renderOnePhoto = (id) => async (dispatch) => {
+  console.log('id from photo js', id)
+  const res = await fetch(`/api/photos/${id}`)
+  if (res.ok) {
+    const data = await res.json();
+    // console.log(data);
+    dispatch(setOnePhoto(data)); //check data or data.photo
+  } else {
+    console.log("error-renderOnePhoto thunk");
   }
+}
+
+export const deletePhoto = (id) => async (dispatch) => {
+  const res = await fetch(`/api/photos/${id}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      id
+    }),
+  });
+  dispatch(deleteOnePhoto(id));
+};
 
 // reducer
 
@@ -83,6 +102,12 @@ export default function photoReducer(state = initialState, action) {
       // const newPhotoState = {};
       // newPhotoState[action.payload.id] = action.payload
 
+    case DELETE_PHOTO:
+      const oldState = {
+        ...state
+      }
+      delete oldState[action.payload.id]
+      return oldState;
     default:
       return state;
   }
