@@ -15,7 +15,7 @@ function PhotoPage() {
 
     console.log('photo from PhotoPage', photo)
     useEffect(()=>{
-        dispatch(renderOnePhoto(Number(id)))
+        dispatch(renderOnePhoto(Number(id))) //this
     }, [dispatch])
 
 

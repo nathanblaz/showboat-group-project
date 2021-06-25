@@ -48,9 +48,11 @@ export const removeComment = (id) => async (dispatch) => {
         body: JSON.stringify(id)
     })
     // console.log('id from comment.js=======', {id})
-    const deletedComment = await res.json()
-    dispatch(deleteComment(deletedComment))
-    return deletedComment;
+    if(res.ok) {
+        const deletedComment = await res.json()
+        dispatch(deleteComment(deletedComment))
+        return deletedComment;
+    }
 }
 
 // reducer
@@ -72,7 +74,7 @@ export default function commentReducer(state = initialState, action) {
             return newState;
 
         case REMOVE_COMMENT:
-            delete newState[action.payload]
+            delete newState[action.payload.id]
             return newState;
 
         default:

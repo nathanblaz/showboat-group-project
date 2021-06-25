@@ -5,20 +5,18 @@ import {removeComment, renderPhotoComments} from '../store/comment'
 
 const DeleteComment = ({comment}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { id } = useParams();
-    const comments = useSelector(state => Object.values(state.commentReducer));
-    // const singleComment = comments.filter(comment => {
-    //     if (comment.photo_id === comment.id) return comment
-    //     console.log('comment from delete comments', comment.id)
-    // })
-    // console.log('singlecomment from delete comments', singleComment)
+    const history = useHistory();
+    // const comments = useSelector(state => Object.values(state.commentReducer));
+    
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('comment from delelt comments', comment)
         await dispatch(removeComment(comment))
-        // console.log('deleted event', singleComment.id)
+        console.log('deleted comment', comment)
+        console.log(id)
+        history.push(`/photos/${id}`)
     }
+
     useEffect(() => {
         dispatch(renderPhotoComments(id))
     }, [dispatch])

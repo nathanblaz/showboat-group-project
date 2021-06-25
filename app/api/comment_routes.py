@@ -27,10 +27,11 @@ def post_comment():
 
 
 @comment_routes.route("/delete/<int:id>", methods=["DELETE"])
+@login_required
 def delete_comment(id):
     comment = Comment.query.get(id) 
     if not comment:
         return jsonify('comment not found')
     db.session.delete(comment)
     db.session.commit()
-    return jsonify('success')
+    return {'id': id};

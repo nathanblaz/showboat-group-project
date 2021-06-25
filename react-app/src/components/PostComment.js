@@ -20,9 +20,8 @@ const PostComment = ({photo}) => {
         formData.append('user_id', user.id)
         
         await dispatch(addComment(formData));
-        console.log('photo from post comment========', photo)
+        // console.log('photo from post comment========', photo)
         setComment('')
-        // history.push(`/photos/${photo.id}`) 
     }
     
     useEffect(() => {
