@@ -39,7 +39,8 @@ def upload_photo():
     )
     db.session.add(new_photo)
     db.session.commit()
-    return {"url": url}
+    print("*******new_photo is ", new_photo)
+    return new_photo.to_dict()
 
 
 @photo_routes.route("")
