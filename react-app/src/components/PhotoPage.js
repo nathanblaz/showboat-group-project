@@ -28,11 +28,11 @@ function PhotoPage() {
                 {photo?.caption}
             </div>
             <img src={photo?.image_url} />
-            <textarea placeholder='Comment' />
+            <textarea className="form-input" placeholder='Comment' />
             <button type='submit'>
                         Post
             </button>
-            
+
             <PhotoComments />
             <AddNewTag id={id} />
             <PhotoTagSidebar id={id} />
