@@ -9,7 +9,9 @@ const TagSidebar = () => {
     const tags = useSelector(state => Object.values(state.tagReducer));
 
     useEffect(() => {
-        dispatch(renderPhotoTags(tags))
+       
+        dispatch(renderPhotoTags()) //tags make it a recurssive call  
+        
     }, [dispatch])
 
     return (
