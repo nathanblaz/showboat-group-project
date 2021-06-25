@@ -19,7 +19,7 @@ const handleSubmit = async(e) => {
 
 dispatch(addOneTag(formData));
 dispatch(renderPhotoTags())
-history.push("/photo/:id")
+history.push("/")
 };
 
 return (
