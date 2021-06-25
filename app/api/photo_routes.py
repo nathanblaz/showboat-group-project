@@ -63,7 +63,7 @@ def delete_photo(id):
     filename = url.removeprefix('http://showboat-app.s3.amazonaws.com/')
     delete_file_from_s3(filename)
     if not photo:
-        return jsonify("comment not found")
+        return jsonify("photo not found")
     db.session.delete(photo)
     db.session.commit()
-    return jsonify("success")
+    return {'id': id}
