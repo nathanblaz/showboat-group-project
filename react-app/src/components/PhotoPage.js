@@ -32,8 +32,6 @@ function PhotoPage() {
                         Post
             </button>
             <PhotoComments/>
-            <AddNewTag />
-
         </div>
     )
 
