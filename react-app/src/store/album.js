@@ -64,12 +64,11 @@ export const renderAlbumPhotos = (album) => async (dispatch) => {
 }
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
-    const res = await fetch("/api/albums", {
+    const res = await fetch(`/api/albums/${albumId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: {albumId}
+        }
     });
     if (res.ok) {
         const data = await res.json();

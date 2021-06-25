@@ -37,11 +37,12 @@ def create_album():
     return new_album.to_dict()
 
 
-@album_routes.route("/:id", methods=["DELETE"])
+@album_routes.route("/<id>", methods=["DELETE"])
 # @login_required
 def delete_album(id):
+    print("****************inside delete route****************")
     album = Album.query.get(id)
     db.session.delete(album)
     print("***********album deleted in API route**************")
     db.session.commit()
-    return {"album deleted"}
+    return {"success": "album deleted"}
