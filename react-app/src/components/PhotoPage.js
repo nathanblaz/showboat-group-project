@@ -5,14 +5,20 @@ import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import AddNewTag from './AddNewTag';
 import PhotoTagSidebar from './PhotoTagSidebar';
+import PostComment from './PostComment'
+import EditComment from './EditComment'
+// import DeleteComment from './DeleteComment'
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 function PhotoPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const photo = useSelector(state => state.photoReducer);
-    // console.log('photo from PhotoPage', photo)
+    const user = useSelector(state => state.session.user);
+
+    console.log('photo from PhotoPage', photo)
     useEffect(()=>{
-        dispatch(renderOnePhoto(Number(id)))
+        dispatch(renderOnePhoto(Number(id))) //this
     }, [dispatch])
 
 

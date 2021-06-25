@@ -1,8 +1,8 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from app.models import db, Photo
 from flask_login import current_user, login_required
 from app.s3_helpers import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
+    upload_file_to_s3, allowed_file, get_unique_filename, delete_file_from_s3)
 
 photo_routes = Blueprint("photos", __name__)
 
@@ -31,12 +31,12 @@ def upload_photo():
     url = upload["url"]
     # WHERE DOES THE FORM DATA GO??????
     new_photo = Photo(
-                    title=request.form["title"],
-                    caption=request.form["caption"],
-                    image_url=url,
-                    user_id=current_user.id,
-                    date_taken=request.form["date_taken"]
-                    )
+        title=request.form["title"],
+        caption=request.form["caption"],
+        image_url=url,
+        user_id=current_user.id,
+        date_taken=request.form["date_taken"]
+    )
     db.session.add(new_photo)
     db.session.commit()
     return {"url": url}
@@ -53,3 +53,16 @@ def get_all_photos():
 def get_one_photo(id):
     photo = Photo.query.get(id)
     return photo.to_dict()
+
+
+@photo_routes.route("/<int:id>", methods=["DELETE"])  # @login_required
+def delete_photo(id):
+    photo = Photo.query.get(id)
+    url = photo.image_url
+    filename = url.removeprefix('http://showboat-app.s3.amazonaws.com/')
+    delete_file_from_s3(filename)
+    if not photo:
+        return jsonify("comment not found")
+    db.session.delete(photo)
+    db.session.commit()
+    return jsonify("success")

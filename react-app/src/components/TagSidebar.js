@@ -4,7 +4,6 @@ import {Link } from 'react-router-dom';
 import {renderPhotoTags} from '../../src/store/tag';
 
 const TagSidebar = () => {
-    //const tags = useSelector(state for tags?)
     const dispatch = useDispatch();
     const tags = useSelector(state => Object.values(state.tagReducer));
 

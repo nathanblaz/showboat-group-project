@@ -8,6 +8,7 @@ tag_routes = Blueprint('tags', __name__)
 @tag_routes.route("")
 def get_photo_tags():
     tags = Tag.query.all()
+    print('***********************************', tags)
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
