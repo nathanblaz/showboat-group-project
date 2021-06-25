@@ -10,8 +10,10 @@ const PhotoTagSidebar = ({id}) => {
     //const tags = useSelector(state for tags?)
     const dispatch = useDispatch();
     // const tags = useSelector(state => Object.values(state.tagReducer));
+    // console.log("tags from PhotoTagSidebar", tags)
     const photo = useSelector(state => state.photoReducer);
-    // console.log('photo from PhotoPage', photo)
+    console.log('photo from PhotoTagSidebar', photo)
+
     useEffect(()=>{
         dispatch(renderOnePhoto(Number(id)))
     }, [dispatch])

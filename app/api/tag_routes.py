@@ -49,4 +49,4 @@ def add_photo_tag():
     # print('*************************', new_tag.name)
     db.session.add(photo)
     db.session.commit()
-    return photo.to_dict()
+    return photo.to_dict_with_tag()

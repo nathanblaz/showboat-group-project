@@ -35,7 +35,7 @@ function PhotoPage() {
 
             <PhotoComments />
             <AddNewTag id={id} />
-            <PhotoTagSidebar id={id} />
+            <PhotoTagSidebar id={id} photo={photo} />
         </div>
     )
 

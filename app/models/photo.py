@@ -33,5 +33,18 @@ class Photo(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.users.to_dict(),
-            # "tags": self.tags
+        }
+
+    def to_dict_with_tag(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "caption": self.caption,
+            "image_url": self.image_url,
+            "user_id": self.user_id,
+            "date_taken": self.date_taken,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "user": self.users.to_dict(),
+            "tags": self.tags
         }
