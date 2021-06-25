@@ -23,9 +23,17 @@ def get_one_album(id):
         return {"albums": "nothing here!"}
     return album.to_dict()
 
+@album_routes.route("/<int:id>", methods=["PUT"])
+def add_photos_album(id):
+    album = Album.query.get(id)
+    # album.photos.append(request.form.the_photo) <= if form.the_photo is a photo object
+    # db.session.add(album)
+    # db.session.add(?)
+    # db.session.commit()
+
 
 @album_routes.route("/new", methods=["POST"])
-# @login_required
+@login_required
 def create_album():
     new_album = Album(
                     title=request.form["title"],
@@ -38,11 +46,9 @@ def create_album():
 
 
 @album_routes.route("/<id>", methods=["DELETE"])
-# @login_required
+@login_required
 def delete_album(id):
-    print("****************inside delete route****************")
     album = Album.query.get(id)
     db.session.delete(album)
-    print("***********album deleted in API route**************")
     db.session.commit()
     return {"success": "album deleted"}
