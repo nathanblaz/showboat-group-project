@@ -38,13 +38,13 @@ def delete_tag(id):
 
 @tag_routes.route("/new", methods=['POST'])
 @login_required
-def add_photo_tag():
+def add_photo_tag(id):
     new_tag = Tag(
         name=request.form["name"]
     )
-    photo = Photo(id)
+    photo = Photo.query.get(id)
     photo_with_tag = photo.tags.append(new_tag)
     # print('*************************', new_tag.name)
-    db.session.add(new_tag)
+    db.session.add(photo_with_tag)
     db.session.commit()
     return photo_with_tag.to_dict()
