@@ -1,6 +1,7 @@
 const SET_ALBUMS = "album/SET_ALBUMS";
 const ADD_ALBUM = "album/ADD_ALBUM";
 const SET_ONE_ALBUM = "album/SET_ONE_ALBUM";
+const DELETE_ALBUM = "album/DELETE_ALBUM";
 
 const setAlbums = (albums) => ({
     type: SET_ALBUMS,
@@ -14,6 +15,11 @@ const addAlbum = (album) => ({
 
 const setOneAlbum = (album) => ({
     type: SET_ONE_ALBUM,
+    payload: album
+});
+
+const unAlbum = (album) => ({
+    type: DELETE_ALBUM,
     payload: album
 });
 
@@ -44,6 +50,22 @@ export const renderAllAlbums = () => async (dispatch) => {
     } else {
         console.log(res.statusText)
     }
+};
+
+export const deleteAlbum = (albumId) => async (dispatch) => {
+    const res = await fetch("/api/albums", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: {albumId}
+    });
+    if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+    } else {
+        console.log("bad fetch from deleteAlbum thunk")
+    }
 }
 
 
@@ -68,6 +90,12 @@ export default function albumReducer(state = initialState, action) {
             console.log("album reducerSET_ONE_ALBUM: ", action.payload)
             oneAlbumState[action.payload.id] = action.payload;
             return oneAlbumState;
+        case DELETE_ALBUM:
+            const lessState = {...state};
+            console.log("album reducer DELETE ALBUM", lessState, action.payload)
+            delete lessState[action.payload];
+            console.log("album reducer ALBUM DELETED", lessState)
+            return lessState;
         default:
             return state;
     }

@@ -16,10 +16,10 @@ const AlbumsPage = () => {
     return (
         <>
             <h1>All Your Albums In One Place</h1>
-            <NavLink to={`/users/${user.id}/albums/new`} >Create An Album</NavLink>
+            <NavLink to={`/users/${user?.id}/albums/new`} >Create An Album</NavLink>
             <div className="uploaded--photo-container">
                 <h2>Thumbnails representing albums here</h2>
-                {albums?.map((album) => <div><NavLink to={`/users/${user.id}/albums/${album.id}`}>{album.title}</NavLink></div>)}
+                {albums?.map((album) => <div><NavLink to={`/users/${user?.id}/albums/${album?.id}`}>{album?.title}{typeof `${album?.id}`}</NavLink></div>)}
             </div>
         </>
     )
