@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app.models import db, Photo, Album, User
 from flask_login import current_user, login_required
+from sqlalchemy.orm import joinedload;
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -12,9 +13,6 @@ def get_all_albums():
     albums = Album.query.order_by(Album.title.desc()).all()
     if albums is None:
         return {"albums": "nothing here!"}
-    print("get all albums route", albums)
-    for album in albums:
-        print(album.to_dict())
     return {"albums": [album.to_dict() for album in albums]}
 
 
@@ -27,7 +25,7 @@ def get_one_album(id):
 
 
 @album_routes.route("/new", methods=["POST"])
-@login_required
+# @login_required
 def create_album():
     new_album = Album(
                     title=request.form["title"],
@@ -39,8 +37,8 @@ def create_album():
     return new_album.to_dict()
 
 
-@album_routes.route("/", methods=["DELETE"])
-@login_required
+@album_routes.route("/:id", methods=["DELETE"])
+# @login_required
 def delete_album(id):
     album = Album.query.get(id)
     db.session.delete(album)

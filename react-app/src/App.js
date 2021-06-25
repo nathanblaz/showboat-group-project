@@ -68,11 +68,11 @@ function App() {
         <ProtectedRoute path="/users/:id/albums/" exact={true}>
           <AlbumsPage />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:id/albums/<int:id>" exact={true}>
-          <SingleAlbumPage />
-        </ProtectedRoute>
         <ProtectedRoute path="/users/:id/albums/new" exact={true}>
           <CreateAlbum />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:id/albums/:albumid" exact={true}>
+          <SingleAlbumPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
