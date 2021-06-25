@@ -44,6 +44,20 @@ export const addOneTag = (formData) => async(dispatch) => {
     }
 };
 
+
+export const addTagToPhoto = (formData) => async(dispatch) => {
+    const res = await fetch("/api/tags/photo/new_tag", {
+        method: 'POST',
+        body: formData
+    });
+    if (res.ok){
+        const tagAddedToPhoto = await res.json();
+        // console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", tagAdded)
+        dispatch(addTag(tagAddedToPhoto))
+        return tagAddedToPhoto;
+    }
+};
+
 export const deleteOneTag = (id) => async(dispatch) => {
     const res = await fetch(`/api/tags/${id}`, {
         method: 'DELETE',
