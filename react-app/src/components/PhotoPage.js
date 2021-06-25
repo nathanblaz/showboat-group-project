@@ -4,14 +4,15 @@ import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import AddNewTag from './AddNewTag';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 function PhotoPage() {
     const dispatch = useDispatch();
     const {id} = useParams();
     const photo = useSelector(state => state.photoReducer);
-    // console.log('photo from PhotoPage', photo)
+    console.log('photo from PhotoPage', photo)
     useEffect(()=>{
-        dispatch(renderOnePhoto(Number(id)))
+        dispatch(renderOnePhoto(id)) //! Somehow this is throwing a 404
     }, [dispatch])
 
 
@@ -26,11 +27,18 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
-            <img src={photo?.image_url} />
-            <textarea placeholder='Comment' />
-            <button type='submit'>
-                        Post
-            </button>
+            <div className="photo--photo-container">
+                <img src={photo?.image_url} />
+            </div>
+            <div className="button--buttons-container">
+                <DeleteConfirmModal/>
+            </div>
+            <div className="photo--comment-container">
+                <textarea placeholder='Comment' />
+                <button type='submit'>
+                    Post
+                </button>
+            </div>
             <PhotoComments/>
         </div>
     )
