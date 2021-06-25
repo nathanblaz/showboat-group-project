@@ -24,6 +24,7 @@ const SingleAlbumPage = () => {
     console.log("album page", album);
 
     const [showForm, setShowForm] = useState(false);
+    const [addPhoto, setAddPhoto] = useState("");
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -33,7 +34,8 @@ const SingleAlbumPage = () => {
     }
 
     const addPhotoForm = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        console.log(addPhoto, typeof addPhoto)
     }
 
     return (
@@ -46,9 +48,11 @@ const SingleAlbumPage = () => {
             </div>
             {showForm && (
                 <form onSubmit={addPhotoForm}>
-                    <select name="photos">
-                        {photos.map(photo => <option value={photo.id}>{photo.title}</option>)}
+                    <select name="photos" value={addPhoto} onChange={(e) => setAddPhoto(e.target.value)}>
+                        {photos?.map(photo =>
+                            <option value={photo?.id}>{photo?.title}: {photo?.id}</option>)}
                     </select>
+                    <button>Add</button>
                 </form>
             )}
             <div className="uploaded--photo-container">
