@@ -1,6 +1,7 @@
 // constants
 const SET_TAGS = "tag/SET_TAGS";
 const ADD_TAG = "tag/ADD_TAG";
+const DELETE_TAG = "tag/DELETE_TAG";
 
 
 // action creators
@@ -15,6 +16,11 @@ const addTag = (tag) => ({
     payload: tag
 })
 
+const deleteTag = (tag) => ({
+    type: DELETE_TAG,
+    payload: tag
+})
+
 // thunks
 
 export const renderPhotoTags = () => async(dispatch) => {
@@ -25,17 +31,30 @@ export const renderPhotoTags = () => async(dispatch) => {
     }
 }
 
-export const addOneTag = (tag) => async(dispatch) => {
+export const addOneTag = (formData) => async(dispatch) => {
     const res = await fetch("/api/tags/new", {
         method: 'POST',
-        // body: formData
+        body: formData
     });
     if (res.ok){
         const tagAdded = await res.json();
-        dispatch(addTag(tagAdded.tag))
-        return tagAdded.tag;
+        // console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", tagAdded)
+        dispatch(addTag(tagAdded))
+        return tagAdded;
     }
 };
+
+export const deleteOneTag = (id) => async(dispatch) => {
+    const res = await fetch(`/api/tags/${id}`, {
+        method: 'DELETE',
+        body: JSON.stringify(id)
+    });
+    if(res.ok) {
+        const tagDeleted = await res.json();
+        dispatch(deleteTag(tagDeleted));
+        return tagDeleted;
+    }
+}
 
 // initial state
 const initialState = {};
@@ -53,11 +72,15 @@ export default function tagReducer(state = initialState, action) {
         case ADD_TAG:{
             const addNewTag = {
                 ...state,
-                [action.payload.tag.id]: action.payload.tag
+                [action.payload.id]: action.payload.tag
             };
             return addNewTag;
-
         }
+        case DELETE_TAG:
+            const deleteATag = {...state};
+            delete deleteATag[action.payload.id]
+            console.log(deleteATag, "*******************reducer")
+            return {...deleteATag}
         default:
             return state;
     }

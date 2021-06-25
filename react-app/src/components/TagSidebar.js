@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import {renderPhotoTags} from '../../src/store/tag';
 
 const TagSidebar = () => {
@@ -18,11 +18,11 @@ const TagSidebar = () => {
         <div className="tag-sidebar">
             {/* <div className="tag-sidebar-tag"><NavLink>Tag1</NavLink></div> */}
             <h2>Explore Photos By Tag</h2>
-            {tags.map(tag =>
-            <div className="tag-sidebar-tag" key={tag.id}><a href="#">{`${tag.name}`}</a>
+            {tags?.map(tag =>
+            <div className="tag-sidebar-tag" key={tag?.id}>
+                <Link to={`/tags/${tag?.id}`}>{tag?.name}</Link>
             </div>
                 )}
-
         </div>
     )
 }

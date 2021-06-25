@@ -6,6 +6,7 @@ import PhotoComments from './PhotoComments'
 import PostComment from './PostComment'
 import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 function PhotoPage() {
     const dispatch = useDispatch();
