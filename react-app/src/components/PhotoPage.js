@@ -4,6 +4,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import AddNewTag from './AddNewTag';
+import PhotoTagSidebar from './PhotoTagSidebar';
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -31,9 +32,10 @@ function PhotoPage() {
             <button type='submit'>
                         Post
             </button>
-            <PhotoComments/>
-            <AddNewTag />
-
+            
+            <PhotoComments />
+            <AddNewTag id={id} />
+            <PhotoTagSidebar id={id} />
         </div>
     )
 
