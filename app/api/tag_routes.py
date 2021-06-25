@@ -11,16 +11,16 @@ def get_photo_tags():
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
-# @tag_routes.route("/new", methods=['POST'])
-# @login_required
-# def add_photo_tag():
-#     new_tag = Tag(
-#         name=request.form["name"]
-#     )
-#     # print('*************************', new_tag.name)
-#     db.session.add(new_tag)
-#     db.session.commit()
-#     return new_tag.to_dict()
+@tag_routes.route("/new", methods=['POST'])
+@login_required
+def add_photo_tag():
+    new_tag = Tag(
+        name=request.form["name"]
+    )
+    # print('*************************', new_tag.name)
+    db.session.add(new_tag)
+    db.session.commit()
+    return new_tag.to_dict()
 
 # /tags/tagname/photos get route tagname would be specific parameter to pass into function. query db for tag that has that name. .filter(Tag.name = name passed into endpoint) tag.photos will give list of all the tags and then do list comprehension over photos, phot.to_dict for photo in tag.photos
 # then useeffect in componetn that hits this end route
@@ -34,17 +34,3 @@ def delete_tag(id):
     db.session.commit()
     print("******** am I reaching this****", tag)
     return tag.to_dict()
-
-
-@tag_routes.route("/photo/new_tag", methods=['POST'])
-@login_required
-def add_photo_tag():
-    new_tag = Tag(
-        name=request.form["name"]
-    )
-    photo = Photo.query.get(id)
-    photo_with_tag = photo.tags.append(new_tag)
-    # print('*************************', new_tag.name)
-    db.session.add(new_tag)
-    db.session.commit()
-    return photo_with_tag.to_dict()

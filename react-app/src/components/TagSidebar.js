@@ -9,7 +9,7 @@ const TagSidebar = () => {
     const tags = useSelector(state => Object.values(state.tagReducer));
 
     useEffect(() => {
-        dispatch(renderPhotoTags())
+        dispatch(renderPhotoTags(tags))
     }, [dispatch])
 
     return (
