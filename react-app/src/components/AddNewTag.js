@@ -2,12 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector} from 'react-redux';
-import { addOneTag } from '../store/tag';
+import { addOneTag, renderPhotoTags } from '../store/tag';
 
 const AddNewTag = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
 
     const [tag, setTag] = useState(null);
     const [name, setName] = useState("");
@@ -18,6 +17,7 @@ const handleSubmit = async(e) => {
     formData.append("name", name);
 
 dispatch(addOneTag(formData));
+dispatch(renderPhotoTags())
 history.push("/tags")
 };
 
