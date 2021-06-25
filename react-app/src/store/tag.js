@@ -1,6 +1,7 @@
 // constants
 const SET_TAGS = "tag/SET_TAGS";
 const ADD_TAG = "tag/ADD_TAG";
+const DELETE_TAG = "tag/DELETE_TAG";
 
 
 // action creators
@@ -12,6 +13,11 @@ const setTags = (tag) => ({
 
 const addTag = (tag) => ({
     type: ADD_TAG,
+    payload: tag
+})
+
+const deleteTag = (tag) => ({
+    type: DELETE_TAG,
     payload: tag
 })
 
@@ -38,6 +44,18 @@ export const addOneTag = (formData) => async(dispatch) => {
     }
 };
 
+export const deleteOneTag = (id) => async(dispatch) => {
+    const res = await fetch(`/api/tags/${id}`, {
+        method: 'DELETE',
+        body: JSON.stringify(id)
+    });
+    if(res.ok) {
+        const tagDeleted = await res.json();
+        dispatch(deleteTag(tagDeleted));
+        return tagDeleted;
+    }
+}
+
 // initial state
 const initialState = {};
 
@@ -56,10 +74,13 @@ export default function tagReducer(state = initialState, action) {
                 ...state,
                 [action.payload.id]: action.payload.tag
             };
-            console.log("##############from store#########", action.payload)
             return addNewTag;
-
         }
+        case DELETE_TAG:
+            const deleteATag = {...state};
+            delete deleteATag[action.payload.id]
+            console.log(deleteATag, "*******************reducer")
+            return {...deleteATag}
         default:
             return state;
     }

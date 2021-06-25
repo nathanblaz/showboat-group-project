@@ -23,3 +23,4 @@ def post_comment():
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()
+

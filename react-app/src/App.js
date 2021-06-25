@@ -13,6 +13,7 @@ import ViewPhotos from "./components/file_upload/ViewPhotos";
 import PhotoPage from './components/PhotoPage';
 import TagSidebar from "./components/TagSidebar";
 import AddNewTag from "./components/AddNewTag";
+import DeleteATag from "./components/DeleteATag";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -60,11 +61,15 @@ function App() {
         <ProtectedRoute path='/photos/:id' exact={true}>
           <PhotoPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/tags' exact={true}>
+        <ProtectedRoute path='/tags/' exact={true}>
           <TagSidebar />
         </ProtectedRoute>
         <ProtectedRoute path='/tags/new' exact={true}>
           <AddNewTag />
+        </ProtectedRoute>
+        <ProtectedRoute path='/tags/:id' exact={true}>
+          <DeleteATag />
+          <TagSidebar />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
