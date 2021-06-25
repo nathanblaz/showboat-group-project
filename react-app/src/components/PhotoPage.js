@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
+import AddNewTag from './AddNewTag';
 import PostComment from './PostComment'
 import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'

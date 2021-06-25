@@ -7,7 +7,6 @@ import { addOneTag, renderPhotoTags } from '../store/tag';
 const AddNewTag = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-
     const [tag, setTag] = useState(null);
     const [name, setName] = useState("");
 

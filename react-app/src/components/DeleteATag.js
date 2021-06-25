@@ -15,12 +15,13 @@ const DeleteATag = () => {
     })
     console.log("************** single tag", singleTag)
 
-    useEffect(() => {
-        dispatch(deleteOneTag(Number(id)))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(deleteOneTag(Number(id)))
+    // }, [dispatch])
 
     const handleSubmit = async(e) => {
-        // e.preventDefault();
+        e.preventDefault();
+        dispatch(deleteOneTag(Number(id)))
     }
 
     return (
