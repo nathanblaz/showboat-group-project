@@ -33,13 +33,6 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
-
-            <img src={photo?.image_url} />
-            <textarea className="form-input" placeholder='Comment' />
-            <button type='submit'>
-                        Post
-            </button>
-
             <div className="photo--photo-container">
                 <img src={photo?.image_url} />
             </div>
@@ -54,10 +47,7 @@ function PhotoPage() {
                     {/* <EditComment/> */}
                     {/* <DeleteComment/> */}
                 </div>
-
             </div>
-
-            <PhotoComments />
             <AddNewTag id={id} />
             <PhotoTagSidebar id={id} />
         </div>
