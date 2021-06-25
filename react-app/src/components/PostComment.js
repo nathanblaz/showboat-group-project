@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addComment, renderPhotoComments, } from "../../src/store/comment";
 
 const PostComment = ({photo}) => {
-    const history = useHistory(); //?what are we doing for redirect
     const dispatch = useDispatch();
     const {id} = useParams();
     const user = useSelector(state => state.session.user);

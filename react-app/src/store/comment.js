@@ -1,6 +1,7 @@
 //constants
 const SET_COMMENTS = "comment/SET_COMMENTS";
 const ADD_COMMENT = "comment/ADD_COMMENT";
+const REMOVE_COMMENT = "comment/REMOVE_COMMENT";
 
 //action creators
 const setComments = (comment) => ({
@@ -11,6 +12,11 @@ const setComments = (comment) => ({
 const postComment = (comment) => ({
     type: ADD_COMMENT,
     payload: comment
+})
+
+const deleteComment = (id) => ({
+    type: REMOVE_COMMENT,
+    payload: id
 })
 
 //thunks
@@ -33,11 +39,17 @@ export const addComment = (formData) => async (dispatch) => { //maybe add form d
         const addedComment = await res.json();
         dispatch(postComment(addedComment))
         return addedComment;
-    
-    //   } else {
-    //     console.log("error--add comment thunk");
-    //     console.log(res)
       }
+};
+
+export const removeComment = (id) => async (dispatch) => {
+    const res = await fetch(`/api/comments/delete/${id}`, {
+        method:"DELETE",
+        body: id
+    })
+    console.log('id from comment.js=======', {id})
+    dispatch(deleteComment(id))
+    return res;
 }
 
 // reducer
@@ -56,6 +68,10 @@ export default function commentReducer(state = initialState, action) {
         case ADD_COMMENT:
             // const singleState = {...state};
             newState[action.payload.id] = action.payload;
+            return newState;
+
+        case REMOVE_COMMENT:
+            delete newState[action.comment]
             return newState;
 
         default:

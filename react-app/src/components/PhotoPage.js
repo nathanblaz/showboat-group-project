@@ -4,6 +4,8 @@ import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import PostComment from './PostComment'
+import EditComment from './EditComment'
+import DeleteComment from './DeleteComment'
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -30,8 +32,11 @@ function PhotoPage() {
             </div>
             <img src={photo?.image_url} />
             <PostComment photo={photo}/>
-            
-            <PhotoComments photo={photo}/>
+            <div>
+                <PhotoComments photo={photo}/>
+                {/* <EditComment/> */}
+                <DeleteComment/>
+            </div>
 
         </div>
     )

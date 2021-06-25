@@ -1,6 +1,7 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from app.models import db, Comment, Photo
 from flask_login import current_user, login_required
+
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -23,3 +24,13 @@ def post_comment():
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()
+
+
+@comment_routes.route("/delete/<int:id>", methods=["DELETE"])
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    if not comment:
+        return jsonify('comment not found')
+    db.session.delete(comment)
+    db.session.commit()
+    return jsonify('success')
