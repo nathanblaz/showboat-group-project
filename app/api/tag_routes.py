@@ -35,6 +35,7 @@ def delete_tag(id):
     print("******** am I reaching this****", tag)
     return tag.to_dict()
 
+# need to hit something with bothphoto id and tag. query for photo and tag. Instance not model photo.tags.remove(pass in tag object from db). sent back photo. won't have to hit tag reducer. hit photo reducer.
 
 @tag_routes.route("/photo/new_tag", methods=['POST'])
 @login_required
@@ -49,4 +50,4 @@ def add_photo_tag():
     # print('*************************', new_tag.name)
     db.session.add(photo)
     db.session.commit()
-    return photo.to_dict_with_tag()
+    return {"photo": photo.to_dict(), "tag": new_tag.to_dict()}
