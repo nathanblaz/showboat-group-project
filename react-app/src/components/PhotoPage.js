@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
+import AddNewTag from './AddNewTag';
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function PhotoPage() {
                         Post
             </button>
             <PhotoComments/>
+            <AddNewTag />
 
         </div>
     )
