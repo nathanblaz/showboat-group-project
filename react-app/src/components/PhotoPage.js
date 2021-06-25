@@ -33,11 +33,29 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
+
             <img src={photo?.image_url} />
             <textarea className="form-input" placeholder='Comment' />
             <button type='submit'>
                         Post
             </button>
+
+            <div className="photo--photo-container">
+                <img src={photo?.image_url} />
+            </div>
+            <div className="button--buttons-container">
+                <DeleteConfirmModal/>
+            </div>
+
+            <div className="photo--comment-container">
+                <PostComment photo={photo}/>
+                <div>
+                    <PhotoComments photo={photo}/>
+                    {/* <EditComment/> */}
+                    {/* <DeleteComment/> */}
+                </div>
+
+            </div>
 
             <PhotoComments />
             <AddNewTag id={id} />
