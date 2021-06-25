@@ -14,9 +14,9 @@ const postComment = (comment) => ({
     payload: comment
 })
 
-const deleteComment = (id) => ({
+const deleteComment = (comment) => ({
     type: REMOVE_COMMENT,
-    payload: id
+    payload: comment
 })
 
 //thunks
@@ -45,11 +45,12 @@ export const addComment = (formData) => async (dispatch) => { //maybe add form d
 export const removeComment = (id) => async (dispatch) => {
     const res = await fetch(`/api/comments/delete/${id}`, {
         method:"DELETE",
-        body: id
+        body: JSON.stringify(id)
     })
-    console.log('id from comment.js=======', {id})
-    dispatch(deleteComment(id))
-    return res;
+    // console.log('id from comment.js=======', {id})
+    const deletedComment = await res.json()
+    dispatch(deleteComment(deletedComment))
+    return deletedComment;
 }
 
 // reducer
@@ -71,7 +72,7 @@ export default function commentReducer(state = initialState, action) {
             return newState;
 
         case REMOVE_COMMENT:
-            delete newState[action.comment]
+            delete newState[action.payload]
             return newState;
 
         default:

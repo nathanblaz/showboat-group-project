@@ -5,7 +5,7 @@ import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import PostComment from './PostComment'
 import EditComment from './EditComment'
-import DeleteComment from './DeleteComment'
+// import DeleteComment from './DeleteComment'
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function PhotoPage() {
             <div>
                 <PhotoComments photo={photo}/>
                 {/* <EditComment/> */}
-                <DeleteComment/>
+                {/* <DeleteComment/> */}
             </div>
 
         </div>
