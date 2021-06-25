@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector} from 'react-redux';
-import { addOneTag, renderPhotoTags } from '../store/tag';
+import { addTagToPhoto, renderPhotoTags } from '../store/tag';
 
 const AddNewTag = ({id}) => {
     const history = useHistory();
@@ -18,7 +18,7 @@ const handleSubmit = async(e) => {
     formData.append("id", id);
     setName("")
 
-dispatch(addOneTag(formData));
+dispatch(addTagToPhoto(formData));
 dispatch(renderPhotoTags())
 history.push(`/photos/${id}`)
 };
