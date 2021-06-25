@@ -13,6 +13,8 @@ s3 = boto3.client(
     aws_secret_access_key=os.environ.get("S3_SECRET")
 )
 
+s3rsrc = boto3.resource('s3')
+
 # Filenames
 
 
@@ -44,8 +46,20 @@ def upload_file_to_s3(file, acl="public-read"):
             }
         )
     except Exception as e:
-        # in case the our s3 upload fails
+        # in case  our s3 upload fails
         print("errors", str(e))
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
+
+# Delete Helper
+
+
+def delete_file_from_s3(filename):
+    print("*****made it to delete_file_from_s3 function")
+    try:
+        s3rsrc.Object(BUCKET_NAME, filename).delete()
+    except Exception as e:
+        # in case our s3 delete fails
+        print("errors", str(e))
+        return {"errors": str(e)}

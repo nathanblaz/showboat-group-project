@@ -102,7 +102,7 @@ export default function photoReducer(state = initialState, action) {
       const oldState = {
         ...state
       }
-      delete oldState[action.payload.photo.id]
+      delete oldState[action.payload.id]
       return oldState;
     default:
       return state;
