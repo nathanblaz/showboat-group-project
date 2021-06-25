@@ -68,9 +68,6 @@ export const renderOnePhoto = (id) => async (dispatch) => {
 export const deletePhoto = (id) => async (dispatch) => {
   const res = await fetch(`/api/photos/${id}`, {
     method: "DELETE",
-    body: JSON.stringify({
-      id,
-    }),
   });
   dispatch(deleteOnePhoto(id));
 };
