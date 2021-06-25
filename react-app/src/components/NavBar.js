@@ -42,7 +42,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <NavLink to="/"> showboat </NavLink>
+      <NavLink to="/" exact={true}> showboat </NavLink>
       <ul className="navmenu">
         {user? (<>
           <li className="navitem">
@@ -56,7 +56,7 @@ const NavBar = () => {
             </NavLink>
           </li> */}
           <li className="navitem">
-            <NavLink to="/users/:id/upload/" exact={true} activeClassName="active">
+            <NavLink to={`/users/${user.id}/upload/`} exact={true} activeClassName="active">
               Upload Photo
             </NavLink>
           </li>
