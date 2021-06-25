@@ -18,12 +18,12 @@ const addPhoto = (photo) => ({
 const setOnePhoto = (photo) => ({
   type: SET_ONE_PHOTO,
   payload: photo,
-})
+});
 
 const deleteOnePhoto = (photo) => ({
   type: DELETE_PHOTO,
   payload: photo,
-})
+});
 
 // thunks
 
@@ -44,17 +44,18 @@ export const uploadPhoto = (formData) => async (dispatch) => {
     body: formData,
   });
   if (res.ok) {
-    await res.json();
-
+    const data = await res.json();
+    console.log("*****data is: ", data);
+    dispatch(addPhoto(data));
   } else {
     console.log("error--upload photo thunk");
-    console.log(res)
+    console.log(res);
   }
 };
 
 export const renderOnePhoto = (id) => async (dispatch) => {
-  console.log('id from photo js', id)
-  const res = await fetch(`/api/photos/${id}`)
+  console.log("id from photo js", id);
+  const res = await fetch(`/api/photos/${id}`);
   if (res.ok) {
     const data = await res.json();
     // console.log(data);
@@ -62,13 +63,13 @@ export const renderOnePhoto = (id) => async (dispatch) => {
   } else {
     console.log("error-renderOnePhoto thunk");
   }
-}
+};
 
 export const deletePhoto = (id) => async (dispatch) => {
   const res = await fetch(`/api/photos/${id}`, {
     method: "DELETE",
     body: JSON.stringify({
-      id
+      id,
     }),
   });
   dispatch(deleteOnePhoto(id));
@@ -80,7 +81,6 @@ const initialState = {};
 
 export default function photoReducer(state = initialState, action) {
   switch (action.type) {
-
     case SET_PHOTOS:
       const newState = {};
       action.payload.forEach((photo) => {
@@ -89,24 +89,24 @@ export default function photoReducer(state = initialState, action) {
       return newState;
 
     case ADD_PHOTO:
-      const singleState = {...state};
+      const singleState = { ...state };
       // console.log("****action.payload is:", action.payload);
-      singleState[action.payload.photo.id] = action.payload.photo;
+      singleState[action.payload.id] = action.payload;
       return singleState;
 
-    case SET_ONE_PHOTO:
+    case SET_ONE_PHOTO: {
       // console.log('logging action.payload', action.payload)
-      {const newPhotoState = {...action.payload}
+      const newPhotoState = { ...action.payload };
       return newPhotoState;
     }
-      // const newPhotoState = {};
-      // newPhotoState[action.payload.id] = action.payload
+    // const newPhotoState = {};
+    // newPhotoState[action.payload.id] = action.payload
 
     case DELETE_PHOTO:
       const oldState = {
-        ...state
-      }
-      delete oldState[action.payload.id]
+        ...state,
+      };
+      delete oldState[action.payload.id];
       return oldState;
     default:
       return state;
