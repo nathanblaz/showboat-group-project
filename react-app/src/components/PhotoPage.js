@@ -7,6 +7,7 @@ import PostComment from './PostComment'
 import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'
 import DeleteConfirmModal from './DeleteConfirmModal';
+import AddToAlbum from './Album/AddToAlbum';
 
 function PhotoPage() {
     const dispatch = useDispatch();
@@ -31,14 +32,18 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
-            <img src={photo?.image_url} />
-            <PostComment photo={photo}/>
+            <div className="photo-page--photo-div">
+                <img className="photo-page--photo" src={photo?.image_url} />
+                <PostComment photo={photo}/>
+            </div>
             <div>
                 <PhotoComments photo={photo}/>
                 {/* <EditComment/> */}
                 {/* <DeleteComment/> */}
             </div>
-
+            <div>
+                <AddToAlbum photo={photo} />
+            </div>
         </div>
     )
 

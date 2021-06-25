@@ -33,6 +33,15 @@ a {
     color: #c70032
 }
 
+.photo-page--photo-div {
+    width: 1000px;
+}
+
+.photo-page--photo {
+    max-width: 100%;
+    height: auto;
+}
+
 .home-page-container {
     display: flex;
     flex-flow: wrap;

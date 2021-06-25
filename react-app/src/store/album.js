@@ -61,6 +61,22 @@ export const renderAlbumPhotos = (album) => async (dispatch) => {
     } else {
         console.log(res.statusText, "renderAlbumPhotos thunk")
     }
+};
+
+export const addPhotoToAlbum = (formData) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${formData.album.id}`, {
+        methods: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: formData
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setAlbums(data));
+    } else {
+        console.log(res.statusText, "ADD PHOTO TO ALBUM THUNK")
+    }
 }
 
 export const deleteAlbum = (albumId) => async (dispatch) => {

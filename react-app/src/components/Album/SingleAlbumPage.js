@@ -9,8 +9,8 @@ const SingleAlbumPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const albumId = useParams().albumid;
-    const user = useSelector(state => state.session.user)
+    const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
+    const user = useSelector(state => state.session.user);
     const albums = useSelector(state => Object.values(state.albumReducer));
     const photos = useSelector(state => Object.values(state.photoReducer));
 
@@ -36,6 +36,8 @@ const SingleAlbumPage = () => {
     const addPhotoForm = (e) => {
         e.preventDefault();
         console.log(addPhoto, typeof addPhoto)
+        const formData = new FormData();
+        formData.append("add_photo", addPhoto)
     }
 
     return (
