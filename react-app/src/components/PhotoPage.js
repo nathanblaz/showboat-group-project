@@ -4,6 +4,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
 import AddNewTag from './AddNewTag';
+import PhotoTagSidebar from './PhotoTagSidebar';
 import PostComment from './PostComment'
 import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'
@@ -32,6 +33,13 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
+
+            <img src={photo?.image_url} />
+            <textarea className="form-input" placeholder='Comment' />
+            <button type='submit'>
+                        Post
+            </button>
+
             <div className="photo--photo-container">
                 <img src={photo?.image_url} />
             </div>
@@ -49,6 +57,9 @@ function PhotoPage() {
 
             </div>
 
+            <PhotoComments />
+            <AddNewTag id={id} />
+            <PhotoTagSidebar id={id} />
         </div>
     )
 
