@@ -24,43 +24,30 @@ function PhotoPage() {
 
   return (
     <div>
-      <div>{photo?.title}</div>
-      <div>Date Taken: {photo?.date_taken}</div>
-      <div>{photo?.caption}</div>
-      <div className="photo--photo-container">
-        <img src={photo?.image_url} />
-      </div>
-      <div className="button--buttons-container">
-        <EditPhotoModal />
-      </div>
-      <div className="button--buttons-container">
-        <DeleteConfirmModal />
-      </div>
-
-      <div className="photo--comment-container">
-        <PostComment photo={photo} />
-        <div>
-          <div>{photo?.title}</div>
-          <div>Date Taken: {photo?.date_taken}</div>
-          <div>{photo?.caption}</div>
-          <div className="photo--photo-container">
-            <img src={photo?.image_url} />
-          </div>
-          <div className="button--buttons-container">
-            <DeleteConfirmModal />
-          </div>
-
-          <div className="photo--comment-container">
-            <PostComment photo={photo} />
-            <div>
-              <PhotoComments photo={photo} />
-              {/* <EditComment/> */}
-              {/* <DeleteComment/> */}
-            </div>
-          </div>
-          <AddNewTag id={id} />
-          <PhotoTagSidebar id={id} />
+      <div>
+        <div>{photo?.title}</div>
+        <div>Date Taken: {photo?.date_taken}</div>
+        <div>{photo?.caption}</div>
+        <div className="photo--photo-container">
+          <img src={photo?.image_url} />
         </div>
+        <div className="button--buttons-container">
+          <EditPhotoModal />
+        </div>
+        <div className="button--buttons-container">
+          <DeleteConfirmModal />
+        </div>
+
+        <div className="photo--comment-container">
+          <PostComment photo={photo} />
+          <div>
+            <PhotoComments photo={photo} />
+            {/* <EditComment/> */}
+            {/* <DeleteComment/> */}
+          </div>
+        </div>
+        <AddNewTag id={id} />
+        <PhotoTagSidebar id={id} />
       </div>
     </div>
   );
