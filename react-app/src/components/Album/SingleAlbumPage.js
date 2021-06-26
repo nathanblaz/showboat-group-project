@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect, NavLink, useParams, useHistory } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import PhotoThumbnail from "./PhotoThumbnail";
 // import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirm";
@@ -8,7 +8,7 @@ import { renderAllPhotos } from "../../store/photo";
 
 const SingleAlbumPage = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     const user = useSelector(state => state.session.user);
     const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
     const albumAndPhoto = useSelector(state => Object.values(state.albumReducer));
@@ -49,8 +49,7 @@ const SingleAlbumPage = () => {
     const deleteHandler = (e) => {
         e.preventDefault();
         dispatch(deleteAlbum(album?.id));
-        // history.push({`/users/${user?.id}/albums`})
-        // return <Redirect to={`/users/${user?.id}/albums`} />
+        history.push(`/users/${user.id}/albums`);
     };
 
     // const addPhotoForm = (e) => {
