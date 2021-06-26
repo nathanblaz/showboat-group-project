@@ -22,7 +22,7 @@ const AddToAlbum = ({photo}) => {
         e.preventDefault();
         console.log(addAlbum, typeof addAlbum)
         const formData = new FormData();
-        formData.append("add_to_album_id", addAlbum);
+        formData.append("add_to_album_id", Number(addAlbum));
         formData.append("photo_id", photo.id);
         dispatch(addPhotoToAlbum(formData));
     }

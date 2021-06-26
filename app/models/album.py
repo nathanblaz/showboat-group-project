@@ -18,8 +18,8 @@ class Album(db.Model):
             "title": self.title,
             "description": self.description,
             "user_id": self.user_id,
-            # "user": self.users.username,
-            # "photos": self.photos
+            "user": self.users.to_dict(),
+            "photos": [photo.id for photo in self.photos]
         }
 
     # def get_related_photos(self):

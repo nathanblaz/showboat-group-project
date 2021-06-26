@@ -109,7 +109,7 @@ export default function albumReducer(state = initialState, action) {
             plusState[action.payload.id] = action.payload;
             return plusState;
         case SET_ONE_ALBUM:
-            const oneAlbumState = {...state};
+            const oneAlbumState = {...action.payload};
             console.log("album reducerSET_ONE_ALBUM: ", action.payload)
             oneAlbumState[action.payload.id] = action.payload;
             return oneAlbumState;

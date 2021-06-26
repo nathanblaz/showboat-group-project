@@ -13,7 +13,7 @@ def get_all_albums():
     albums = Album.query.order_by(Album.title.desc()).all()
     if albums is None:
         return {"albums": "nothing here!"}
-    return {"albums": [album.to_dict() for album in albums]}
+    return {"albums": [album.id for album in albums]}
 
 
 @album_routes.route("/<int:id>")
@@ -28,10 +28,11 @@ def get_one_album(id):
 def add_photos_album():
     photo = Photo.query.get(request.form["photo_id"])
     print("*************add photo album route", photo.to_dict())
-    # photo.albums.append(request.form.["add_to_album_id"]])
-    # db.session.add(photo)
-    # db.session.add(?)
-    # db.session.commit()
+    album = Album.query.get(request.form["add_to_album_id"])
+    photo.albums.append(album)
+    db.session.add(photo)
+    db.session.commit()
+    return {"photo": photo.to_dict(), "album": album.to_dict() }
 
 
 @album_routes.route("/new", methods=["POST"])
