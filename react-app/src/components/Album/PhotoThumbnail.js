@@ -6,12 +6,12 @@ const PhotoThumbnail = ({photo}) => {
 
     return (
         <div className="photoThumbnail">
-            <div>
+            <div className="thumbnail-div">
                 <Link to={`/photos/${photo?.id}`}>
                     <img className="uploaded--photo" src={`${photo?.image_url}`} alt={`${photo?.title}`}></img>
                 </Link>
+                <p>{photo?.title}</p>
             </div>
-            <p>{photo?.title}</p>
         </div>
     )
 }

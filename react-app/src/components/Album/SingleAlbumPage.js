@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import PhotoThumbnail from "./PhotoThumbnail";
-import { editAlbum, renderAlbumPhotos, deleteAlbum } from "../../store/album";
-import { renderAllPhotos } from "../../store/photo";
+import { editAlbum, renderAlbumPhotos } from "../../store/album";
 import DeleteAlbumModal from "../DeleteAlbumModal";
 
 const SingleAlbumPage = () => {
@@ -45,19 +44,17 @@ const SingleAlbumPage = () => {
         setShowForm(false)
     };
 
-    // const addPhotoForm = (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append("add_photo", addPhoto)
-    // }
-
     return (
         <>
-            <h1>{album?.title}</h1>
-            <p>{album?.description}</p>
-            <div>
+            <div className="album-title">
+                <h1>{album?.title}</h1>
+                <p>{album?.description}</p>
+            </div>
+
+            <div className="button-container">
                 <button type="button" onClick={setShowForm}>Edit Album Details</button>
                 <DeleteAlbumModal />
+                <NavLink to={`/users/${user?.id}/albums`}>Back to Albums</NavLink>
                 {/* <button type="button" onClick={setShowForm}>Add Photos</button> */}
             </div>
             {showForm && (
@@ -68,11 +65,13 @@ const SingleAlbumPage = () => {
                             type="text"
                             className="form-input"
                             name="title"
+                            placeholder={album?.title}
                             onChange={(e) => setTitle(e.target.value)}
                             value={title} />
                             <textarea
                             name="description"
                             className="form-input"
+                            placeholder={album?.description}
                             onChange={(e) => setDescription(e.target.value)}
                             value={description} />
                         </div>
@@ -82,15 +81,6 @@ const SingleAlbumPage = () => {
                         </div>
             )}
 
-            {/* {showForm && (
-                <form onSubmit={addPhotoForm}>
-                    <select name="photos" value={addPhoto} onChange={(e) => setAddPhoto(e.target.value)}>
-                        {photos?.map(photo =>
-                            <option value={photo?.id}>{photo?.title}: {photo?.id}</option>)}
-                    </select>
-                    <button>Add</button>
-                </form>
-            )} */}
             {photos ? (<div className="uploaded--photo-container">
                 {photos?.map(photo => <PhotoThumbnail photo={photo} />)}
             </div>) : null}
@@ -100,3 +90,20 @@ const SingleAlbumPage = () => {
 }
 
 export default SingleAlbumPage;
+
+
+    // const addPhotoForm = (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append("add_photo", addPhoto)
+    // }
+
+    /* {showForm && (
+        <form onSubmit={addPhotoForm}>
+            <select name="photos" value={addPhoto} onChange={(e) => setAddPhoto(e.target.value)}>
+                {photos?.map(photo =>
+                    <option value={photo?.id}>{photo?.title}: {photo?.id}</option>)}
+            </select>
+            <button>Add</button>
+        </form>
+    )} */
