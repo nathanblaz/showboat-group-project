@@ -1,4 +1,5 @@
 // constants
+import { ADD_TAG } from "./tag";
 const SET_PHOTOS = "photo/SET_PHOTOS";
 const ADD_PHOTO = "photo/ADD_PHOTO";
 const SET_ONE_PHOTO = "photo/SET_ONE_PHOTO";
@@ -91,13 +92,17 @@ export default function photoReducer(state = initialState, action) {
       singleState[action.payload.id] = action.payload;
       return singleState;
 
-    case SET_ONE_PHOTO: {
+    case SET_ONE_PHOTO: 
       // console.log('logging action.payload', action.payload)
-      const newPhotoState = { ...action.payload };
+
+      const newPhotoState = {...action.payload}
       return newPhotoState;
-    }
-    // const newPhotoState = {};
-    // newPhotoState[action.payload.id] = action.payload
+
+    case ADD_TAG:
+      const singleTagState = {...action.payload.photo};
+      // console.log("****action.payload is:", action.payload);
+      // singleTagState[action.payload.photo.id] = action.payload.photo;
+      return singleTagState;
 
     case DELETE_PHOTO:
       const oldState = {
