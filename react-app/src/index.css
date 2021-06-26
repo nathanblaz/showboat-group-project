@@ -33,13 +33,23 @@ a {
     color: #c70032
 }
 
-.photo-page--photo-div {
+#photo-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo--photo-container {
     width: 1000px;
 }
 
 .photo-page--photo {
     max-width: 100%;
     height: auto;
+}
+
+.under-photo {
+    display: flex;
+    justify-content: space-around;
 }
 
 .home-page-container {
@@ -148,11 +158,6 @@ a {
 #about-list {
     list-style-type: none;
 }
-
-/* .about-li {
-    padding: 4px;
-    margin: auto;
-} */
 
 .about-logos {
     display: flex;

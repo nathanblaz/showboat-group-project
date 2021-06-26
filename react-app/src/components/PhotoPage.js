@@ -24,36 +24,30 @@ function PhotoPage() {
 
 
     return (
-        <div>
-            <div>
-                {photo?.title}
+        <div id="photo-page">
+            <div className="photo--text-container">
+                <p>{photo?.title}</p>
+                <p>Date Taken: {photo?.date_taken}</p>
+                <p>{photo?.caption}</p>
             </div>
-            <div>
-                Date Taken: {photo?.date_taken}
-            </div>
-            <div>
-                {photo?.caption}
-            </div>
-            {/* <div className="photo-page--photo-div">
-                <img className="photo-page--photo" src={photo?.image_url} />
-                <PostComment photo={photo}/>
-            </div> */}
             <div className="photo--photo-container">
-                <img src={photo?.image_url} />
+                <img className="photo-page--photo" src={photo?.image_url} />
             </div>
-            <div className="photo--comment-container">
-                <PostComment photo={photo}/>
-                <div>
-                    <PhotoComments photo={photo}/>
-                    {/* <EditComment/> */}
-                    {/* <DeleteComment/> */}
+            <div className="under-photo">
+                <div className="photo--comment-container">
+                    <PostComment photo={photo}/>
+                    <div>
+                        <PhotoComments photo={photo}/>
+                        {/* <EditComment/> */}
+                        {/* <DeleteComment/> */}
+                    </div>
+                </div>
+                <div className="button--buttons-container">
+                    <DeleteConfirmModal/>
+                    <AddToAlbum photo={photo} />
                 </div>
             </div>
-            <div className="button--buttons-container">
-                <DeleteConfirmModal/>
-            </div>
-            <div>
-                <AddToAlbum photo={photo} />
+            <div className="photo--sidebar">
                 <AddNewTag id={id} />
                 <PhotoTagSidebar id={id} />
             </div>
