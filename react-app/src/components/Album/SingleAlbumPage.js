@@ -7,21 +7,31 @@ import { renderAllPhotos } from "../../store/photo";
 
 const SingleAlbumPage = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
-    const user = useSelector(state => state.session.user);
-    const albums = useSelector(state => Object.values(state.albumReducer));
+    // const user = useSelector(state => state.session.user);
+    const albumAndPhoto = useSelector(state => Object.values(state.albumReducer));
     const photos = useSelector(state => Object.values(state.photoReducer));
 
+
     useEffect(() => {
-        dispatch(renderAllAlbums());
-        dispatch(renderAllPhotos());
+        dispatch(renderAlbumPhotos(Number(albumId)));
     }, [dispatch])
 
-    const thisAlbum = albums?.filter(album => album.id === (Number.parseInt(albumId)));
-    const album = thisAlbum[0];
-    console.log("album page", album);
+    let album;
+    if (albumAndPhoto) {
+        album =  albumAndPhoto[0]
+    } else {
+        dispatch(renderAlbumPhotos(Number(albumId)));
+    };
+    let photo;
+    if (albumAndPhoto) {
+        photo =  albumAndPhoto[1]
+    } else {
+        dispatch(renderAlbumPhotos(Number(albumId)));
+    };
+    console.log("album page", album, photo);
 
     const [showForm, setShowForm] = useState(false);
     const [addPhoto, setAddPhoto] = useState("");
@@ -35,7 +45,6 @@ const SingleAlbumPage = () => {
 
     const addPhotoForm = (e) => {
         e.preventDefault();
-        console.log(addPhoto, typeof addPhoto)
         const formData = new FormData();
         formData.append("add_photo", addPhoto)
     }
@@ -59,7 +68,7 @@ const SingleAlbumPage = () => {
             )}
             <div className="uploaded--photo-container">
                 <p>The photos in this album render as thumbnails here</p>
-                {album?.id}
+                <PhotoThumbnail photo={photo} />
             </div>
         </>
     )

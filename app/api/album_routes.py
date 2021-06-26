@@ -1,9 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Photo, Album, User
 from flask_login import current_user, login_required
-from sqlalchemy.orm import joinedload;
-from app.s3_helpers import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
 
 album_routes = Blueprint("albums", __name__)
 
@@ -20,9 +17,9 @@ def get_all_albums():
 @album_routes.route("/<int:id>")
 def get_one_album(id):
     album = Album.query.get(id)
-    if album is None:
-        return {"albums": "nothing here!"}
-    return album.to_dict()
+    photo = album.photos[0]
+    print("***************GET ONE ALBUM ROUTE", album, photo)
+    return {"album": album.to_dict(), "photo": photo.to_dict()}
 
 
 @album_routes.route("/add", methods=["POST"])

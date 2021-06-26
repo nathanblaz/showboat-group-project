@@ -52,11 +52,10 @@ export const renderAllAlbums = () => async (dispatch) => {
     }
 };
 
-export const renderAlbumPhotos = (album) => async (dispatch) => {
-    const res = await fetch(`/api/albums/${album.id}`);
+export const renderAlbumPhotos = (albumId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}`);
     if (res.ok) {
         const data = await res.json();
-        console.log(data)
         dispatch(setOneAlbum(data));
     } else {
         console.log(res.statusText, "renderAlbumPhotos thunk")
@@ -111,7 +110,7 @@ export default function albumReducer(state = initialState, action) {
         case SET_ONE_ALBUM:
             const oneAlbumState = {...action.payload};
             console.log("album reducerSET_ONE_ALBUM: ", action.payload)
-            oneAlbumState[action.payload.id] = action.payload;
+            // oneAlbumState[action.payload.album] = action.payload;
             return oneAlbumState;
         case DELETE_ALBUM:
             const lessState = {...state};

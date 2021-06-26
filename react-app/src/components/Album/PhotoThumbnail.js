@@ -8,10 +8,10 @@ const PhotoThumbnail = ({photo}) => {
         <div className="photoThumbnail">
             <div>
                 <Link to={`/photos/${photo?.id}`}>
-                    <img className="uploaded--photo" src={`${photo?.image_url}`} alt={`${photo.title}`}></img>
+                    <img className="uploaded--photo" src={`${photo?.image_url}`} alt={`${photo?.title}`}></img>
                 </Link>
             </div>
-            <p>{photo.title}</p>
+            <p>{photo?.title}</p>
         </div>
     )
 }
