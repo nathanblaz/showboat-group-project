@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector} from 'react-redux'
-import {renderOnePhoto} from '../../src/store/photo'
-import PhotoComments from './PhotoComments'
-import AddNewTag from './AddNewTag';
-import PhotoTagSidebar from './PhotoTagSidebar';
-import PostComment from './PostComment'
-// import EditComment from './EditComment'
+import { useDispatch, useSelector } from "react-redux";
+import { renderOnePhoto } from "../../src/store/photo";
+import PhotoComments from "./PhotoComments";
+import AddNewTag from "./AddNewTag";
+import PhotoTagSidebar from "./PhotoTagSidebar";
+import PostComment from "./PostComment";
+import EditComment from "./EditComment";
 // import DeleteComment from './DeleteComment'
-import DeleteConfirmModal from './DeleteConfirmModal';
+import DeleteConfirmModal from "./DeleteConfirmModal";
+import EditPhotoModal from "./EditPhotoModal";
 import AddToAlbum from './Album/AddToAlbum';
 
 function PhotoPage() {
-    const dispatch = useDispatch();
-    const {id} = useParams();
-    const photo = useSelector(state => state.photoReducer);
-    const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const photo = useSelector((state) => state.photoReducer);
+  const user = useSelector((state) => state.session.user);
 
     console.log('photo from PhotoPage', photo)
     useEffect(()=>{
@@ -43,6 +44,7 @@ function PhotoPage() {
                     </div>
                 </div>
                 <div className="button--buttons-container">
+                    <EditPhotoModal />
                     <DeleteConfirmModal/>
                     <AddToAlbum photo={photo} />
                 </div>
@@ -52,7 +54,6 @@ function PhotoPage() {
                 <PhotoTagSidebar id={id} />
             </div>
         </div>
-    )
-
+  );
 }
 export default PhotoPage;
