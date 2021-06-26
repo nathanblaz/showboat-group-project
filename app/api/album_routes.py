@@ -28,12 +28,12 @@ def get_one_album(id):
 @album_routes.route("/add", methods=["POST"])
 def add_photos_album():
     photo = Photo.query.get(request.form["photo_id"])
-    print("*************add photo album route", photo.to_dict())
     album = Album.query.get(request.form["add_to_album_id"])
     photo.albums.append(album)
+    print("*************add photo album route", photo.to_dict())
     db.session.add(photo)
     db.session.commit()
-    return {"album": album.to_dict() }
+    return album.to_dict()
 
 
 @album_routes.route("/new", methods=["POST"])

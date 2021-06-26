@@ -70,7 +70,7 @@ export const addPhotoToAlbum = (formData) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
-        dispatch(setAlbums(data));
+        dispatch(setOneAlbum(data));
     } else {
         console.log(res.statusText, "ADD PHOTO TO ALBUM THUNK")
     }
