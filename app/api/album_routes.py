@@ -10,10 +10,11 @@ album_routes = Blueprint("albums", __name__)
 
 @album_routes.route("/")
 def get_all_albums():
-    albums = Album.query.order_by(Album.title.desc()).all()
+    albums = Album.query.all()
     if albums is None:
         return {"albums": "nothing here!"}
-    return {"albums": [album.id for album in albums]}
+    # return {"albums": [album.id for album in albums]}
+    return {"albums": [album.to_dict() for album in albums]}
 
 
 @album_routes.route("/<int:id>")
@@ -32,7 +33,7 @@ def add_photos_album():
     photo.albums.append(album)
     db.session.add(photo)
     db.session.commit()
-    return {"photo": photo.to_dict(), "album": album.to_dict() }
+    return {"album": album.to_dict() }
 
 
 @album_routes.route("/new", methods=["POST"])
