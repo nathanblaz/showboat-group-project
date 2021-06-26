@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
 import PhotoComments from './PhotoComments'
+import AddNewTag from './AddNewTag';
+import PhotoTagSidebar from './PhotoTagSidebar';
 import PostComment from './PostComment'
 import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'
@@ -32,17 +34,28 @@ function PhotoPage() {
             <div>
                 {photo?.caption}
             </div>
-            <div className="photo-page--photo-div">
+            {/* <div className="photo-page--photo-div">
                 <img className="photo-page--photo" src={photo?.image_url} />
                 <PostComment photo={photo}/>
+            </div> */}
+            <div className="photo--photo-container">
+                <img src={photo?.image_url} />
             </div>
-            <div>
-                <PhotoComments photo={photo}/>
-                {/* <EditComment/> */}
-                {/* <DeleteComment/> */}
+            <div className="photo--comment-container">
+                <PostComment photo={photo}/>
+                <div>
+                    <PhotoComments photo={photo}/>
+                    {/* <EditComment/> */}
+                    {/* <DeleteComment/> */}
+                </div>
+            </div>
+            <div className="button--buttons-container">
+                <DeleteConfirmModal/>
             </div>
             <div>
                 <AddToAlbum photo={photo} />
+                <AddNewTag id={id} />
+                <PhotoTagSidebar id={id} />
             </div>
         </div>
     )

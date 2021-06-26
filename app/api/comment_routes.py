@@ -34,4 +34,4 @@ def delete_comment(id):
         return jsonify('comment not found')
     db.session.delete(comment)
     db.session.commit()
-    return {'id': id};
+    return {'id': id}

@@ -67,9 +67,9 @@ function App() {
         <ProtectedRoute path='/tags/' exact={true}>
           <TagSidebar />
         </ProtectedRoute>
-        <ProtectedRoute path='/tags/new' exact={true}>
+        {/* <ProtectedRoute path='/tags/new' exact={true}>
           <AddNewTag />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/tags/:id' exact={true}>
           <DeleteATag />
           <TagSidebar />

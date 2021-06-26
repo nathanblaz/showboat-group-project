@@ -39,7 +39,8 @@ def upload_photo():
     )
     db.session.add(new_photo)
     db.session.commit()
-    return {"url": url}
+    print("*******new_photo is ", new_photo)
+    return new_photo.to_dict()
 
 
 @photo_routes.route("")
@@ -55,14 +56,15 @@ def get_one_photo(id):
     return photo.to_dict()
 
 
-@photo_routes.route("/<int:id>", methods=["DELETE"])  # @login_required
+@photo_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
 def delete_photo(id):
     photo = Photo.query.get(id)
     url = photo.image_url
     filename = url.removeprefix('http://showboat-app.s3.amazonaws.com/')
     delete_file_from_s3(filename)
     if not photo:
-        return jsonify("comment not found")
+        return jsonify("photo not found")
     db.session.delete(photo)
     db.session.commit()
-    return jsonify("success")
+    return {'id': id}

@@ -1,6 +1,6 @@
 // constants
 const SET_TAGS = "tag/SET_TAGS";
-const ADD_TAG = "tag/ADD_TAG";
+export const ADD_TAG = "tag/ADD_TAG";
 const DELETE_TAG = "tag/DELETE_TAG";
 
 
@@ -44,6 +44,18 @@ export const addOneTag = (formData) => async(dispatch) => {
     }
 };
 
+export const addTagToPhoto = (formData) => async(dispatch) => {
+    const res = await fetch("/api/tags/photo/new_tag", {
+        method: 'POST',
+        body: formData
+    });
+    if (res.ok){
+        const photoAndTag = await res.json();
+        dispatch(addTag(photoAndTag))
+        return photoAndTag;
+    }
+};
+
 export const deleteOneTag = (id) => async(dispatch) => {
     const res = await fetch(`/api/tags/${id}`, {
         method: 'DELETE',
@@ -72,7 +84,7 @@ export default function tagReducer(state = initialState, action) {
         case ADD_TAG:{
             const addNewTag = {
                 ...state,
-                [action.payload.id]: action.payload.tag
+                [action.payload.tag.id]: action.payload.tag
             };
             return addNewTag;
         }
