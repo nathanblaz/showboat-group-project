@@ -64,11 +64,8 @@ export const renderAlbumPhotos = (album) => async (dispatch) => {
 };
 
 export const addPhotoToAlbum = (formData) => async (dispatch) => {
-    const res = await fetch(`/api/albums/${formData.album.id}`, {
-        methods: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
+    const res = await fetch("/api/albums/add", {
+        method: "POST",
         body: formData
     });
     if (res.ok) {

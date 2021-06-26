@@ -24,11 +24,11 @@ def get_one_album(id):
     return album.to_dict()
 
 
-@album_routes.route("/<int:id>", methods=["PUT"])
-def add_photos_album(id):
-    photo = Photo.query.get(id)
-    print("*************add photo album route", photo.albums)
-    # photo.albums.append(request.form.the_album)
+@album_routes.route("/add", methods=["POST"])
+def add_photos_album():
+    photo = Photo.query.get(request.form["photo_id"])
+    print("*************add photo album route", photo.to_dict())
+    # photo.albums.append(request.form.["add_to_album_id"]])
     # db.session.add(photo)
     # db.session.add(?)
     # db.session.commit()

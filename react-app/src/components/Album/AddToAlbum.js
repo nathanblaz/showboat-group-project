@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Redirect, NavLink, useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { renderAllAlbums } from "../../store/album";
+import { renderAllAlbums, addPhotoToAlbum } from "../../store/album";
 
 // a dropdown menu for "Add to Album" that renders on a photo page
 // IF the photo was posted by current_user
@@ -22,7 +22,9 @@ const AddToAlbum = ({photo}) => {
         e.preventDefault();
         console.log(addAlbum, typeof addAlbum)
         const formData = new FormData();
-        formData.append("add_photo", addAlbum)
+        formData.append("add_to_album_id", addAlbum);
+        formData.append("photo_id", photo.id);
+        dispatch(addPhotoToAlbum(formData));
     }
 
     if (user.id === photo?.user_id) {
@@ -33,7 +35,7 @@ const AddToAlbum = ({photo}) => {
                     <form onSubmit={addPhotoForm}>
                         <select name="albums" value={addAlbum} onChange={(e) => setAddAlbum(e.target.value)}>
                             {albums?.map(album =>
-                                <option value={album?.id}>{album?.title}: {album?.id}</option>)}
+                                <option key={album?.id} value={album?.id}>{album?.title}: {album?.id}</option>)}
                         </select>
                         <button>Add</button>
                     </form>
