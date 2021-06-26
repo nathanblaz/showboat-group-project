@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import PhotoThumbnail from "./PhotoThumbnail";
-// import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirm";
 import { editAlbum, renderAlbumPhotos, deleteAlbum } from "../../store/album";
 import { renderAllPhotos } from "../../store/photo";
+import DeleteAlbumModal from "../DeleteAlbumModal";
 
 const SingleAlbumPage = () => {
     const dispatch = useDispatch();
@@ -12,7 +12,6 @@ const SingleAlbumPage = () => {
     const user = useSelector(state => state.session.user);
     const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
     const albumAndPhoto = useSelector(state => Object.values(state.albumReducer));
-
 
     useEffect(() => {
         dispatch(renderAlbumPhotos(Number(albumId)));
@@ -46,12 +45,6 @@ const SingleAlbumPage = () => {
         setShowForm(false)
     };
 
-    const deleteHandler = (e) => {
-        e.preventDefault();
-        dispatch(deleteAlbum(album?.id));
-        history.push(`/users/${user.id}/albums`);
-    };
-
     // const addPhotoForm = (e) => {
     //     e.preventDefault();
     //     const formData = new FormData();
@@ -64,7 +57,7 @@ const SingleAlbumPage = () => {
             <p>{album?.description}</p>
             <div>
                 <button type="button" onClick={setShowForm}>Edit Album Details</button>
-                <button type="button" onClick={deleteHandler}>Delete Album</button>
+                <DeleteAlbumModal />
                 {/* <button type="button" onClick={setShowForm}>Add Photos</button> */}
             </div>
             {showForm && (
