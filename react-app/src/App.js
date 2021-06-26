@@ -15,7 +15,7 @@ import AlbumsPage from './components/Album';
 import SingleAlbumPage from './components/Album/SingleAlbumPage';
 import TagSidebar from "./components/TagSidebar";
 import CreateAlbum from "./components/Album/CreateAlbum";
-import AddNewTag from "./components/AddNewTag";
+// import AddNewTag from "./components/AddNewTag";
 import DeleteATag from "./components/DeleteATag";
 import { authenticate } from "./store/session";
 

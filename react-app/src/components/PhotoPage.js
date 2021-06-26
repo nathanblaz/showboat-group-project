@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderOnePhoto} from '../../src/store/photo'
@@ -6,7 +6,7 @@ import PhotoComments from './PhotoComments'
 import AddNewTag from './AddNewTag';
 import PhotoTagSidebar from './PhotoTagSidebar';
 import PostComment from './PostComment'
-import EditComment from './EditComment'
+// import EditComment from './EditComment'
 // import DeleteComment from './DeleteComment'
 import DeleteConfirmModal from './DeleteConfirmModal';
 import AddToAlbum from './Album/AddToAlbum';
@@ -20,7 +20,7 @@ function PhotoPage() {
     console.log('photo from PhotoPage', photo)
     useEffect(()=>{
         dispatch(renderOnePhoto(Number(id))) //this
-    }, [dispatch])
+    }, [dispatch, id])
 
 
     return (
@@ -31,7 +31,7 @@ function PhotoPage() {
                 <p>{photo?.caption}</p>
             </div>
             <div className="photo--photo-container">
-                <img className="photo-page--photo" src={photo?.image_url} />
+                <img className="photo-page--photo" src={photo?.image_url} alt={`${photo.title}`}/>
             </div>
             <div className="under-photo">
                 <div className="photo--comment-container">
