@@ -7,35 +7,35 @@ const PostComment = ({photo}) => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const user = useSelector(state => state.session.user);
-    
+
     const [comment, setComment] = useState("");
     // console.log('user from post comment', user)
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData();
         formData.append('comment', comment);
         formData.append('photo_id', photo.id);
         formData.append('user_id', user.id)
-        
+
         await dispatch(addComment(formData));
         // console.log('photo from post comment========', photo)
         setComment('')
     }
-    
+
     useEffect(() => {
         dispatch(renderPhotoComments(id))
     }, [dispatch])
 
     return(
         <form onSubmit={handleSubmit}>
-        <textarea placeholder='Comment'
+        <textarea className="form-input" placeholder='Comment'
         onChange={(e) => setComment(e.target.value)}
         value={comment} />
             <button type='submit'>
                         Post
-            </button> 
+            </button>
         </form>
     )
 }
