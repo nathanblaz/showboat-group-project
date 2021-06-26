@@ -29,7 +29,7 @@ return (
 
         <h2>Add a Tag</h2>
         <form onSubmit={handleSubmit}>
-            <div class="form-input-container">
+            <div class="form-input-container" id='tag-bar'>
                 <input
                     type="text"
                     className="form-input"

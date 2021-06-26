@@ -35,3 +35,21 @@ def delete_comment(id):
     db.session.delete(comment)
     db.session.commit()
     return {'id': id}
+
+
+@comment_routes.route("/update/<int:id>", methods=["PUT"])
+# @login_required
+def update_comment(id):
+    print("made it here =====", request.form["comment"])
+    edit_comment = Comment.query.get(id)
+#    edit_comment = Comment(
+#        comment=request.form['comment'],
+#        photo_id=request.form['photo_id'],
+#        user_id=current_user.id
+#    )
+    edit_comment.comment = request.form["comment"]
+   # if not edit_comment:
+   #     return jsonify('comment not found')
+    db.session.add(edit_comment)
+    db.session.commit()
+    return edit_comment.to_dict()

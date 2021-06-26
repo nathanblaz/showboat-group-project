@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import {renderPhotoComments} from '../../src/store/comment'
 import DeleteComment from './DeleteComment'
+import EditComment from './EditComment'
 
 function PhotoComments() {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function PhotoComments() {
                     Comments: {comment?.comment} 
                     User: {comment?.username}
                     <DeleteComment comment={comment.id}/>
+                    <EditComment comment={comment}/>
             </div>)
             
             )}

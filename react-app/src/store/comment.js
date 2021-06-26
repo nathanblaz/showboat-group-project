@@ -2,6 +2,8 @@
 const SET_COMMENTS = "comment/SET_COMMENTS";
 const ADD_COMMENT = "comment/ADD_COMMENT";
 const REMOVE_COMMENT = "comment/REMOVE_COMMENT";
+const EDIT_COMMENT = 'comment/EDIT_COMMENT';
+
 
 //action creators
 const setComments = (comment) => ({
@@ -18,6 +20,12 @@ const deleteComment = (comment) => ({
     type: REMOVE_COMMENT,
     payload: comment
 })
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+    payload: comment
+ })
+ 
 
 //thunks
 export const renderPhotoComments = (photo_id) => async (dispatch) => {
@@ -55,6 +63,18 @@ export const removeComment = (id) => async (dispatch) => {
     }
 }
 
+export const updateComment = (formData, comment_id) => async (dispatch) => {
+    const res = await fetch(`/api/comments/update/${comment_id}`, {
+        method:"PUT",
+        body: formData
+    })
+    if(res.ok) {
+        const editedComment = await res.json()
+        dispatch(editComment(editedComment))
+        return editedComment;
+    }
+} 
+ 
 // reducer
 
 const initialState = {};
@@ -75,6 +95,10 @@ export default function commentReducer(state = initialState, action) {
 
         case REMOVE_COMMENT:
             delete newState[action.payload.id]
+            return newState;
+
+        case EDIT_COMMENT:
+            newState[action.payload.id] = action.payload;
             return newState;
 
         default:
