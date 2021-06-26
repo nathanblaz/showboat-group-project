@@ -17,9 +17,9 @@ def get_all_albums():
 @album_routes.route("/<int:id>")
 def get_one_album(id):
     album = Album.query.get(id)
-    photo = album.photos[0]
-    print("***************GET ONE ALBUM ROUTE", album, photo)
-    return {"album": album.to_dict(), "photo": photo.to_dict()}
+    photos = album.photos
+    print("***************GET ONE ALBUM ROUTE", album, photos)
+    return {"album": album.to_dict(), "photo": [photo.to_dict() for photo in photos]}
 
 
 @album_routes.route("/add", methods=["POST"])

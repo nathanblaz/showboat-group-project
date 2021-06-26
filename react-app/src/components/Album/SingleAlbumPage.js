@@ -12,7 +12,7 @@ const SingleAlbumPage = () => {
     const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
     // const user = useSelector(state => state.session.user);
     const albumAndPhoto = useSelector(state => Object.values(state.albumReducer));
-    const photos = useSelector(state => Object.values(state.photoReducer));
+    // const photos = useSelector(state => Object.values(state.photoReducer));
 
 
     useEffect(() => {
@@ -20,18 +20,14 @@ const SingleAlbumPage = () => {
     }, [dispatch])
 
     let album;
-    if (albumAndPhoto) {
-        album =  albumAndPhoto[0]
-    } else {
+    if (albumAndPhoto) { album =  albumAndPhoto[0] } else {
         dispatch(renderAlbumPhotos(Number(albumId)));
     };
-    let photo;
-    if (albumAndPhoto) {
-        photo =  albumAndPhoto[1]
-    } else {
+    let photos;
+    if (albumAndPhoto) { photos =  albumAndPhoto[1] } else {
         dispatch(renderAlbumPhotos(Number(albumId)));
     };
-    console.log("album page", album, photo);
+    console.log("album page", albumAndPhoto);
 
     const [showForm, setShowForm] = useState(false);
     const [addPhoto, setAddPhoto] = useState("");
@@ -68,7 +64,7 @@ const SingleAlbumPage = () => {
             )}
             <div className="uploaded--photo-container">
                 <p>The photos in this album render as thumbnails here</p>
-                <PhotoThumbnail photo={photo} />
+                {photos?.map(photo => <PhotoThumbnail photo={photo} />)}
             </div>
         </>
     )
