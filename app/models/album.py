@@ -18,5 +18,10 @@ class Album(db.Model):
             "title": self.title,
             "description": self.description,
             "user_id": self.user_id,
-            "user": self.users.to_dict()
+            # "user": self.users.username,
+            "photos": [photo.id for photo in self.photos]
         }
+
+    # def get_related_photos(self):
+    #     return {self.photos.to_dict()}
+    # AttributeError: 'InstrumentedList' object has no attribute 'to_dict'

@@ -36,6 +36,9 @@ function User() {
       <li>
         <NavLink to={`/users/${userId}/photos/`}>Your Photos</NavLink>
       </li>
+      <li>
+        <NavLink to={`/users/${userId}/albums/`}>Your Albums</NavLink>
+      </li>
     </ul>
   );
 }
