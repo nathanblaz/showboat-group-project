@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Redirect, NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import PhotoThumbnail from "./PhotoThumbnail";
-import { renderAllAlbums, renderAlbumPhotos, deleteAlbum } from "../../store/album";
+// import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirm";
+import { editAlbum, renderAlbumPhotos, deleteAlbum } from "../../store/album";
 import { renderAllPhotos } from "../../store/photo";
 
 const SingleAlbumPage = () => {
     const dispatch = useDispatch();
     // const history = useHistory();
-
+    const user = useSelector(state => state.session.user);
     const albumId = useParams().albumid; // the URL includes user ID and photo ID, need to specify which slug
-    // const user = useSelector(state => state.session.user);
     const albumAndPhoto = useSelector(state => Object.values(state.albumReducer));
-    // const photos = useSelector(state => Object.values(state.photoReducer));
 
 
     useEffect(() => {
@@ -30,30 +29,68 @@ const SingleAlbumPage = () => {
     console.log("album page", albumAndPhoto);
 
     const [showForm, setShowForm] = useState(false);
-    const [addPhoto, setAddPhoto] = useState("");
+    const [title, setTitle] = useState(album?.title);
+    const [description, setDescription] = useState(album?.description);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("user_id", user.id);
+
+        dispatch(editAlbum(formData, Number(albumId)))
+    };
+
+    const cancelClick = (e) => {
+        setShowForm(false)
+    };
 
     const deleteHandler = (e) => {
         e.preventDefault();
         dispatch(deleteAlbum(album?.id));
         // history.push({`/users/${user?.id}/albums`})
         // return <Redirect to={`/users/${user?.id}/albums`} />
-    }
+    };
 
-    const addPhotoForm = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("add_photo", addPhoto)
-    }
+    // const addPhotoForm = (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append("add_photo", addPhoto)
+    // }
 
     return (
         <>
             <h1>{album?.title}</h1>
+            <p>{album?.description}</p>
             <div>
-                <button type="button">Edit Album</button>
+                <button type="button" onClick={setShowForm}>Edit Album Details</button>
                 <button type="button" onClick={deleteHandler}>Delete Album</button>
-                <button type="button" onClick={setShowForm}>Add Photos</button>
+                {/* <button type="button" onClick={setShowForm}>Add Photos</button> */}
             </div>
             {showForm && (
+                        <div className="card">
+                        <form onSubmit={handleSubmit}>
+                        <div className="form-input-container">
+                            <input
+                            type="text"
+                            className="form-input"
+                            name="title"
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title} />
+                            <textarea
+                            name="description"
+                            className="form-input"
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description} />
+                        </div>
+                        <button type="submit" id="loginBtn">Submit</button>
+                        <button type="button" id="loginBtn" onClick={cancelClick}>Cancel</button>
+                        </form>
+                        </div>
+            )}
+
+            {/* {showForm && (
                 <form onSubmit={addPhotoForm}>
                     <select name="photos" value={addPhoto} onChange={(e) => setAddPhoto(e.target.value)}>
                         {photos?.map(photo =>
@@ -61,11 +98,11 @@ const SingleAlbumPage = () => {
                     </select>
                     <button>Add</button>
                 </form>
-            )}
-            <div className="uploaded--photo-container">
-                <p>The photos in this album render as thumbnails here</p>
+            )} */}
+            {photos ? (<div className="uploaded--photo-container">
                 {photos?.map(photo => <PhotoThumbnail photo={photo} />)}
-            </div>
+            </div>) : null}
+
         </>
     )
 }

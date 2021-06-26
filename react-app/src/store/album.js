@@ -73,7 +73,22 @@ export const addPhotoToAlbum = (formData) => async (dispatch) => {
     } else {
         console.log(res.statusText, "ADD PHOTO TO ALBUM THUNK")
     }
-}
+};
+
+export const editAlbum = (formData, albumId) => async (dispatch) => {
+    console.log("edit album thunk")
+    const res = await fetch(`/api/albums/${albumId}`, {
+        method: "PUT",
+        body: formData
+    });
+    if (res.ok) {
+        const editedAlbum = await res.json();
+        dispatch(addAlbum(editedAlbum))
+        return editedAlbum;
+    } else {
+        console.log("error--edit Album thunk (fetch call)")
+    }
+};
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`, {
@@ -88,7 +103,7 @@ export const deleteAlbum = (albumId) => async (dispatch) => {
     } else {
         console.log("bad fetch from deleteAlbum thunk")
     }
-}
+};
 
 
 const initialState = {};

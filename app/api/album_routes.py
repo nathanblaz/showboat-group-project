@@ -46,6 +46,17 @@ def create_album():
     return new_album.to_dict()
 
 
+@album_routes.route("/<id>", methods=["PUT"])
+@login_required
+def edit_album(id):
+    album = Album.query.get(id)
+    album.title = request.form["title"]
+    album.description = request.form["description"]
+    db.session.add(album)
+    db.session.commit()
+    return album.to_dict()
+
+
 @album_routes.route("/<id>", methods=["DELETE"])
 @login_required
 def delete_album(id):

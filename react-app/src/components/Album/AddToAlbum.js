@@ -35,7 +35,7 @@ const AddToAlbum = ({photo}) => {
                     <form onSubmit={addPhotoForm}>
                         <select name="albums" value={addAlbum} onChange={(e) => setAddAlbum(e.target.value)}>
                             {albums?.map(album =>
-                                <option key={album?.id} value={album?.id}>{album?.title}: {album?.id}</option>)}
+                                <option key={album?.id} value={album?.id}>{album?.title}</option>)}
                         </select>
                         <button>Add</button>
                     </form>
