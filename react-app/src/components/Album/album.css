@@ -6,15 +6,48 @@
     padding: 5px;
 }
 
+.album-title {
+    background-color: white;
+    padding: 20px;
+}
+
+.button-container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
 .uploaded--photo-container {
     max-width: 800px;
-    display: "flex";
-    flex-direction: "column";
-    align-items: "center";
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
 }
 
 .uploaded--photo {
     width: 250px;
     height: auto;
     margin: 10px;
+}
+
+.thumbnail-div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create-album-button {
+    padding: 5px;
+    margin: 5px;
+}
+
+#create-album-button a {
+    color: #171717;
+    text-decoration: none;
+    padding: 3px;
+}
+
+.album-list {
+    margin: 5px;
 }

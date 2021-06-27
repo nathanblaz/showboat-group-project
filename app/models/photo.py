@@ -13,8 +13,10 @@ class Photo(db.Model):
     image_url = db.Column(db.String(1000))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date_taken = db.Column(db.Date)
-    created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           nullable=False, server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True),
+                           nullable=False, server_default=func.now())
     users = db.relationship("User", back_populates="photos")
     comments = db.relationship("Comment", back_populates="photos")
     albums = db.relationship(
@@ -33,7 +35,7 @@ class Photo(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.users.to_dict(),
-            "albums": [album.id for album in self.albums],
+            # "albums": [album.id for album in self.albums],
             "tag_ids": [tag.id for tag in self.tags]
         }
 

@@ -24,7 +24,8 @@ const CreateAlbum = () => {
         formData.append("description", description);
         formData.append("user_id", user.id);
 
-        dispatch(createAlbum(formData))
+        dispatch(createAlbum(formData));
+        history.push(`/users/${user.id}/photos`);
     }
 
     return (
