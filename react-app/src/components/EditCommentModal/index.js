@@ -16,7 +16,7 @@ function EditCommentModal({comment}) {
 
     const handleSubmit = async (e) => { //!this
         e.preventDefault();
-        comment.value = comment
+        // comment.value = comment
         const formData = new FormData();
         formData.append('comment', comments);
         await dispatch(updateComment(formData, comment.id));

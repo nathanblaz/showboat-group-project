@@ -10,25 +10,36 @@ function PhotoComments() {
     const {id} = useParams();
     const comments = useSelector(state => Object.values(state.commentReducer));
     // const photo = useSelector(state => state.photoReducer);
-
+    const user = useSelector(state => state.session.user)
+    console.log('=================', typeof comments[0]?.user_id, typeof user.id)
     useEffect(()=> {
         dispatch(renderPhotoComments(Number(id)))
     }, [dispatch])
 
-    return(
-        <div> Stuff 
+    
+        return(
+        <div> User Comments
             {comments?.map((comment) => (
-            
-            <div key={comment.id}>
+                
+                <div key={comment.id}>
+                <div>
                     Comments: {comment?.comment} 
+                </div>
+                <div>
                     User: {comment?.username}
+                </div>
+
+                {comment?.user_id === user?.id 
+                ?  <div>
                     <DeleteComment comment={comment.id}/>
-                    <EditCommentModal comment={comment}/>
+                    <EditCommentModal comment={comment}/>   
+                 </div>
+                 : null
+            }
             </div>)
-            
             )}
         </div>
-    )
+    )    
 }
 
 export default PhotoComments;
