@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadPhoto } from "../../store/photo";
+import { editPhoto } from "../../store/photo";
 import "./EditPhoto.css";
 
 const EditPhoto = () => {
   const history = useHistory(); // so that we can redirect after the photo upload is successful
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const photo = useSelector((state) => state.photoReducer);
 
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
@@ -23,8 +24,9 @@ const EditPhoto = () => {
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
 
-    dispatch(uploadPhoto(formData));
-    history.push(`/users/${user.id}/photos`); // implicitly conditional
+    dispatch(editPhoto(formData, photo.id));
+    // history.push(`/`);
+    // history.goBack();
   };
 
   return (
@@ -36,14 +38,14 @@ const EditPhoto = () => {
             type="text"
             className="form-input"
             name="title"
-            placeholder="Title"
+            placeholder={photo?.title}
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
           <textarea
             name="caption"
             className="form-input"
-            placeholder="Caption your photo..."
+            placeholder={photo?.caption}
             onChange={(e) => setCaption(e.target.value)}
             value={caption}
           />
@@ -51,11 +53,12 @@ const EditPhoto = () => {
             type="date"
             name="date_taken"
             className="form-input"
+            placeholder={photo?.date_taken}
             onChange={(e) => setDateTaken(e.target.value)}
             value={dateTaken}
           />
         </div>
-        <button type="submit" id="loginBtn">
+        <button type="button" onClick={handleSubmit} id="loginBtn">
           Submit
         </button>
       </form>
