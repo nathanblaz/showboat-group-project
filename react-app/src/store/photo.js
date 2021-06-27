@@ -5,6 +5,7 @@ const SET_PHOTOS = "photo/SET_PHOTOS";
 const ADD_PHOTO = "photo/ADD_PHOTO";
 const SET_ONE_PHOTO = "photo/SET_ONE_PHOTO";
 const DELETE_PHOTO = "photo/DELETE_PHOTO";
+const UPDATE_PHOTO = "photo/UPDATE_PHOTO";
 
 // action creators
 const setPhotos = (photo) => ({
@@ -24,6 +25,11 @@ const setOnePhoto = (photo) => ({
 
 const deleteOnePhoto = (photo) => ({
   type: DELETE_PHOTO,
+  payload: photo,
+});
+
+const updatePhoto = (photo) => ({
+  type: UPDATE_PHOTO,
   payload: photo,
 });
 
@@ -47,10 +53,25 @@ export const uploadPhoto = (formData) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    console.log("*****data is: ", data);
+    // console.log("*****data is: ", data);
     dispatch(addPhoto(data));
   } else {
     console.log("error--upload photo thunk");
+    console.log(res);
+  }
+};
+
+export const editPhoto = (formData, id) => async (dispatch) => {
+  const res = await fetch(`/api/photos/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
+  if (res.ok) {
+    const data = await res.json();
+    // console.log("*****data is: ", data);
+    dispatch(updatePhoto(data));
+  } else {
+    console.log("error--update photo thunk");
     console.log(res);
   }
 };
@@ -96,11 +117,11 @@ export default function photoReducer(state = initialState, action) {
     case SET_ONE_PHOTO:
       // console.log('logging action.payload', action.payload)
 
-      const newPhotoState = {...action.payload}
+      const newPhotoState = { ...action.payload };
       return newPhotoState;
 
     case ADD_TAG:
-      const singleTagState = {...action.payload.photo};
+      const singleTagState = { ...action.payload.photo };
       // console.log("****action.payload is:", action.payload);
       // singleTagState[action.payload.photo.id] = action.payload.photo;
       return singleTagState;
@@ -114,6 +135,12 @@ export default function photoReducer(state = initialState, action) {
       };
       delete oldState[action.payload.id];
       return oldState;
+
+    case UPDATE_PHOTO:
+      const updatedState = { ...state };
+      updatedState[action.payload.id] = action.payload;
+      return updatedState;
+
     default:
       return state;
   }
