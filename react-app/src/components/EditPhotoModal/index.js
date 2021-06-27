@@ -31,8 +31,8 @@ function EditPhotoModal() {
   };
 
   useEffect(() => {
-    dispatch(renderOnePhoto(photo.id)); //this
-  }, [dispatch]);
+    dispatch(renderOnePhoto(Number(id))); //this
+  }, [dispatch, id]);
 
   return (
     <>
@@ -49,14 +49,14 @@ function EditPhotoModal() {
                   name="title"
                   placeholder={photo?.title}
                   onChange={(e) => setTitle(e.target.value)}
-                  value={title}
+                  // value={title}
                 />
                 <textarea
                   name="caption"
                   className="form-input"
                   placeholder={photo?.caption}
                   onChange={(e) => setCaption(e.target.value)}
-                  value={caption}
+                  // value={caption}
                 />
                 <input
                   type="date"
@@ -64,7 +64,7 @@ function EditPhotoModal() {
                   className="form-input"
                   placeholder={photo?.date_taken}
                   onChange={(e) => setDateTaken(e.target.value)}
-                  value={dateTaken}
+                  // value={dateTaken}
                 />
               </div>
               <button type="submit" id="loginBtn">

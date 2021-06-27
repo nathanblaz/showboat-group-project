@@ -68,8 +68,9 @@ export const editPhoto = (formData, id) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    // console.log("*****data is: ", data);
+    // console.log("*****editPhoto data is: ", data);
     dispatch(updatePhoto(data));
+    return data;
   } else {
     console.log("error--update photo thunk");
     console.log(res);
