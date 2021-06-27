@@ -1,12 +1,14 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import { demo } from '../store/session'
 import "../navigation.css";
 
 const NavBar = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const [showDropdown, setShowDropdown] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -31,14 +33,8 @@ const NavBar = () => {
 
   const demoLogin = async (e) => {
     e.preventDefault();
-
-    const response = await fetch("/api/auth/demo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const demoUser = await response.json();
+    dispatch(demo())
+    
     history.push("/");
   };
 
