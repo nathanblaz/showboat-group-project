@@ -43,6 +43,18 @@ def upload_photo():
     return new_photo.to_dict()
 
 
+@photo_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_photo(id):
+    photo = Photo.query.get(id)
+    photo.title = request.form["title"]
+    photo.caption = request.form["caption"]
+    photo.date_taken = request.form["date_taken"]
+    db.session.add(photo)
+    db.session.commit()
+    return photo.to_dict()
+
+
 @photo_routes.route("")
 def get_all_photos():
     photos = Photo.query.order_by(Photo.created_at.desc()).all()
