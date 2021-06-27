@@ -70,7 +70,7 @@ const NavBar = () => {
             {showDropdown && (
               <div className="profile-dropdown">
                 <div className="profile-dropdown-buttons">Hello, <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>!</div>
-                <div className="profile-dropdown-buttons"> <NavLink to={`/users/${user.id}/photos`}>Your Photos</NavLink></div>
+                {/* <div className="profile-dropdown-buttons"> <NavLink to={`/users/${user.id}/photos`}>Your Photos</NavLink></div> */}
                 <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
               </div>
             )}
