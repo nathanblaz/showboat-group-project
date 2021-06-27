@@ -5,9 +5,11 @@ import { renderAllPhotos } from "../../store/photo.js";
 import PhotoThumbnail from "../Album/PhotoThumbnail";
 import "./ViewPhoto.css";
 
-const ViewPhotos = () => {
+const ViewPhotos = ({user}) => {
   const dispatch = useDispatch();
-  const photos = useSelector(state => Object.values(state.photoReducer));
+  const allPhotos = useSelector(state => Object.values(state.photoReducer));
+  const photos = allPhotos?.filter(photo => photo.user_id === user?.id);
+  console.log(photos)
 
   useEffect(() => {
     dispatch(renderAllPhotos());
@@ -15,7 +17,6 @@ const ViewPhotos = () => {
 
   return (
     <div className="uploaded--photo-container">
-      <h1>Photos</h1>
         {photos?.map((photo) => (
           <PhotoThumbnail photo={photo} />
         ))}

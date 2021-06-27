@@ -1,9 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Photo, Album, User
 from flask_login import current_user, login_required
-from sqlalchemy.orm import joinedload;
-from app.s3_helpers import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
 
 album_routes = Blueprint("albums", __name__)
 
@@ -20,20 +17,20 @@ def get_all_albums():
 @album_routes.route("/<int:id>")
 def get_one_album(id):
     album = Album.query.get(id)
-    if album is None:
-        return {"albums": "nothing here!"}
-    return album.to_dict()
+    photos = album.photos
+    print("***************GET ONE ALBUM ROUTE", album, photos)
+    return {"album": album.to_dict(), "photo": [photo.to_dict() for photo in photos]}
 
 
 @album_routes.route("/add", methods=["POST"])
 def add_photos_album():
     photo = Photo.query.get(request.form["photo_id"])
-    print("*************add photo album route", photo.to_dict())
     album = Album.query.get(request.form["add_to_album_id"])
     photo.albums.append(album)
+    print("*************add photo album route", photo.to_dict())
     db.session.add(photo)
     db.session.commit()
-    return {"album": album.to_dict() }
+    return album.to_dict()
 
 
 @album_routes.route("/new", methods=["POST"])
@@ -47,6 +44,17 @@ def create_album():
     db.session.add(new_album)
     db.session.commit()
     return new_album.to_dict()
+
+
+@album_routes.route("/<id>", methods=["PUT"])
+@login_required
+def edit_album(id):
+    album = Album.query.get(id)
+    album.title = request.form["title"]
+    album.description = request.form["description"]
+    db.session.add(album)
+    db.session.commit()
+    return album.to_dict()
 
 
 @album_routes.route("/<id>", methods=["DELETE"])

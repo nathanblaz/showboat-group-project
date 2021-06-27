@@ -164,3 +164,22 @@ a {
     justify-content: space-around;
     align-items: center;
 }
+
+.user-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.user-page--avi {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 10px;
+}
+
+.user-page-button {
+    background-color: #f1f0f0;
+}
+

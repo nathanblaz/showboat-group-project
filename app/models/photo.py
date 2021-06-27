@@ -35,7 +35,7 @@ class Photo(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.users.to_dict(),
-            "albums": [album.id for album in self.albums],
+            # "albums": [album.id for album in self.albums],
             "tag_ids": [tag.id for tag in self.tags]
         }
 
