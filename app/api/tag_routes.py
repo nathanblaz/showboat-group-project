@@ -12,22 +12,13 @@ def get_photo_tags():
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
-# @tag_routes.route("/new", methods=['POST'])
-# @login_required
-# def add_new_tag():
-#     new_tag = Tag(
-#         name=request.form["name"]
-#     )
-#     # print('*************************', new_tag.name)
-#     db.session.add(new_tag)
-#     db.session.commit()
-#     return new_tag.to_dict()
-
-# /tags/tagname/photos get route tagname would be specific parameter to pass into function. query db for tag that has that name. .filter(Tag.name = name passed into endpoint) tag.photos will give list of all the tags and then do list comprehension over photos, phot.to_dict for photo in tag.photos
-# then useeffect in componetn that hits this end route
+@tag_routes.route("/<int:id>")
+def get_one_tag(id):
+    tag = Tag.query.get(id)
+    return tag.to_dict()
 
 
-@tag_routes.route("/<int:id>", methods=["DELETE"])
+@tag_routes.route("/delete/<int:id>", methods=["DELETE"])
 # @login_required
 def delete_tag(id):
     tag = Tag.query.get(id)
@@ -36,7 +27,10 @@ def delete_tag(id):
     print("******** am I reaching this****", tag)
     return tag.to_dict()
 
-# need to hit something with bothphoto id and tag. query for photo and tag. Instance not model photo.tags.remove(pass in tag object from db). sent back photo. won't have to hit tag reducer. hit photo reducer.
+# To remove from photo but not from database: need to hit something with
+# both photo id and tag. query for photo and tag.
+# Instance not model photo.tags.remove(pass in tag object from db).
+# sent back photo. won't have to hit tag reducer. hit photo reducer.
 
 @tag_routes.route("/photo/new_tag", methods=['POST'])
 @login_required
@@ -52,3 +46,12 @@ def add_photo_tag():
     db.session.add(photo)
     db.session.commit()
     return {"photo": photo.to_dict(), "tag": new_tag.to_dict()}
+
+
+@tag_routes.route("/update/<int:id>", methods=['PUT'])
+def update_tag(id):
+    edit_tag = Tag.query.get(id)
+    edit_tag.name = request.form["singleTagName"]
+    db.session.add(edit_tag)
+    db.session.commit()
+    return edit_tag.to_dict()
