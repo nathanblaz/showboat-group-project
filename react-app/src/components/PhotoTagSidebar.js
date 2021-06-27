@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { renderPhotoTags } from '../../src/store/tag';
 import { renderOnePhoto } from '../store/photo';
-import { useParams } from 'react-router';
 
 
 const PhotoTagSidebar = ({id}) => {
@@ -12,8 +11,8 @@ const PhotoTagSidebar = ({id}) => {
     const tags = useSelector(state => (state.tagReducer));
     // console.log("tags from PhotoTagSidebar", tags)
     const photo = useSelector(state => state.photoReducer);
-    console.log('photo from PhotoTagSidebar', photo)
-    console.log(photo.tags, "***********************photo tags********")
+    // console.log('photo from PhotoTagSidebar', photo)
+    // console.log(photo.tags, "***********************photo tags********")
 
     useEffect(()=>{
         dispatch(renderOnePhoto(Number(id)))
