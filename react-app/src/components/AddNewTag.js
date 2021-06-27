@@ -1,14 +1,14 @@
 // render in PhotoPage!!!!!!!
-import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { addTagToPhoto, renderPhotoTags } from '../store/tag';
+import UpdateTag from './UpdateTag';
 
 const AddNewTag = ({id}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    // const {id} = useParams();
-    // const [tag, setTag] = useState(null);
+
     const [name, setName] = useState("");
 
 const handleSubmit = async(e) => {
@@ -18,10 +18,10 @@ const handleSubmit = async(e) => {
     formData.append("id", id);
     setName("")
 
-dispatch(addTagToPhoto(formData));
-dispatch(renderPhotoTags())
-history.push(`/photos/${id}`)
-};
+    dispatch(addTagToPhoto(formData));
+    dispatch(renderPhotoTags());
+    history.push(`/photos/${id}`)
+    };
 
 return (
 
@@ -39,6 +39,7 @@ return (
                     value={name} />
             </div>
             <button type="submit">Submit</button>
+            {/* <UpdateTag /> */}
         </form>
     </div>
 

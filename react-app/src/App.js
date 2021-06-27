@@ -15,8 +15,8 @@ import AlbumsPage from './components/Album';
 import SingleAlbumPage from './components/Album/SingleAlbumPage';
 import TagSidebar from "./components/TagSidebar";
 import CreateAlbum from "./components/Album/CreateAlbum";
-// import AddNewTag from "./components/AddNewTag";
 import DeleteATag from "./components/DeleteATag";
+import UpdateTag from "./components/UpdateTag";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -69,11 +69,9 @@ function App() {
         <ProtectedRoute path='/tags/' exact={true}>
           <TagSidebar />
         </ProtectedRoute>
-        {/* <ProtectedRoute path='/tags/new' exact={true}>
-          <AddNewTag />
-        </ProtectedRoute> */}
         <ProtectedRoute path='/tags/:id' exact={true}>
           <DeleteATag />
+          {/* <UpdateTag /> */}
           <TagSidebar />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:id/albums/" exact={true}>
