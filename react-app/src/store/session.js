@@ -46,6 +46,17 @@ export const login = (email, password) => async (dispatch) => {
     return {}
 }
 
+export const demo = () => async (dispatch) => {
+    const response = await fetch("/api/auth/demo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const demoUser = await response.json();
+      dispatch(setUser(demoUser))
+}
+
 export const logout = () => async (dispatch) => {
     const response = await fetch("/api/auth/logout", {
         headers: {

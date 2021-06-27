@@ -60,9 +60,9 @@ function App() {
         <ProtectedRoute path="/users/:id/photos/" exact={true}>
           <ViewPhotos user={currentUser} />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <HomePage />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/photos/:id' exact={true}>
           <PhotoPage />
         </ProtectedRoute>
