@@ -77,7 +77,7 @@ export const editPhoto = (formData, id) => async (dispatch) => {
 };
 
 export const renderOnePhoto = (id) => async (dispatch) => {
-  console.log("id from photo js", id);
+  // console.log("id from photo js", id);
   const res = await fetch(`/api/photos/${id}`);
   if (res.ok) {
     const data = await res.json();
