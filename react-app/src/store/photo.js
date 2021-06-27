@@ -127,7 +127,7 @@ export default function photoReducer(state = initialState, action) {
       // singleTagState[action.payload.photo.id] = action.payload.photo;
       return singleTagState;
     case UPDATE_TAG:
-      const singleTagUpdateState = {...action.payload.photo};
+      const singleTagUpdateState = { ...action.payload.photo };
       return singleTagUpdateState;
 
     case DELETE_PHOTO:
@@ -138,8 +138,7 @@ export default function photoReducer(state = initialState, action) {
       return oldState;
 
     case UPDATE_PHOTO:
-      const updatedState = { ...state };
-      updatedState[action.payload.id] = action.payload;
+      const updatedState = { ...action.payload };
       return updatedState;
 
     default:
