@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import "../navigation.css";
 
 const NavBar = () => {
+  const history = useHistory();
   const user = useSelector(state => state.session.user)
   const [showDropdown, setShowDropdown] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -38,6 +39,7 @@ const NavBar = () => {
       }
     });
     const demoUser = await response.json();
+    history.push("/");
   };
 
   return (
@@ -68,7 +70,7 @@ const NavBar = () => {
             {showDropdown && (
               <div className="profile-dropdown">
                 <div className="profile-dropdown-buttons">Hello, <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>!</div>
-                <div className="profile-dropdown-buttons"> <NavLink to={`/users/${user.id}/photos`}>Your Photos</NavLink></div>
+                {/* <div className="profile-dropdown-buttons"> <NavLink to={`/users/${user.id}/photos`}>Your Photos</NavLink></div> */}
                 <div className="profile-dropdown-buttons"> <LogoutButton /> </div>
               </div>
             )}

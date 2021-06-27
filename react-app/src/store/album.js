@@ -52,11 +52,10 @@ export const renderAllAlbums = () => async (dispatch) => {
     }
 };
 
-export const renderAlbumPhotos = (album) => async (dispatch) => {
-    const res = await fetch(`/api/albums/${album.id}`);
+export const renderAlbumPhotos = (albumId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}`);
     if (res.ok) {
         const data = await res.json();
-        console.log(data)
         dispatch(setOneAlbum(data));
     } else {
         console.log(res.statusText, "renderAlbumPhotos thunk")
@@ -70,11 +69,26 @@ export const addPhotoToAlbum = (formData) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
-        dispatch(setAlbums(data));
+        dispatch(setOneAlbum(data));
     } else {
         console.log(res.statusText, "ADD PHOTO TO ALBUM THUNK")
     }
-}
+};
+
+export const editAlbum = (formData, albumId) => async (dispatch) => {
+    console.log("edit album thunk")
+    const res = await fetch(`/api/albums/${albumId}`, {
+        method: "PUT",
+        body: formData
+    });
+    if (res.ok) {
+        const editedAlbum = await res.json();
+        dispatch(addAlbum(editedAlbum))
+        return editedAlbum;
+    } else {
+        console.log("error--edit Album thunk (fetch call)")
+    }
+};
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`, {
@@ -89,7 +103,7 @@ export const deleteAlbum = (albumId) => async (dispatch) => {
     } else {
         console.log("bad fetch from deleteAlbum thunk")
     }
-}
+};
 
 
 const initialState = {};
@@ -111,7 +125,7 @@ export default function albumReducer(state = initialState, action) {
         case SET_ONE_ALBUM:
             const oneAlbumState = {...action.payload};
             console.log("album reducerSET_ONE_ALBUM: ", action.payload)
-            oneAlbumState[action.payload.id] = action.payload;
+            // oneAlbumState[action.payload.album] = action.payload;
             return oneAlbumState;
         case DELETE_ALBUM:
             const lessState = {...state};
