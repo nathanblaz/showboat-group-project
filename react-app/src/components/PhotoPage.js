@@ -6,8 +6,6 @@ import PhotoComments from "./PhotoComments";
 import AddNewTag from "./AddNewTag";
 import PhotoTagSidebar from "./PhotoTagSidebar";
 import PostComment from "./PostComment";
-import EditComment from "./EditComment";
-// import DeleteComment from './DeleteComment'
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import EditPhotoModal from "./EditPhotoModal";
 import AddToAlbum from './Album/AddToAlbum';
