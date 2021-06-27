@@ -5,29 +5,32 @@ import TagSidebar from "./TagSidebar";
 import AboutUs from "./AboutUs";
 import { renderAllPhotos } from "../store/photo.js";
 
-
 const HomePage = () => {
-    const dispatch = useDispatch();
-    const photos = useSelector(state => Object.values(state.photoReducer));
+  const dispatch = useDispatch();
+  const photos = useSelector((state) => Object.values(state.photoReducer));
 
-    useEffect(() => {
-        dispatch(renderAllPhotos());
-      }, [dispatch]);
+  useEffect(() => {
+    dispatch(renderAllPhotos());
+  }, [dispatch]);
 
-    return (
-        <div className="home-page-container">
-            <div className="feed">
-            {photos?.map((photo) =>
-                <div key={photo?.id}>
-                    <PhotoFeedChunk photo={photo} />
-                </div>)}
-            </div>
-            <div className="sidebar">
-                <TagSidebar />
-                <div> <AboutUs /> </div>
-            </div>
+  return (
+    <div className="home-page-container">
+      <div className="feed">
+        {photos?.map((photo) => (
+          <div key={photo?.id} className="feed--outer-photo-container">
+            <PhotoFeedChunk photo={photo} />
+          </div>
+        ))}
+      </div>
+      <div className="sidebar">
+        <TagSidebar />
+        <div>
+          {" "}
+          <AboutUs />{" "}
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default HomePage;

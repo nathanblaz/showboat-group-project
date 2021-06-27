@@ -23,6 +23,14 @@ body {
   font-family: sans-serif;
 }
 
+h3 {
+  margin: 0;
+}
+
+ul ul {
+  margin: 0;
+}
+
 button {
   background-color: #fdc12a;
   color: #444444;
@@ -63,13 +71,11 @@ a {
 .feed--photo-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   background-color: white;
-  padding: 20px;
-  margin: 20px;
-  max-width: auto;
-  max-height: auto;
+  /* padding: 20px; */
+  margin: 20px 0px 20px 20px;
 }
 
 .feed {
@@ -81,14 +87,13 @@ a {
 .feed--photo-div {
   display: flex;
   justify-content: center;
-  width: auto;
-  height: auto;
+  padding: 40px;
 }
 
 .feed--photo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .sidebar {
@@ -112,7 +117,7 @@ a {
 
 /* username and avi layout for photo components, comments, etc*/
 .user-object {
-  width: 80%;
+  width: auto;
   display: grid;
   grid-template-columns: fit-content(200px) 1fr;
   grid-template-rows: auto;
@@ -121,8 +126,8 @@ a {
     "image timestamp"
     "content content";
   grid-gap: 2px;
-  margin-bottom: 10px;
-  padding: 5px;
+  /* margin-bottom: 10px; */
+  padding: 40px 40px 0px 40px;
   font-size: 0.9em;
 }
 
@@ -130,13 +135,13 @@ a {
   grid-area: user;
   display: flex;
   justify-content: start;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .user-object--timestamp {
   display: flex;
   justify-content: start;
-  padding-left: 10px;
+  padding-left: 20px;
   color: #b8b8b8;
   font-size: 0.75em;
   grid-area: timestamp;
@@ -154,7 +159,7 @@ a {
   grid-area: content;
   display: flex;
   justify-content: start;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 }
 
 #about-sidebar {
@@ -184,8 +189,6 @@ a {
 }
 
 .user-page--avi {
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   padding: 10px;
