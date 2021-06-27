@@ -18,7 +18,7 @@ const HomePage = () => {
         <div className="home-page-container">
             <div className="feed">
             {photos?.map((photo) =>
-                <div>
+                <div key={photo?.id}>
                     <PhotoFeedChunk photo={photo} />
                 </div>)}
             </div>

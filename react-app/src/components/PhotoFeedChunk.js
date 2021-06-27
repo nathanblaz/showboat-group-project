@@ -12,7 +12,7 @@ const PhotoFeedChunk = ({photo}) => {
             return `${Math.ceil(hours/24)} days ago`
         }
     };
-    console.log(photo)
+    // console.log(photo)
     //in actual implementation, this will return a single div
     return (
         <div>   {/* // for each photo in Photo.query.all(where: recent) */}

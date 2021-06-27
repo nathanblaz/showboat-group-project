@@ -16,7 +16,7 @@ function PhotoPage() {
   const photo = useSelector((state) => state.photoReducer);
   const user = useSelector((state) => state.session.user);
 
-  console.log("photo from PhotoPage", photo);
+  // console.log("photo from PhotoPage", photo);
   useEffect(() => {
     dispatch(renderOnePhoto(Number(id))); //this
   }, [dispatch, id]);

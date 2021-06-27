@@ -34,7 +34,7 @@ return (
                     type="text"
                     className="form-input"
                     name="name"
-                    placeHolder="Tag Name"
+                    placeholder="Tag Name"
                     onChange={(e) => setName(e.target.value)}
                     value={name} />
             </div>
