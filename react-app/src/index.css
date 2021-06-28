@@ -45,27 +45,39 @@ a {
 #photo-page {
 }
 
-#photo--photo-column {
-  display: flex;
-  flex-flow: wrap;
+.photo--photo-column {
+  /* display: flex;
+  flex-flow: wrap; */
   flex-direction: column;
   justify-content: space-around;
+
+  display: flex;
+  /* flex-direction: column-reverse; */
+  width: 60%;
 }
 
 .photo--photo-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
+  /* width: 60%; */
 }
 
 .photo--sidebar {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   width: 20%;
   background-color: white;
   padding: 20px;
+  margin: 20px; */
+  background-color: white;
+  width: 200px;
+  padding: 20px;
   margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* width: 20%; */
 }
 
 .photo-page--photo {
