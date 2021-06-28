@@ -1,72 +1,73 @@
-
 nav {
-    background-color: #444444;
-    height: 68px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #444444;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.navmenu { /* the UL that contains NavLinks */
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(5, auto);
-    grid-gap: 10px;
-    list-style-type: none;
-    font-family: sans-serif;
-    width: 70vw;
-    justify-content: end;
-    margin-right: 2rem;
+.navmenu {
+  /* the UL that contains NavLinks */
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 10px;
+  list-style-type: none;
+  font-family: sans-serif;
+  width: 70vw;
+  justify-content: end;
+  margin-right: 2rem;
 }
 
-.navitem { /* each LI which is a NavLink */
-    display: flex;
-    align-items: center;
-    height: 2rem;
-    background-color: #f1f0f0;
-    padding: 10px;
-    border-radius: 2px;
-    box-sizing: border-box;
+.navitem {
+  /* each LI which is a NavLink */
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  background-color: #f1f0f0;
+  padding: 10px;
+  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .navitem:hover {
-    box-sizing: border-box;
-    border: 3px solid #fdc12a;
+  box-sizing: border-box;
+  border: 3px solid #fdc12a;
 }
 
 li > a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 nav > a {
-    color: #f1f0f0;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: none;
+  color: #f1f0f0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .profile-dropdown {
-    position: relative;
-    top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    background-color: white;
-    border: 1px solid #171717;
-    border-radius: 2px;
+  position: relative;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid #171717;
+  border-radius: 2px;
 }
 
 .profile-dropdown-buttons {
-    padding: 5px
+  padding: 5px;
 }
 
 #demo-button {
-    padding: 9px;
-    border-radius: 2px;
+  padding: 9px;
+  border-radius: 2px;
 }
 
-#user-nav {
-    /* background-color: white; */
-}
+/* #user-nav {
+  background-color: white;
+} */

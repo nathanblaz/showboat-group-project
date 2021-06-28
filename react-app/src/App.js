@@ -10,9 +10,9 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import UploadPhoto from "./components/file_upload/UploadPhoto";
 import ViewPhotos from "./components/file_upload/ViewPhotos";
-import PhotoPage from './components/PhotoPage';
-import AlbumsPage from './components/Album';
-import SingleAlbumPage from './components/Album/SingleAlbumPage';
+import PhotoPage from "./components/PhotoPage";
+import AlbumsPage from "./components/Album";
+import SingleAlbumPage from "./components/Album/SingleAlbumPage";
 import TagSidebar from "./components/TagSidebar";
 import CreateAlbum from "./components/Album/CreateAlbum";
 import DeleteATag from "./components/DeleteATag";
@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 
-  const currentUser = useSelector(state => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     (async () => {
@@ -62,13 +62,13 @@ function App() {
         <Route path="/" exact={true}>
           <HomePage />
         </Route>
-        <ProtectedRoute path='/photos/:id' exact={true}>
+        <ProtectedRoute path="/photos/:id" exact={true}>
           <PhotoPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/tags/' exact={true}>
+        <ProtectedRoute path="/tags/" exact={true}>
           <TagSidebar />
         </ProtectedRoute>
-        <ProtectedRoute path='/tags/:id' exact={true}>
+        <ProtectedRoute path="/tags/:id" exact={true}>
           <DeleteATag />
           <TagSidebar />
         </ProtectedRoute>

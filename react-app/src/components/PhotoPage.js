@@ -23,31 +23,33 @@ function PhotoPage() {
 
   return (
     <div id="photo-page">
-      <div className="photo--text-container">
-        <p>{photo?.title}</p>
-        <p>Date Taken: {photo?.date_taken}</p>
-        <p>{photo?.caption}</p>
-        <EditPhotoModal />
-      </div>
-      <div className="photo--photo-container">
-        <img
-          className="photo-page--photo"
-          src={photo?.image_url}
-          alt={`${photo.title}`}
-        />
-      </div>
-      <div className="under-photo">
-        <div className="photo--comment-container">
-          <PostComment photo={photo} />
-          <div>
-            <PhotoComments photo={photo} />
-            {/* <EditComment/> */}
-            {/* <DeleteComment/> */}
-          </div>
+      <div className="photo--photo-column">
+        <div className="photo--photo-container">
+          <img
+            className="photo-page--photo"
+            src={photo?.image_url}
+            alt={`${photo.title}`}
+          />
         </div>
-        <div className="button--buttons-container">
-          <DeleteConfirmModal />
-          <AddToAlbum photo={photo} />
+        <div className="photo--text-container">
+          <p>{photo?.title}</p>
+          <p>Date Taken: {photo?.date_taken}</p>
+          <p>{photo?.caption}</p>
+          <EditPhotoModal />
+        </div>
+        <div className="under-photo">
+          <div className="photo--comment-container">
+            <PostComment photo={photo} />
+            <div>
+              <PhotoComments photo={photo} />
+              {/* <EditComment/> */}
+              {/* <DeleteComment/> */}
+            </div>
+          </div>
+          <div className="button--buttons-container">
+            <DeleteConfirmModal />
+            <AddToAlbum photo={photo} />
+          </div>
         </div>
       </div>
       <div className="photo--sidebar">
