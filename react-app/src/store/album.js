@@ -112,14 +112,14 @@ export default function albumReducer(state = initialState, action) {
     switch (action.type) {
         case SET_ALBUMS:
             const newState = {};
-            console.log("album reducer SET_ALBUMS: ", action.payload)
+            // console.log("album reducer SET_ALBUMS: ", action.payload)
             action.payload.albums.forEach((album) => {
                 newState[album.id] = album
             });
             return newState;
         case ADD_ALBUM:
             const plusState = {...state};
-            console.log("album reducer ADD_ALBUM: ", action.payload);
+            // console.log("album reducer ADD_ALBUM: ", action.payload);
             plusState[action.payload.id] = action.payload;
             return plusState;
         case SET_ONE_ALBUM:
@@ -131,7 +131,7 @@ export default function albumReducer(state = initialState, action) {
             const lessState = {...state};
             console.log("album reducer DELETE ALBUM", lessState, action.payload)
             delete lessState[action.payload];
-            console.log("album reducer ALBUM DELETED", lessState)
+            // console.log("album reducer ALBUM DELETED", lessState)
             return lessState;
         default:
             return state;

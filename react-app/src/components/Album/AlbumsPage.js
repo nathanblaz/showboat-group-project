@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {renderAllAlbums} from "../../store/album";
+
 import "./album.css";
+import placeholder from "./placeholder-img.jpeg";
 
 const AlbumsPage = () => {
     const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const AlbumsPage = () => {
 
     console.log(albums)
 
-    return (
+    return albums && (
         <>
         <div className="album-title">
             <h2>Your Albums</h2>
@@ -24,10 +26,16 @@ const AlbumsPage = () => {
             </button>
         </div>
             <div className="uploaded--photo-container">
-                {albums?.map((album) => <div className="album-list">
-                        {album.photos[0] ? <img className="album-thumb" src={album.photos[0].image_url} /> : <img className="album-thumb" src="react-app/src/example-images/placeholder-img.jpeg" />}
-                        <NavLink to={`/users/${user?.id}/albums/${album?.id}`} album={album}> {album?.title}</NavLink>
-                    </div>)}
+                {albums?.map((album) =>
+                        <div className="album-list">
+                            <NavLink to={`/users/${user?.id}/albums/${album?.id}`} album={album}>
+                                {album?.title}
+                            </NavLink>
+                            {album.photos[0] ? <img className="album-thumb" src={album.photos[0]?.image_url} alt="first photo in this album" /> : <img className="album-thumb" src={placeholder} alt="this album is empty" />}
+
+                        </div>
+                    )
+                }
             </div>
         </>
     )
