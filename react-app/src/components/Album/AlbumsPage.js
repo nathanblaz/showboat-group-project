@@ -13,16 +13,21 @@ const AlbumsPage = () => {
         dispatch(renderAllAlbums());
     }, [dispatch]);
 
+    console.log(albums)
+
     return (
         <>
         <div className="album-title">
-            <h1>Your Albums</h1>
-        </div>
+            <h2>Your Albums</h2>
             <button type="button" id="create-album-button">
                 <NavLink to={`/users/${user?.id}/albums/new`}>Create An Album</NavLink>
             </button>
+        </div>
             <div className="uploaded--photo-container">
-                {albums?.map((album) => <div className="album-list"><NavLink to={`/users/${user?.id}/albums/${album?.id}`} album={album}> {album?.title}</NavLink></div>)}
+                {albums?.map((album) => <div className="album-list">
+                        {album.photos[0] ? <img className="album-thumb" src={album.photos[0].image_url} /> : <img className="album-thumb" src="react-app/src/example-images/placeholder-img.jpeg" />}
+                        <NavLink to={`/users/${user?.id}/albums/${album?.id}`} album={album}> {album?.title}</NavLink>
+                    </div>)}
             </div>
         </>
     )
