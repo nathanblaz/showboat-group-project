@@ -138,14 +138,17 @@ a {
 
 .sidebar {
   width: 20%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /* sidebar of tags, for home page and photo page*/
 .tag-sidebar {
   background-color: white;
   width: 200px;
-  /* padding: 20px;
-  margin: 20px; */
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -206,7 +209,7 @@ a {
   background-color: white;
   width: 200px;
   padding: 20px;
-  margin: 20px;
+  margin-top: 20px;
   display: flex;
   flex-flow: column;
   align-items: space-around;
