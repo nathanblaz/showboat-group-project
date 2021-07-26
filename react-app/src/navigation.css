@@ -4,6 +4,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 20px;
 }
 
 .navmenu {
@@ -14,7 +15,7 @@ nav {
   grid-gap: 10px;
   list-style-type: none;
   font-family: sans-serif;
-  width: 70vw;
+  width: 100vw;
   justify-content: end;
   margin-right: 2rem;
 }
@@ -68,6 +69,10 @@ nav > a {
   border-radius: 2px;
 }
 
-/* #user-nav {
+#user-nav.navmenu {
   background-color: white;
-} */
+  padding: 5px;
+  margin-top: 0px;
+  width: 100vw;
+  border-bottom: 1px solid #636363;
+}
