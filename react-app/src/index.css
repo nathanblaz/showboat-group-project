@@ -16,7 +16,7 @@ text should be  #444444 deep warm gray */
 color: #c70032 cool red
  */
 
-body {
+ body {
   margin: 0;
   background-color: #f1f0f0;
   color: #171717;
@@ -44,6 +44,7 @@ a {
 
 #photo-page {
   display: flex;
+  margin-bottom: 30px;
 }
 
 .photo--photo-column {
@@ -78,14 +79,12 @@ a {
   object-fit: cover;
 }
 
-.photo--text-container h2 {
-  margin-left: 20px;
-}
-
 .photo--text-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  max-width: 100%;
 }
 
 .button--buttons-container {
@@ -170,7 +169,7 @@ a {
     "content content";
   grid-gap: 2px;
   /* margin-bottom: 10px; */
-  padding: 40px 40px 0px 40px;
+  padding: 20px 40px 0px 40px;
   font-size: 0.9em;
 }
 

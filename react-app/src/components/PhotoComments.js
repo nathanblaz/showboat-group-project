@@ -5,6 +5,8 @@ import {renderPhotoComments} from '../../src/store/comment'
 import DeleteComment from './DeleteComment'
 import EditCommentModal from './EditCommentModal'
 
+import "./comments.css";
+
 function PhotoComments() {
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -16,26 +18,48 @@ function PhotoComments() {
         dispatch(renderPhotoComments(Number(id)))
     }, [dispatch])
 
+    const hoursAgo = (comment) => {
+        let hours = Math.ceil(
+          (Date.now() - Date.parse(comment?.created_at)) / 1000 / 60 / 60
+        );
+        if (hours === 1) {
+          return "1 hour ago";
+        } else if (hours < 24) {
+          return `${hours} hours ago`;
+        } else {
+          return `${Math.ceil(hours / 24)} days ago`;
+        }
+      };
+
 
         return(
-        <div> User Comments
+        <div id="comment-div">
+            {/* User Comments */}
             {comments?.map((comment) => (
 
-                <div key={comment.id}>
-                <div>
-                    Comments: {comment?.comment}
-                </div>
-                <div>
-                    User: {comment?.username}
-                </div>
+            <div className="user-object" key={comment.id}>
+                <img
+                    src={comment?.user?.avatar}
+                    className="user-object--avi"
+                    alt="avatar"
+                />
+                <a className="user-object--user" href={`/users/${comment?.user_id}`}>
+                    {/* User: */}
+                    {comment?.username}
+                </a>
+                <p className="user-object--timestamp">{hoursAgo(comment)}</p>
+                <div className="user-object--content">
+                    {/* Comments: */}
+                    {comment?.comment}
 
-                {comment?.user_id === user?.id
-                ?  <div>
-                    <DeleteComment comment={comment.id}/>
-                    <EditCommentModal comment={comment}/>
-                 </div>
-                 : null
-            }
+                    {comment?.user_id === user?.id
+                    ?  <div className="button--buttons-container">
+                        <DeleteComment comment={comment.id}/>
+                        <EditCommentModal comment={comment}/>
+                    </div>
+                    : null
+                    }
+                </div>
             </div>)
             )}
         </div>
