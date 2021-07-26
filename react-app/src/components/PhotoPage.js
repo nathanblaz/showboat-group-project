@@ -23,7 +23,13 @@ function PhotoPage() {
 
   return (
     <div id="photo-page">
+
       <div className="photo--photo-column">
+
+        <div className="photo--text-container">
+          <h2>{photo?.title}</h2>
+        </div>
+
         <div className="photo--photo-container">
           <img
             className="photo-page--photo"
@@ -31,13 +37,18 @@ function PhotoPage() {
             alt={`${photo.title}`}
           />
         </div>
-        <div className="photo--text-container">
-          <p>{photo?.title}</p>
-          <p>Date Taken: {photo?.date_taken}</p>
-          <p>{photo?.caption}</p>
-          <EditPhotoModal />
-        </div>
+
         <div className="under-photo">
+
+          <div className="photo--text-container">
+            <p>Date Taken: {photo?.date_taken}<br />
+              {photo?.caption}</p>
+            <div className="button--buttons-container">
+              <EditPhotoModal />
+              <DeleteConfirmModal />
+              <AddToAlbum photo={photo} />
+            </div>
+          </div>
           <div className="photo--comment-container">
             <PostComment photo={photo} />
             <div>
@@ -46,16 +57,16 @@ function PhotoPage() {
               {/* <DeleteComment/> */}
             </div>
           </div>
-          <div className="button--buttons-container">
-            <DeleteConfirmModal />
-            <AddToAlbum photo={photo} />
-          </div>
+
         </div>
+
       </div>
+
       <div className="photo--sidebar">
         <AddNewTag id={id} />
         <PhotoTagSidebar id={id} />
       </div>
+
     </div>
   );
 }

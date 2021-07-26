@@ -43,16 +43,13 @@ a {
 }
 
 #photo-page {
+  display: flex;
 }
 
 .photo--photo-column {
-  /* display: flex;
-  flex-flow: wrap; */
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  display: flex;
-  /* flex-direction: column-reverse; */
   width: 60%;
 }
 
@@ -64,20 +61,14 @@ a {
 }
 
 .photo--sidebar {
-  /* display: flex;
-  flex-wrap: wrap;
-  width: 20%;
-  background-color: white;
-  padding: 20px;
-  margin: 20px; */
   background-color: white;
   width: 200px;
+  max-height: 600px;
   padding: 20px;
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  /* width: 20%; */
+  /* justify-content: space-around; */
 }
 
 .photo-page--photo {
@@ -87,9 +78,27 @@ a {
   object-fit: cover;
 }
 
+.photo--text-container h2 {
+  margin-left: 20px;
+}
+
+.photo--text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button--buttons-container {
+  margin-left: 20px;
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .under-photo {
   display: flex;
-  justify-content: left;
+  justify-content: space-around;
+  margin-left: 20px;
 }
 
 .home-page-container {
@@ -135,8 +144,8 @@ a {
 .tag-sidebar {
   background-color: white;
   width: 200px;
-  padding: 20px;
-  margin: 20px;
+  /* padding: 20px;
+  margin: 20px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
