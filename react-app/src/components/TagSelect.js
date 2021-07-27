@@ -14,8 +14,9 @@ const TagSelect = ({id}) => {
     const [name, setName] = useState("");
 
     const tags = useSelector(state => Object.values(state.tagReducer));
+    const user = useSelector(state => state.session.user)
 
-    // console.log(tags, '&&&&&&&&&&************')
+    console.log(user.id, 'USERID FROM TAGSELECT&&&&&&&&&&************')
 
     const selectTag = (e) => {
         e.preventDefault();
@@ -40,6 +41,7 @@ const TagSelect = ({id}) => {
             const formData = new FormData();
             formData.append("name", name);
             formData.append("id", id);
+            formData.append('user_id', user.id);
             setName("")
 
             dispatch(addTagToPhoto(formData));
@@ -90,7 +92,7 @@ const TagSelect = ({id}) => {
                        </div>
 
                        <button type="submit">Submit</button>
-                      
+
                    </form>
                     }
                 </div>

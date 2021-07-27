@@ -11,6 +11,7 @@ const SingleTag = () => {
     const tag = useSelector(state => state.tagReducer);
     console.log(tag, 'TAG FROM SINGLE TAG COMPONENT')
     const user = useSelector(state => state.session.user)
+    console.log(user, 'USER FROM SINGLE TAG COMPONENT')
 
     useEffect(() => {
         dispatch(getOneTag(id))

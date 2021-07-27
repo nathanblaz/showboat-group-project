@@ -25,7 +25,7 @@ def delete_tag(id):
     db.session.delete(tag)
     db.session.commit()
     # print("******** am I reaching this****", tag)
-    return tag.to_dict()
+    return {'id': id}
 
 # To remove from photo but not from database: need to hit something with
 # both photo id and tag. query for photo and tag.
@@ -37,7 +37,8 @@ def delete_tag(id):
 @login_required
 def add_photo_tag():
     new_tag = Tag(
-        name=request.form["name"]
+        name=request.form["name"],
+        user_id=request.form["user_id"]
     )
     id = request.form["id"]
     db.session.add(new_tag)
