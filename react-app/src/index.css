@@ -190,8 +190,8 @@ a {
 }
 
 .user-object--avi {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
   grid-area: image;
