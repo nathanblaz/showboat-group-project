@@ -51,6 +51,41 @@ def seed_photos():
         user_id=1,
         date_taken='2021-07-04'
     )
+    new_photo_05 = Photo(
+        title='New Photo',
+        caption='Photo from Unsplash',
+        image_url='https://showboat-app.s3.us-west-1.amazonaws.com/photo-1627230123257-f9706d3cda86.jpeg',
+        user_id=2,
+        date_taken='2021-07-04'
+    )
+    new_photo_06 = Photo(
+        title='New Photo',
+        caption='Photo from Unsplash',
+        image_url='https://showboat-app.s3.us-west-1.amazonaws.com/photo-1627224599653-aa6060d6ad10.jpeg',
+        user_id=3,
+        date_taken='2021-07-05'
+    )
+    new_photo_07 = Photo(
+        title='New Photo',
+        caption='Photo from Unsplash',
+        image_url='https://showboat-app.s3.us-west-1.amazonaws.com/photo-1627211448588-7f56dd579128.jpeg',
+        user_id=1,
+        date_taken='2021-07-06'
+    )
+    new_photo_08 = Photo(
+        title='New Photo',
+        caption='Photo from Unsplash',
+        image_url='https://showboat-app.s3.us-west-1.amazonaws.com/photo-1627208753013-8954b7089657.jpeg',
+        user_id=2,
+        date_taken='2021-07-07'
+    )
+    new_photo_09 = Photo(
+        title='New Photo',
+        caption='Photo from Unsplash',
+        image_url='https://showboat-app.s3.us-west-1.amazonaws.com/photo-1627196038963-7aa32a9121fb.jpeg',
+        user_id=3,
+        date_taken='2021-07-08'
+    )
 
     db.session.add(photo1)
     db.session.add(photo2)
