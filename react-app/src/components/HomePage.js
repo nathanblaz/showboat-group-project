@@ -24,10 +24,9 @@ const HomePage = () => {
       </div>
       <div className="sidebar">
         <TagSidebar />
-        <div>
-          {" "}
-          <AboutUs />{" "}
-        </div>
+        {/* <div> */}
+          <AboutUs />
+        {/* </div> */}
       </div>
     </div>
   );

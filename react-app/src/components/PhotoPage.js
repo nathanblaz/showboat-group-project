@@ -21,6 +21,8 @@ function PhotoPage() {
     dispatch(renderOnePhoto(Number(id))); //this
   }, [dispatch, id]);
 
+  const photoDate = new Date(photo?.date_taken);
+
   return (
     <div id="photo-page">
 
@@ -40,15 +42,6 @@ function PhotoPage() {
 
         <div className="under-photo">
 
-          <div className="photo--text-container">
-            <p>Date Taken: {photo?.date_taken}<br />
-              {photo?.caption}</p>
-            <div className="button--buttons-container">
-              <EditPhotoModal />
-              <DeleteConfirmModal />
-              <AddToAlbum photo={photo} />
-            </div>
-          </div>
           <div className="photo--comment-container">
             <PostComment photo={photo} />
             <div>
@@ -63,8 +56,20 @@ function PhotoPage() {
       </div>
 
       <div className="photo--sidebar">
+
+        <div className="photo--text-container">
+            <p>Date Taken: {photoDate.toDateString()}</p>
+              <p>{photo?.caption}</p>
+            <div className="button--buttons-container">
+              <EditPhotoModal />
+              <DeleteConfirmModal />
+              <AddToAlbum photo={photo} />
+            </div>
+        </div>
+        
         <AddNewTag id={id} />
         <PhotoTagSidebar id={id} />
+
       </div>
 
     </div>
