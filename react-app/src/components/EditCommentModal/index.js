@@ -16,14 +16,15 @@ function EditCommentModal({comment}) {
 
     const handleSubmit = async (e) => { //!this
         e.preventDefault();
-        // comment.value = comment
-        const formData = new FormData();
-        formData.append('comment', comments);
-        await dispatch(updateComment(formData, comment.id));
-        console.log('id from post comment========', id)
-        setShowModal(false)
-     //    setComment('')
-        // history.push(`/photos/${id}`);
+        if(comment.comment === ''){
+            alert('Comment field can not be blank')
+        } else {
+            const formData = new FormData();
+            formData.append('comment', comments);
+            await dispatch(updateComment(formData, comment.id));
+            // console.log('id from post comment========', id)
+            setShowModal(false)
+        }
     }
     
     useEffect(() => {

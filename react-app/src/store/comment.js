@@ -83,10 +83,11 @@ export default function commentReducer(state = initialState, action) {
     const newState = {...state};
     switch (action.type) {
         case SET_COMMENTS:
+            const commentState = {}
             action.payload.forEach((comment) =>{
-                newState[comment.id] = comment;
+                commentState[comment.id] = comment;
             })
-            return newState;
+            return commentState;
 
         case ADD_COMMENT:
             // const singleState = {...state};
