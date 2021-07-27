@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderOnePhoto } from "../../src/store/photo";
 import PhotoComments from "./PhotoComments";
-import AddNewTag from "./AddNewTag";
+// import AddNewTag from "./AddNewTag";
 import PhotoTagSidebar from "./PhotoTagSidebar";
+import TagSelect from "./TagSelect";
 import PostComment from "./PostComment";
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import EditPhotoModal from "./EditPhotoModal";
@@ -67,7 +68,9 @@ function PhotoPage() {
             </div>
         </div>
         
-        <AddNewTag id={id} />
+        <div>Choose a tag from the dropdown, or add your own!</div>
+        <br />
+        <TagSelect id={id}/>
         <PhotoTagSidebar id={id} />
 
       </div>

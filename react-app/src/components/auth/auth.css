@@ -47,3 +47,12 @@
 #tag-bar-delete{
     width: 100px;
 }
+
+#tag-selector{
+width: 200px;
+padding: 10px 10px 10px 35px;
+margin: 5px;
+border: 1px solid #ccc;
+border-radius: 8px;
+box-sizing: border-box;
+}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addTagToPhoto, renderPhotoTags } from '../store/tag';
+import TagSelect from './TagSelect';
 import UpdateTag from './UpdateTag';
 
 const AddNewTag = ({id}) => {
@@ -13,14 +14,18 @@ const AddNewTag = ({id}) => {
 
 const handleSubmit = async(e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("id", id);
-    setName("")
+    if(name === ''){
+        alert("Field cannot be blank")
+    } else {
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("id", id);
+        setName("")
 
-    dispatch(addTagToPhoto(formData));
-    dispatch(renderPhotoTags());
-    history.push(`/photos/${id}`)
+        dispatch(addTagToPhoto(formData));
+        dispatch(renderPhotoTags());
+        history.push(`/photos/${id}`)
+    }
     };
 
 return (
@@ -38,6 +43,7 @@ return (
                     onChange={(e) => setName(e.target.value)}
                     value={name} />
             </div>
+                {/* <TagSelect /> */}
             <button type="submit">Submit</button>
             {/* <UpdateTag /> */}
         </form>
