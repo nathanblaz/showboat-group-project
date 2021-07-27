@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 import { getOneTag } from '../store/tag';
 import DeleteATag from './DeleteATag';
 import UpdateTag from './UpdateTag';
-import TagSidebar from './TagSidebar';
 
 const SingleTag = () => {
     const dispatch = useDispatch();
@@ -30,7 +29,6 @@ const SingleTag = () => {
             </div>
             : null
     }
-        {/* <TagSidebar /> */}
         </div>
     )
 }
