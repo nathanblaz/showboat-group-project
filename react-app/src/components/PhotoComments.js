@@ -34,7 +34,6 @@ function PhotoComments() {
 
         return(
         <div id="comment-div">
-            {/* User Comments */}
             {comments?.map((comment) => (
 
             <div className="user-object" key={comment.id}>
@@ -44,12 +43,10 @@ function PhotoComments() {
                     alt="avatar"
                 />
                 <a className="user-object--user" href={`/users/${comment?.user_id}`}>
-                    {/* User: */}
                     {comment?.username}
                 </a>
                 <p className="user-object--timestamp">{hoursAgo(comment)}</p>
                 <div className="user-object--content">
-                    {/* Comments: */}
                     {comment?.comment}
 
                     {comment?.user_id === user?.id
