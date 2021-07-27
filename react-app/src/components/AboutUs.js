@@ -9,33 +9,33 @@ const AboutUs = () => {
                 <li className="about-li">
                     <p>Mel</p>
                     <div className="about-logos">
-                        <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/76574880?v=4" alt="Mel" />
-                        <Link to="https://github.com/Melonnie13"> <i className="fab fa-github"></i></Link>
-                        <Link to="https://www.linkedin.com/in/melonniehicks/"><i className="fab fa-linkedin"></i></Link>
+                        <a href="https://melonnie13.github.io/" target="_blank"> <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/76574880?v=4" alt="Mell"/> </a>
+                        <a href="https://github.com/Melonnie13" target="_blank"> <i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/melonniehicks/" target="_blank"><i className="fab fa-linkedin"></i></a>
                     </div>
                 </li>
                 <li className="about-li">
                     <p>Nick</p>
                     <div className="about-logos">
-                        <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/75050631?v=4" alt="Nick" />
-                        <Link to="https://github.com/NickKury"> <i className="fab fa-github"></i></Link>
-                        <Link to="https://www.linkedin.com/in/nick-kury-011840213/"><i className="fab fa-linkedin"></i></Link>
+                        <a href="https://nickkury.github.io/" target="_blank"> <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/75050631?v=4" alt="Nick"/> </a>
+                        <a href="https://github.com/NickKury" target="_blank"> <i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/nick-kury/" target="_blank"><i className="fab fa-linkedin"></i></a>
                     </div>
                 </li>
                 <li className="about-li">
                     <p>Sarah</p>
                     <div className="about-logos">
-                        <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/75630072?v=4" alt="Sarah"/>
-                        <Link to="https://github.com/boothjacobs"> <i className="fab fa-github"></i></Link>
-                        <Link to="https://www.linkedin.com/in/sarah-jacobs-53433923/"><i className="fab fa-linkedin"></i></Link>
+                        <a href="https://boothjacobs.github.io/" target="_blank"> <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/75630072?v=4" alt="Sarah"/> </a>
+                        <a href="https://github.com/boothjacobs" target="_blank"> <i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sarah-jacobs-53433923/" target="_blank"><i className="fab fa-linkedin"></i></a>
                     </div>
                 </li>
                 <li className="about-li">
                     <p>Nate</p>
                     <div className="about-logos">
-                        <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/24424412?v=4" alt="Nate"/>
-                        <Link to="https://github.com/nathanblaz"> <i className="fab fa-github"></i></Link>
-                        <Link to="https://www.linkedin.com/in/nathan-blaz-66489a8/"><i className="fab fa-linkedin" ></i></Link>
+                        <a href="https://nathanblaz.github.io/" target="_blank"> <img className="user-object--avi" src="https://avatars.githubusercontent.com/u/24424412?v=4" alt="Nate"/> </a>
+                        <a href="https://github.com/nathanblaz" target="_blank"> <i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/nathan-blaz-66489a8/" target="_blank"><i className="fab fa-linkedin"></i></a>
                     </div>
                 </li>
             </ul>
