@@ -70,7 +70,7 @@ export const addTagToPhoto = (formData) => async(dispatch) => {
 };
 
 export const addExistingTagToPhoto = (formData) => async(dispatch) => {
-    const res = await fetch('/api/tags/existing_tag/', {
+    const res = await fetch('/api/tags/existing_tag', {
         method: 'POST',
         body: formData
     });

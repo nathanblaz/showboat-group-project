@@ -52,6 +52,7 @@ def add_photo_tag():
 def add_existing_tag_to_photo():
     tag_name = request.form['tag']
     existing_tag = Tag.query.get(tag_name)
+    print(tag_name, "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TAG NAME")
     photo = Photo.query.get(id)
     photo.tags.append(existing_tag)
     db.session.add(photo)

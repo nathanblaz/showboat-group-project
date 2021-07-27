@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router';
 import { addTagToPhoto, renderPhotoTags, addExistingTagToPhoto } from "../../src/store/tag";
-import AddNewTag from "./AddNewTag";
+// import AddNewTag from "./AddNewTag";
 
 
 const TagSelect = ({id}) => {
@@ -21,15 +21,17 @@ const TagSelect = ({id}) => {
     const selectTag = (e) => {
         e.preventDefault();
         // history.pushState(`/photos/${id}`)
-        if(e.target.value === 'newTag') {
-            console.log('newTag', '***********************************')
+        // console.log(newTag, '***********************************')
+        console.log(e.target.value, 'E.TARGET.VALUE&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+        if(e.target.value === newTag) {
             setFormOpen(true)
         } else {
             const formData = new FormData();
-            formData.append('tag', tag.name)
+            console.log(tag, "************************TAG FROM TAG SELECT COMPONENT")
+            formData.append('tag', tag)
             dispatch(addExistingTagToPhoto(formData))
         }
-        console.log('am i here??????????????????????????????????????????')
+        // console.log('am i here??????????????????????????????????????????')
     }
 
     const handleSubmit = async(e) => {
