@@ -4,7 +4,7 @@ const Splash = () => {
   return (
     <div className="splash">
       <div className="splash-text">Share your experiences.</div>
-      <div className="image-container">
+      <div className="splash-img-container">
         <img
           src="https://showboat-app.s3.us-west-1.amazonaws.com/splash.jpeg"
           className="splash-img"

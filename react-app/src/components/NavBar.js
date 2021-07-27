@@ -35,7 +35,7 @@ const NavBar = () => {
     e.preventDefault();
     dispatch(demo());
 
-    history.push("/");
+    history.push("/home");
   };
 
   return (
