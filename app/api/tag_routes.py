@@ -25,7 +25,7 @@ def delete_tag(id):
     db.session.delete(tag)
     db.session.commit()
     # print("******** am I reaching this****", tag)
-    return tag.to_dict()
+    return {'id': id}
 
 # To remove from photo but not from database: need to hit something with
 # both photo id and tag. query for photo and tag.
@@ -37,7 +37,8 @@ def delete_tag(id):
 @login_required
 def add_photo_tag():
     new_tag = Tag(
-        name=request.form["name"]
+        name=request.form["name"],
+        user_id=request.form["user_id"]
     )
     id = request.form["id"]
     db.session.add(new_tag)
@@ -64,8 +65,10 @@ def add_existing_tag_to_photo():
 
 @tag_routes.route("/update/<int:id>", methods=['PUT'])
 def update_tag(id):
+    print(id, 'THIS IS THE ID FROM THE UPDATE TAG ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     edit_tag = Tag.query.get(id)
-    edit_tag.name = request.form["singleTagName"]
+    print(edit_tag, "EDIT TAG FROM UPDATE TAG ROUTE^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    edit_tag.name = request.form['tag_name']
     db.session.add(edit_tag)
     db.session.commit()
     return edit_tag.to_dict()

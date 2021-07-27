@@ -15,9 +15,9 @@ import AlbumsPage from "./components/Album";
 import SingleAlbumPage from "./components/Album/SingleAlbumPage";
 import TagSidebar from "./components/TagSidebar";
 import CreateAlbum from "./components/Album/CreateAlbum";
-import DeleteATag from "./components/DeleteATag";
 import Splash from "./components/Splash";
 import { authenticate } from "./store/session";
+import SingleTag from "./components/SingleTag";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -73,8 +73,8 @@ function App() {
           <TagSidebar />
         </ProtectedRoute>
         <ProtectedRoute path="/tags/:id" exact={true}>
-          <DeleteATag />
-          <TagSidebar />
+          <SingleTag />
+          {/* <TagSidebar /> */}
         </ProtectedRoute>
         <ProtectedRoute path="/users/:id/albums/" exact={true}>
           <AlbumsPage />

@@ -6,6 +6,7 @@ import { renderPhotoTags } from "../../src/store/tag";
 const TagSidebar = () => {
   const dispatch = useDispatch();
   const tags = useSelector((state) => Object.values(state.tagReducer));
+  // console.log(tags, 'TAGS FROM TAGSIDEBAR COPONENT!!!!!!!!!!!!')
 
   useEffect(() => {
     dispatch(renderPhotoTags());
