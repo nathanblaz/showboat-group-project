@@ -9,7 +9,7 @@ const ViewPhotos = ({user}) => {
   const dispatch = useDispatch();
   const allPhotos = useSelector(state => Object.values(state.photoReducer));
   const photos = allPhotos?.filter(photo => photo.user_id === user?.id);
-  console.log(photos)
+  // console.log(photos)
 
   useEffect(() => {
     dispatch(renderAllPhotos());

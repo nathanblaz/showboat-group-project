@@ -16,6 +16,7 @@ import SingleAlbumPage from "./components/Album/SingleAlbumPage";
 import TagSidebar from "./components/TagSidebar";
 import CreateAlbum from "./components/Album/CreateAlbum";
 import DeleteATag from "./components/DeleteATag";
+import Splash from "./components/Splash";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -60,8 +61,11 @@ function App() {
           <ViewPhotos user={currentUser} />
         </ProtectedRoute>
         <Route path="/" exact={true}>
-          <HomePage />
+          <Splash />
         </Route>
+        <ProtectedRoute path="/home" exact={true}>
+          <HomePage />
+        </ProtectedRoute>
         <ProtectedRoute path="/photos/:id" exact={true}>
           <PhotoPage />
         </ProtectedRoute>

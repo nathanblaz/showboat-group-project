@@ -81,9 +81,10 @@ const SingleAlbumPage = () => {
                         </div>
             )}
 
-            {photos ? (<div className="uploaded--photo-container">
-                {photos?.map(photo => <PhotoThumbnail photo={photo} />)}
-            </div>) : null}
+            {photos?.length > 0 ? <div className="uploaded--photo-container">
+                    {photos?.map(photo => <PhotoThumbnail photo={photo} />)}
+                </div>
+                : <p><a href={`/users/${user.id}/photos/`}>Browse your photos</a> and add some!</p>}
 
         </>
     )

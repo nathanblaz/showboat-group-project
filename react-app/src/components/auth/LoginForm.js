@@ -6,7 +6,7 @@ import "./auth.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +28,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
@@ -42,7 +42,8 @@ const LoginForm = () => {
         <div className="form-input-container">
           <div>
             <label htmlFor="email">Email</label>
-            <input className="form-input"
+            <input
+              className="form-input"
               name="email"
               type="text"
               placeholder="Email"
@@ -52,7 +53,8 @@ const LoginForm = () => {
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input className="form-input"
+            <input
+              className="form-input"
               name="password"
               type="password"
               placeholder="Password"
@@ -61,7 +63,9 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <button id="loginBtn" type="submit">Login</button>
+        <button id="loginBtn" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -18,8 +18,7 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
 
     } else {
-      console.log("Error")
-      // error handling
+      window.alert("Passwords do not match.")
     }
   };
 

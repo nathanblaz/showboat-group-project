@@ -8,7 +8,11 @@
 
 .album-title {
   background-color: white;
-  padding: 20px;
+  padding: 10px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .button-container {
@@ -20,8 +24,9 @@
 .uploaded--photo-container {
   max-width: 800px;
   display: flex;
+  justify-content: center;
   flex-flow: wrap;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .uploaded--photo {
@@ -50,5 +55,12 @@
 }
 
 .album-list {
+  width: 500px;
   margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+
+.album-thumb {
+  width: 100%;
 }
