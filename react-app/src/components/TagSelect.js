@@ -9,8 +9,6 @@ const TagSelect = ({id}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [tag, setTag] = useState('');
-    const [newTag, setNewTag] = useState('');
     const [formOpen, setFormOpen] = useState(false);
     const [name, setName] = useState("");
 
@@ -22,13 +20,14 @@ const TagSelect = ({id}) => {
         e.preventDefault();
         // history.pushState(`/photos/${id}`)
         // console.log(newTag, '***********************************')
-        console.log(e.target.value, 'E.TARGET.VALUE&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
-        if(e.target.value === newTag) {
+        console.log(e.target, 'E.TARGET.VALUE&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+        if(e.target.value === "None") {
             setFormOpen(true)
         } else {
             const formData = new FormData();
-            console.log(tag, "************************TAG FROM TAG SELECT COMPONENT")
-            formData.append('tag', tag)
+            console.log(id, "this is the photo_id from the tagselect component")
+            formData.append('tag_id', e.target.value)
+            formData.append('photo_id', id)
             dispatch(addExistingTagToPhoto(formData))
         }
         // console.log('am i here??????????????????????????????????????????')
@@ -59,11 +58,11 @@ const TagSelect = ({id}) => {
               <form onSubmit={selectTag}>
                 <select
                 id='tag-selector'
-                // onChange={selectTag}
+                onChange={selectTag}
                 // value={tag.id}
                 >
                     <option default>Choose A Tag</option>
-                    <option value={newTag}>Add A Tag</option>
+                    <option value='None'>Or Create Your Own Tag</option>
                     {/* <option onClick={selectTag} value={newTag}>Add A Tag</option> */}
                     {tags.map(tag => (
                         <option
@@ -74,14 +73,14 @@ const TagSelect = ({id}) => {
                         </option>
                     ))}
                 </select>
-                <button type='submit'>Confirm Choice</button>
+                {/* <button type='submit'>Confirm Choice</button> */}
               </form>
                 <div>
                     {formOpen &&
                        <form onSubmit={handleSubmit}>
                        <div className="form-input-container" id='tag-bar'>
                            <h2>Add A Tag</h2>
-                           {console.log('is this available***********************************')}
+                           {/* {console.log('is this available***********************************')} */}
                            <input
                                type="text"
                                className="form-input"

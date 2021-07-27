@@ -8,7 +8,7 @@ tag_routes = Blueprint('tags', __name__)
 @tag_routes.route("")
 def get_photo_tags():
     tags = Tag.query.all()
-    print('***********************************', tags)
+    # print('***********************************', tags)
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
@@ -24,13 +24,14 @@ def delete_tag(id):
     tag = Tag.query.get(id)
     db.session.delete(tag)
     db.session.commit()
-    print("******** am I reaching this****", tag)
+    # print("******** am I reaching this****", tag)
     return tag.to_dict()
 
 # To remove from photo but not from database: need to hit something with
 # both photo id and tag. query for photo and tag.
 # Instance not model photo.tags.remove(pass in tag object from db).
 # sent back photo. won't have to hit tag reducer. hit photo reducer.
+
 
 @tag_routes.route("/photo/new_tag", methods=['POST'])
 @login_required
@@ -50,10 +51,11 @@ def add_photo_tag():
 
 @tag_routes.route('/existing_tag', methods=['POST'])
 def add_existing_tag_to_photo():
-    tag_name = request.form['tag']
-    existing_tag = Tag.query.get(tag_name)
-    print(tag_name, "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TAG NAME")
-    photo = Photo.query.get(id)
+    id = request.form['tag_id']
+    # print(id, "&&&&&&&&&&&&&&&&&&&&tag_id sent from the form")
+    existing_tag = Tag.query.get(id)
+    photo = Photo.query.get(request.form['photo_id'])
+
     photo.tags.append(existing_tag)
     db.session.add(photo)
     db.session.commit()
