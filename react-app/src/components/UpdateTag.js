@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { updateTag, renderPhotoTags } from "../store/tag";
+import { useHistory, useParams } from "react-router-dom";
+import { updateTag, getOneTag } from "../store/tag";
 
 
 const UpdateTag = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {id} = useParams();
-    const tags = useSelector(state => Object.values(state.tagReducer));
 
-    const singleTag = tags.filter(tag => {
-        if (tag.id === Number(id)) return tag
-    })
-    // console.log(singleTag[0]?.name, "from UpdateTag**************")
 
     const [name, setName] = useState("");
     const [formOpen, setFormOpen] = useState(false);
@@ -21,14 +17,17 @@ const UpdateTag = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("singleTagName", singleTag[0]?.name);
-        setName("")
-
-        console.log(id, '**************ID*********')
-        
+        formData.append("tag_name", name);
         dispatch(updateTag(formData, id));
-        dispatch(renderPhotoTags());
+        console.log(id, "ID FROM UPDATE TAG COMPONENT*****************************")
+
+        setFormOpen(false)
+        history.push(`/tags/${id}`)
     }
+
+    useEffect(() => {
+        dispatch(getOneTag(id))
+    }, [dispatch, id])
 
     return (
         <div>

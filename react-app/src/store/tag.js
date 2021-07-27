@@ -101,20 +101,20 @@ export const getOneTag = (id) => async (dispatch) => {
         dispatch(getTag(data));
         return data
     }
-}
+};
 
 export const updateTag = (formData, id) => async (dispatch) => {
-    if (id === undefined) console.log("ID IS UNDEFINED")
     const res = await fetch(`/api/tags/update/${id}`, {
         method: 'PUT',
+        // headers: {"Content-Type": "application/json"}
         body: formData,
     })
     if(res.ok) {
         const updatedTag = await res.json()
-        dispatch(updateTag(updatedTag))
+        dispatch(editTag(updatedTag))
         return updatedTag
     }
-}
+};
 
 // initial state
 const initialState = {};
@@ -122,37 +122,25 @@ const initialState = {};
 // reducer
 
 export default function tagReducer(state = initialState, action) {
+    const newState = {...state}
     switch (action.type) {
         case SET_TAGS:
-            const allTagsState = {};
+            const allTagsState = {}
             action.payload.forEach(tag => {
                 allTagsState[tag.id] = tag;
             })
             return allTagsState;
         case ADD_TAG:{
-            const addNewTag = {
-                ...state,
-                [action.payload.tag.id]: action.payload.tag
-            };
-            return addNewTag;
+                newState[action.payload.tag.id] = action.payload.tag
+            return newState;
         }
-        case GET_TAG: {
-            const oneTag = {
-                ...action.payload
-            }
-            return oneTag;
-        }
-        case UPDATE_TAG:{
-            const updateATag = {
-                ...state,
-                [action.payload.tag.id]: action.payload.tag
-            }
-            return updateATag;
-        }
+        case GET_TAG:
+                return {...action.payload}
+        case UPDATE_TAG:
+            return {...action.payload}
         case DELETE_TAG:
             const deleteATag = {...state};
             delete deleteATag[action.payload.id]
-            console.log(deleteATag, "*******************reducer")
             return {...deleteATag}
         default:
             return state;

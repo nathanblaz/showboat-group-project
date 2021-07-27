@@ -64,8 +64,10 @@ def add_existing_tag_to_photo():
 
 @tag_routes.route("/update/<int:id>", methods=['PUT'])
 def update_tag(id):
+    print(id, 'THIS IS THE ID FROM THE UPDATE TAG ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     edit_tag = Tag.query.get(id)
-    edit_tag.name = request.form["singleTagName"]
+    print(edit_tag, "EDIT TAG FROM UPDATE TAG ROUTE^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    edit_tag.name = request.form['tag_name']
     db.session.add(edit_tag)
     db.session.commit()
     return edit_tag.to_dict()

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { addTagToPhoto, renderPhotoTags, addExistingTagToPhoto } from "../../src/store/tag";
 // import AddNewTag from "./AddNewTag";
 
+//css is in auth.css
 
 const TagSelect = ({id}) => {
     const dispatch = useDispatch();
@@ -18,9 +19,7 @@ const TagSelect = ({id}) => {
 
     const selectTag = (e) => {
         e.preventDefault();
-        // history.pushState(`/photos/${id}`)
-        // console.log(newTag, '***********************************')
-        console.log(e.target, 'E.TARGET.VALUE&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+
         if(e.target.value === "None") {
             setFormOpen(true)
         } else {
@@ -30,7 +29,7 @@ const TagSelect = ({id}) => {
             formData.append('photo_id', id)
             dispatch(addExistingTagToPhoto(formData))
         }
-        // console.log('am i here??????????????????????????????????????????')
+
     }
 
     const handleSubmit = async(e) => {
@@ -63,7 +62,7 @@ const TagSelect = ({id}) => {
                 >
                     <option default>Choose A Tag</option>
                     <option value='None'>Or Create Your Own Tag</option>
-                    {/* <option onClick={selectTag} value={newTag}>Add A Tag</option> */}
+
                     {tags.map(tag => (
                         <option
                         key={tag.id}
@@ -73,14 +72,14 @@ const TagSelect = ({id}) => {
                         </option>
                     ))}
                 </select>
-                {/* <button type='submit'>Confirm Choice</button> */}
+
               </form>
                 <div>
                     {formOpen &&
                        <form onSubmit={handleSubmit}>
                        <div className="form-input-container" id='tag-bar'>
                            <h2>Add A Tag</h2>
-                           {/* {console.log('is this available***********************************')} */}
+
                            <input
                                type="text"
                                className="form-input"
@@ -89,9 +88,9 @@ const TagSelect = ({id}) => {
                                onChange={(e) => setName(e.target.value)}
                                value={name} />
                        </div>
-                           {/* <TagSelect /> */}
+
                        <button type="submit">Submit</button>
-                       {/* <UpdateTag /> */}
+                      
                    </form>
                     }
                 </div>

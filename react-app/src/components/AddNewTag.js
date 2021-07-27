@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addTagToPhoto, renderPhotoTags } from '../store/tag';
-import TagSelect from './TagSelect';
-import UpdateTag from './UpdateTag';
+
+//css is in auth.css
 
 const AddNewTag = ({id}) => {
     const history = useHistory();
@@ -43,9 +43,7 @@ return (
                     onChange={(e) => setName(e.target.value)}
                     value={name} />
             </div>
-                {/* <TagSelect /> */}
             <button type="submit">Submit</button>
-            {/* <UpdateTag /> */}
         </form>
     </div>
 
