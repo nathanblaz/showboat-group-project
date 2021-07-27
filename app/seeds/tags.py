@@ -3,13 +3,16 @@ from app.models import db, Tag
 
 def seed_tags():
     tag1 = Tag(
-        name='music'
+        name='music',
+        user_id=1
         )
     tag2 = Tag(
-        name='nature'
+        name='nature',
+        user_id=2
     )
     tag3 = Tag(
-        name='family'
+        name='family',
+        user_id=3
     )
 
     db.session.add(tag1)

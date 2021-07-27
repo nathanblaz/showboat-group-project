@@ -11,6 +11,7 @@ const SingleTag = () => {
     const {id} = useParams();
     const tag = useSelector(state => state.tagReducer);
     console.log(tag, 'TAG FROM SINGLE TAG COMPONENT')
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(getOneTag(id))
@@ -18,11 +19,18 @@ const SingleTag = () => {
 
     return (
         <div>
-        {tag.name}
-        {tag.}
-        <DeleteATag />
-        <UpdateTag />
-        <TagSidebar />
+        <h2 id="single-tag-page">{tag.name}</h2>
+        <br />
+        {tag.user_id === user.id ?
+            <div id="single-tag-buttons">
+                <div>
+                    <DeleteATag />
+                    <UpdateTag />
+                </div>
+            </div>
+            : null
+    }
+        {/* <TagSidebar /> */}
         </div>
     )
 }
