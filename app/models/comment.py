@@ -6,11 +6,11 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    comment = db.Column(db.Text)
+    comment = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     photos = db.relationship("Photo", back_populates="comments")
     users = db.relationship("User", back_populates="comments")
 

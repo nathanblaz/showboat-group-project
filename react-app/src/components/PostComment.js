@@ -13,15 +13,18 @@ const PostComment = ({photo}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(comment === ''){
+            alert('Comment field can not be blank')
+        } else{
+            const formData = new FormData();
+            formData.append('comment', comment);
+            formData.append('photo_id', photo.id);
+            formData.append('user_id', user.id)
+            await dispatch(addComment(formData));
+            // console.log('photo from post comment========', photo)
+            setComment('')
+        }
 
-        const formData = new FormData();
-        formData.append('comment', comment);
-        formData.append('photo_id', photo.id);
-        formData.append('user_id', user.id)
-
-        await dispatch(addComment(formData));
-        // console.log('photo from post comment========', photo)
-        setComment('')
     }
 
     useEffect(() => {
