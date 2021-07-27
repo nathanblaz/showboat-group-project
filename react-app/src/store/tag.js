@@ -69,6 +69,18 @@ export const addTagToPhoto = (formData) => async(dispatch) => {
     }
 };
 
+export const addExistingTagToPhoto = (formData) => async(dispatch) => {
+    const res = await fetch('/api/tags/existing_tag/', {
+        method: 'POST',
+        body: formData
+    });
+    if(res.ok){
+        const existingTagAdded = await res.json();
+        dispatch(addTag(existingTagAdded));
+        return existingTagAdded;
+    }
+}
+
 export const deleteOneTag = (id) => async(dispatch) => {
     const res = await fetch(`/api/tags/delete/${id}`, {
         method: 'DELETE',

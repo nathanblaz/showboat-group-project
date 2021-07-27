@@ -48,6 +48,17 @@ def add_photo_tag():
     return {"photo": photo.to_dict(), "tag": new_tag.to_dict()}
 
 
+@tag_routes.route('/existing_tag', methods=['POST'])
+def add_existing_tag_to_photo():
+    tag_name = request.form['tag']
+    existing_tag = Tag.query.get(tag_name)
+    photo = Photo.query.get(id)
+    photo.tags.append(existing_tag)
+    db.session.add(photo)
+    db.session.commit()
+    return {"photo": photo.to_dict(), "tag": existing_tag.to_dict()}
+
+
 @tag_routes.route("/update/<int:id>", methods=['PUT'])
 def update_tag(id):
     edit_tag = Tag.query.get(id)
