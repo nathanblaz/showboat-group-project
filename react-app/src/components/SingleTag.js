@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from "react-router-dom";
+import { renderAllPhotos } from '../store/photo';
 import { getOneTag } from '../store/tag';
 import DeleteATag from './DeleteATag';
-import PhotoTagSidebar from './PhotoTagSidebar';
+// import PhotoTagSidebar from './PhotoTagSidebar';
 import UpdateTag from './UpdateTag';
 
 
@@ -29,12 +30,12 @@ const SingleTag = () => {
         filteredPhotos=[photos]
     }
 
-
     useEffect(() => {
         dispatch(getOneTag(id))
+        dispatch(renderAllPhotos())
     }, [dispatch, id])
 
-    console.log(filteredPhotos, 'FILTERED PHOTOS FROM THE SINGLE TAG **************')
+    // console.log(filteredPhotos, 'FILTERED PHOTOS FROM THE SINGLE TAG **************')
     return (
         <div>
         <h2 id="single-tag-page">{tag.name}</h2>
