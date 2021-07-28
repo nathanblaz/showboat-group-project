@@ -52,6 +52,17 @@ export const renderAllAlbums = () => async (dispatch) => {
     }
 };
 
+export const renderUserAlbums = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/albums`)
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setAlbums(data));
+        return data;
+    } else {
+        console.log(res.statusText)
+    }
+};
+
 export const renderAlbumPhotos = (albumId) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`);
     if (res.ok) {
