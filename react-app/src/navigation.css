@@ -29,6 +29,7 @@ nav {
   padding: 10px;
   border-radius: 2px;
   box-sizing: border-box;
+  border: 3px solid #f1f0f0;
 }
 
 .navitem:hover {
@@ -65,8 +66,14 @@ nav > a {
 }
 
 #demo-button {
-  padding: 9px;
+  padding: 7px;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+#demo-button:hover {
+  background-color: #c70032;
+  color: #f1f0f0;
 }
 
 #user-nav.navmenu {
