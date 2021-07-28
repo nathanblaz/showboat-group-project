@@ -121,6 +121,7 @@ a {
   display: flex;
   flex-direction: column-reverse;
   width: 60%;
+  margin: auto;
 }
 
 .feed--photo-div {
