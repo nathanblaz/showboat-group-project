@@ -16,6 +16,7 @@ class Tag(db.Model):
         return{
             'id': self.id,
             'name': self.name,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            # 'photo_url': self.photos.image_url
             # "photos": self.photos
         }
