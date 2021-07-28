@@ -1,17 +1,27 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { Link } from "react-router-dom";
 import { getOneTag } from '../store/tag';
 import DeleteATag from './DeleteATag';
 import UpdateTag from './UpdateTag';
+
 
 const SingleTag = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const tag = useSelector(state => state.tagReducer);
     console.log(tag, 'TAG FROM SINGLE TAG COMPONENT')
+    const photos = useSelector(state => Object.values(state.photoReducer));
+    console.log(photos, "PHOTOS FROM SINGLE TAG COMPONENT&&&&&&&&&&&&&&")
     const user = useSelector(state => state.session.user)
     console.log(user, 'USER FROM SINGLE TAG COMPONENT')
+
+    let filteredPhotos = photos.filter(photo => {
+        if(photo.tag_ids.includes(tag.id)) return photo
+        console.log(photo, "FILTERED PHOTOS FROM SINGLE TAG COMPONENT")
+    })
+
 
     useEffect(() => {
         dispatch(getOneTag(id))
@@ -30,6 +40,18 @@ const SingleTag = () => {
             </div>
             : null
     }
+            <div className="feed--photo-div">
+                {filteredPhotos &&
+                    <div>
+                        {filteredPhotos.length ? filteredPhotos.map(photo => (
+                            <Link to={`/photos/${photo?.id}`}>
+                            <img className="feed--photo" src={`${photo?.image_url}`} />
+                            </Link>
+                        )) : "No Photos Found"
+                    }
+                    </div>
+                }
+            </div>
         </div>
     )
 }

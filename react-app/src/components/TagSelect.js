@@ -45,6 +45,7 @@ const TagSelect = ({id}) => {
             setName("")
 
             dispatch(addTagToPhoto(formData));
+            setFormOpen(false);
             dispatch(renderPhotoTags());
             history.push(`/photos/${id}`)
         }

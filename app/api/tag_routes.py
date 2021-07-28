@@ -12,6 +12,12 @@ def get_photo_tags():
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
+# @tag_routes.route('/photos/tagged', methods=['GET'])
+# def get_tagged_photos():
+#     photos = Photo.query.all()
+#     return {'photos': [photo.to_dict() for photo in photos]}
+
+
 @tag_routes.route("/<int:id>")
 def get_one_tag(id):
     tag = Tag.query.get(id)
@@ -65,9 +71,9 @@ def add_existing_tag_to_photo():
 
 @tag_routes.route("/update/<int:id>", methods=['PUT'])
 def update_tag(id):
-    print(id, 'THIS IS THE ID FROM THE UPDATE TAG ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    # print(id, 'THIS IS THE ID FROM THE UPDATE TAG ROUTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     edit_tag = Tag.query.get(id)
-    print(edit_tag, "EDIT TAG FROM UPDATE TAG ROUTE^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    # print(edit_tag, "EDIT TAG FROM UPDATE TAG ROUTE^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     edit_tag.name = request.form['tag_name']
     db.session.add(edit_tag)
     db.session.commit()
