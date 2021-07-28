@@ -22,7 +22,8 @@ const UpdateTag = () => {
         console.log(id, "ID FROM UPDATE TAG COMPONENT*****************************")
 
         setFormOpen(false)
-        history.push(`/tags/${id}`)
+        history.push('/')
+        history.goBack()
     }
 
     useEffect(() => {
