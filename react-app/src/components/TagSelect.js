@@ -16,7 +16,7 @@ const TagSelect = ({id}) => {
     const tags = useSelector(state => Object.values(state.tagReducer));
     const user = useSelector(state => state.session.user)
 
-    console.log(user.id, 'USERID FROM TAGSELECT&&&&&&&&&&************')
+    // console.log(user.id, 'USERID FROM TAGSELECT&&&&&&&&&&************')
 
     const selectTag = (e) => {
         e.preventDefault();
