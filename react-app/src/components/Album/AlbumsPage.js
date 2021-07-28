@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import {renderAllAlbums} from "../../store/album";
+import {renderUserAlbums} from "../../store/album";
 
 import "./album.css";
 import placeholder from "./placeholder-img.jpeg";
@@ -9,22 +9,31 @@ import placeholder from "./placeholder-img.jpeg";
 const AlbumsPage = () => {
     const dispatch = useDispatch();
     const albums = useSelector(state => Object.values(state.albumReducer));
-    const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.session.user);
+
+    const {userId} = useParams();
+    const pageOwnerId = parseInt(userId);
+
+    console.log(pageOwnerId)
 
     useEffect(() => {
-        dispatch(renderAllAlbums());
-    }, [dispatch]);
+        dispatch(renderUserAlbums(pageOwnerId));
+    }, [dispatch, pageOwnerId]);
 
-    console.log(albums)
+    // console.log(albums)
 
     return albums && (
         <>
-        <div className="album-title">
-            <h2>Your Albums</h2>
-            <button type="button" id="create-album-button">
-                <NavLink to={`/users/${user?.id}/albums/new`}>Create An Album</NavLink>
-            </button>
-        </div>
+            {user?.id === pageOwnerId ?
+                <div className="album-title">
+                    <h2>Your Albums</h2>
+                    <button type="button" id="create-album-button">
+                        <NavLink to={`/users/${user?.id}/albums/new`}>Create An Album</NavLink>
+                    </button>
+                </div> : <div className="album-title">
+                    <h2>Albums</h2>
+                </div>
+            }
             <div className="uploaded--photo-container">
                 {albums?.map((album) =>
                         <div className="album-list">
@@ -32,10 +41,8 @@ const AlbumsPage = () => {
                                 {album?.title}
                             </NavLink>
                             {album.photos[0] ? <img className="album-thumb" src={album.photos[0]?.image_url} alt="first photo in this album" /> : <img className="album-thumb" src={placeholder} alt="this album is empty" />}
-
                         </div>
-                    )
-                }
+                )}
             </div>
         </>
     )
