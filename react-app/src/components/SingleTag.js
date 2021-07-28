@@ -7,6 +7,7 @@ import { getOneTag } from '../store/tag';
 import DeleteATag from './DeleteATag';
 // import PhotoTagSidebar from './PhotoTagSidebar';
 import UpdateTag from './UpdateTag';
+import PhotoFeedChunk from './PhotoFeedChunk';
 
 
 const SingleTag = () => {
@@ -49,14 +50,17 @@ const SingleTag = () => {
             </div>
             : null
     }
-            <div className="feed--photo-div">
+            <div>
                 {filteredPhotos &&
-                    <div>
+                    <div className='feed'>
                         {filteredPhotos.length ? filteredPhotos.map(photo => (
-                            <Link to={`/photos/${photo?.id}`}>
-                            <img className="feed--photo" src={`${photo?.image_url}`} />
-                            </Link>
-                        )) : "No Photos Found"
+                            // <Link to={`/photos/${photo?.id}`}>
+                            // <img className="feed--photo" src={`${photo?.image_url}`} />
+                            // </Link>
+                            <div key={photo?.id} className="feed--outer-photo-container">
+                                <PhotoFeedChunk photo={photo} />
+                            </div>
+                        )) : <div id='single-tag-error'>No Photos Found</div>
                     }
                     </div>
                 }
