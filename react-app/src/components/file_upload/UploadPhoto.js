@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPhoto } from "../../store/photo";
-import "./UploadPhoto.css"
+import "./UploadPhoto.css";
 
 const UploadPhoto = () => {
   const history = useHistory(); // so that we can redirect after the photo upload is successful
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
 
   const [photoLoading, setPhotoLoading] = useState(false);
   const [photo, setPhoto] = useState(null);
@@ -40,38 +40,47 @@ const UploadPhoto = () => {
   return (
     <div className="card">
       <h2>Upload a Photo</h2>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-input-container">
+          <input
+            type="text"
+            className="form-input"
+            name="title"
+            placeholder="Title"
+            required
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+          <label className="form-input">
             <input
-              type="text"
-              className="form-input"
-              name="title"
-              placeholder="Title"
-              onChange={(e) => setTitle(e.target.value)}
-              value={title} />
-            <label className="form-input">
-            <input
-              type="file" accept="image/*"
+              type="file"
+              accept="image/*"
               name="file_upload"
-              onChange={updatePhoto} />
-              </label>
-            <textarea
-              name="caption"
-              className="form-input"
-              placeholder="Caption your photo..."
-              onChange={(e) => setCaption(e.target.value)}
-              value={caption} />
-            <input type="date"
-              name="date_taken"
-              className="form-input"
-              onChange={(e) => setDateTaken(e.target.value)}
-              value={dateTaken} />
-          </div>
-          <button type="submit" id="loginBtn">Submit</button>
-          {photoLoading && <p>Loading...</p>}
-        </form>
+              onChange={updatePhoto}
+              required
+            />
+          </label>
+          <textarea
+            name="caption"
+            className="form-input"
+            placeholder="Caption your photo..."
+            onChange={(e) => setCaption(e.target.value)}
+            value={caption}
+          />
+          <input
+            type="date"
+            name="date_taken"
+            className="form-input"
+            onChange={(e) => setDateTaken(e.target.value)}
+            value={dateTaken}
+          />
+        </div>
+        <button type="submit" id="loginBtn">
+          Submit
+        </button>
+        {photoLoading && <p>Loading...</p>}
+      </form>
     </div>
-
   );
 };
 

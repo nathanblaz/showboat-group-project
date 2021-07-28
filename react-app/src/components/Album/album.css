@@ -22,7 +22,8 @@
 }
 
 .uploaded--photo-container {
-  max-width: 800px;
+  max-width: 75%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-flow: wrap;
