@@ -11,16 +11,13 @@ const AlbumsPage = () => {
     const albums = useSelector(state => Object.values(state.albumReducer));
     const user = useSelector(state => state.session.user);
 
+    //get the ID of the user whose profile we're on, in case it is someone else's profile
     const {userId} = useParams();
     const pageOwnerId = parseInt(userId);
-
-    console.log(pageOwnerId)
 
     useEffect(() => {
         dispatch(renderUserAlbums(pageOwnerId));
     }, [dispatch, pageOwnerId]);
-
-    // console.log(albums)
 
     return albums && (
         <>

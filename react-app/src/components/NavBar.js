@@ -10,6 +10,7 @@ const NavBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+
   const [showDropdown, setShowDropdown] = useState(false);
   const [showButton, setShowButton] = useState(true);
 
@@ -52,11 +53,6 @@ const NavBar = () => {
                 Home
               </NavLink>
             </li>
-            {/* <li className="navitem">
-            <NavLink to="/users" exact={true} activeClassName="active">
-              Users
-            </NavLink>
-          </li> */}
             <li className="navitem">
               <NavLink
                 to={`/users/${user.id}/upload/`}

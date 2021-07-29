@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+// import { getAUser } from "../store/user-profile"
+import { renderAllPhotos } from "../store/photo";
 import AlbumsPage from "../components/Album/AlbumsPage";
 import ViewPhotos from "../components/file_upload/ViewPhotos";
 
 function User() {
-  const [user, setUser] = useState({});
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+
   const [showAlbums, setShowAlbums] = useState(false);
   const [showPhotos, setShowPhotos] = useState(true);
-  // Notice we use useParams here instead of getting the params
-  // From props.
+
+  //get the ID of the user whose profile we're on, in case it is someone else's profile
   const { userId }  = useParams();
+  const pageOwnerId = parseInt(userId);
 
   useEffect(() => {
-    if (!userId) {
-      return
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
+    dispatch(renderAllPhotos());
+  }, [dispatch]);
 
-  if (!user) {
-    return null;
+  const allPhotos = useSelector(state => Object.values(state.photoReducer));
+  let photos;
+  let profileUser;
+
+  if (user.id !== pageOwnerId) {
+    photos = allPhotos?.filter(photo => photo.user_id === pageOwnerId);
+    profileUser = photos[0]?.user;
+    console.log(profileUser)
+  } else  {
+    photos = allPhotos?.filter(photo => photo.user_id === user.id);
+    profileUser = user;
   }
 
   const photoButtonClick = () => {
@@ -39,22 +47,31 @@ function User() {
   return (
     <>
       <div className="user-header">
-          <img src={user?.avatar} className="user-page--avi" alt="avatar"/>
-          <p>{user?.username}</p>
+          <img src={profileUser?.avatar} className="user-page--avi" alt="avatar"/>
+          <p>{profileUser?.username}</p>
       </div>
-      <ul className="navmenu" id="user-nav">
+      {user?.id === pageOwnerId ?
+        <ul className="navmenu" id="user-nav">
+            <li className="navitem">
+              <button type="button" className="user-page-button" onClick={photoButtonClick}>Your Photos</button>
+            </li>
+            <li className="navitem">
+              <button type="button" className="user-page-button" onClick={albumButtonClick}>Your Albums</button>
+            </li>
+        </ul> :
+        <ul className="navmenu" id="user-nav">
           <li className="navitem">
-            <button type="button" className="user-page-button" onClick={photoButtonClick}>Your Photos</button>
+            <button type="button" className="user-page-button" onClick={photoButtonClick}>Photos</button>
           </li>
           <li className="navitem">
-            <button type="button" className="user-page-button" onClick={albumButtonClick}>Your Albums</button>
+            <button type="button" className="user-page-button" onClick={albumButtonClick}>Albums</button>
           </li>
-      </ul>
+        </ul>}
       {showAlbums && (
         <AlbumsPage />
       )}
       {showPhotos && (
-        <ViewPhotos user={user} />
+        <ViewPhotos user={profileUser} />
       )}
     </>
   );
