@@ -18,7 +18,7 @@ function User() {
   const pageOwnerId = parseInt(userId);
 
   useEffect(() => {
-    console.log("get A User dispatch", user, userId)
+    console.log("get A User dispatch", user, userId, pageOwnerId)
       dispatch(getAUser(pageOwnerId));
   }, [dispatch, pageOwnerId]);
 

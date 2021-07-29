@@ -15,6 +15,8 @@ export const getAUser = (id) => async (dispatch) => {
     } else {
         console.log(res.statusText)
     }
+    console.log("inside getAUser thunk", id, data)
+    return data;
 };
 
 const initialState = {user: null}
