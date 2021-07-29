@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderOnePhoto } from "../../src/store/photo";
 import PhotoComments from "./PhotoComments";
@@ -58,6 +58,7 @@ function PhotoPage() {
       <div className="photo--sidebar">
 
         <div className="photo--text-container">
+            <Link to={`/users/${photo?.user_id}`}>{photo?.user?.username}</Link>
             <p>Date Taken: {photoDate.toDateString()}</p>
               <p>{photo?.caption}</p>
             <div className="button--buttons-container">
