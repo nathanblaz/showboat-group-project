@@ -18,7 +18,7 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
-    print("=============inside user at id call getAUser fetch", user)
+    # print("=============inside user at id call getAUser fetch", user)
     return user.to_dict()
 
 @user_routes.route('/<int:id>/albums')
