@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getAUser } from "../store/user-profile"
 import AlbumsPage from "../components/Album/AlbumsPage";
 import ViewPhotos from "../components/file_upload/ViewPhotos";
@@ -18,6 +18,7 @@ function User() {
   const pageOwnerId = parseInt(userId);
 
   useEffect(() => {
+    console.log("get A User dispatch", user, userId)
       dispatch(getAUser(pageOwnerId));
   }, [dispatch, pageOwnerId]);
 
@@ -31,7 +32,7 @@ function User() {
     setShowPhotos(false);
   }
 
-  return (
+  return profileUser && (
     <>
       <div className="user-header">
           <img src={profileUser?.avatar} className="user-page--avi" alt="avatar"/>
@@ -58,7 +59,7 @@ function User() {
         <AlbumsPage />
       )}
       {showPhotos && (
-        <ViewPhotos user={user} />
+        <ViewPhotos user={profileUser} />
       )}
     </>
   );

@@ -26,6 +26,7 @@ function App() {
 
   const currentUser = useSelector((state) => state.session.user);
 
+  console.log("App.js", currentUser)
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
