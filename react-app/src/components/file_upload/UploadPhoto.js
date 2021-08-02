@@ -38,49 +38,55 @@ const UploadPhoto = () => {
   };
 
   return (
-    <div className="card">
-      <h2>Upload a Photo</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-input-container">
-          <input
-            type="text"
-            className="form-input"
-            name="title"
-            placeholder="Title"
-            required
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-          <label className="form-input">
+    <>
+      <div id="card-id">
+
+      </div>
+
+      <div className="card">
+        <h2>Upload a Photo</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-input-container">
             <input
-              type="file"
-              accept="image/*"
-              name="file_upload"
-              onChange={updatePhoto}
+              type="text"
+              className="form-input"
+              name="title"
+              placeholder="Title"
               required
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
             />
-          </label>
-          <textarea
-            name="caption"
-            className="form-input"
-            placeholder="Caption your photo..."
-            onChange={(e) => setCaption(e.target.value)}
-            value={caption}
-          />
-          <input
-            type="date"
-            name="date_taken"
-            className="form-input"
-            onChange={(e) => setDateTaken(e.target.value)}
-            value={dateTaken}
-          />
-        </div>
-        <button type="submit" id="loginBtn">
-          Submit
-        </button>
-        {photoLoading && <p>Loading...</p>}
-      </form>
-    </div>
+            <label className="form-input">
+              <input
+                type="file"
+                accept="image/*"
+                name="file_upload"
+                onChange={updatePhoto}
+                required
+              />
+            </label>
+            <textarea
+              name="caption"
+              className="form-input"
+              placeholder="Caption your photo..."
+              onChange={(e) => setCaption(e.target.value)}
+              value={caption}
+            />
+            <input
+              type="date"
+              name="date_taken"
+              className="form-input"
+              onChange={(e) => setDateTaken(e.target.value)}
+              value={dateTaken}
+            />
+          </div>
+          <button type="submit" id="loginBtn">
+            Submit
+          </button>
+          {photoLoading && <p>Loading...</p>}
+        </form>
+      </div>
+    </>
   );
 };
 
