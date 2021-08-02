@@ -71,6 +71,7 @@ a {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 60px;
   /* justify-content: space-around; */
 }
 
@@ -124,6 +125,7 @@ a {
   flex-direction: column-reverse;
   width: 60%;
   margin: auto;
+  margin-top: 60px;
 }
 
 .feed--photo-div {
@@ -154,6 +156,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 60px;
 }
 
 .tag-sidebar-tag {
@@ -231,6 +234,7 @@ a {
   display: flex;
   align-items: center;
   padding: 10px;
+  padding-top: 90px;
   height: 68px;
   background: rgb(68, 68, 68);
   background: linear-gradient(

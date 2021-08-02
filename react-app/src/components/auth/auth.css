@@ -60,6 +60,8 @@ box-sizing: border-box;
 #single-tag-page{
     display: flex;
     justify-content: center;
+    padding-top: 90px;
+    margin-top: 0;
 }
 #single-tag-buttons{
     display: flex;

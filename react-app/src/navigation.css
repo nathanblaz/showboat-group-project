@@ -5,6 +5,7 @@ nav {
   justify-content: center;
   align-items: center;
   padding-left: 20px;
+  position: fixed;
 }
 
 .navmenu {
@@ -15,7 +16,7 @@ nav {
   grid-gap: 10px;
   list-style-type: none;
   font-family: sans-serif;
-  width: 100vw;
+  width: 90vw;
   justify-content: end;
   margin-right: 2rem;
 }
